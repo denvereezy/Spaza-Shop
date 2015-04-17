@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<style>
+       body{
+       background-color:blue;
+      
+}
+       a{
+        color:black;
+        font-size:20px;
+        }
+
+
+</style>
+<script type="text/javascript">
+window.onload = function () {
+	var chart = new CanvasJS.Chart("chartContainer",
+	{
+		animationEnabled: true,
+		title:{
+			text: "Category chart"
+		},
+		data: [
+		{
+			type: "column", //change type to bar, line, area, pie, etc
+			dataPoints: [
+				{ label: "dairy", y: 268},
+				{ label: "bakery", y: 131 },
+				{ label: "can food",y:181},                                    
+				{ label: "beverages",  y: 329 },
+				{ label: "starch",  y: 48 },
+                                { label: "meat",  y: 99 },
+                                { label: "toiletries",  y: 77 },
+                                { label: "fruits",  y: 229 },
+                                { label: "candy",  y: 193 },
+                                { label: "extras",  y: 29 }
+			]
+		}
+		]
+		});
+
+	chart.render();
+}
+</script>
+<script type="text/javascript" src="./canvasjs.min.js"></script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+</body>
+<a href="./index.html">Back to Homepage</a>
+</html>

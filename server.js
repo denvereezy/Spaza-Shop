@@ -17,6 +17,11 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 //product list
+
+app.get('/', function(req, res){
+	res.render("index");
+});
+
 app.get('/products', function (req, res) {
     
     var productList = [];
