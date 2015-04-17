@@ -111,5 +111,41 @@ module.exports = function(filePath){
   		return  leastPopularCategory ;
     };
 
+this.categoryQtySold = function(prodQtyMap){
+	
+	var categoryMap = {
+			'Milk 1l':'Dairy',
+			'Imasi':'Dairy',
+			'Bread': 'Bakery',
+			'Chakalaka Can': 'CanFood',
+			'Gold Dish Vegetable Curry Can': 'CanFood',
+			'Fanta 500ml':'Beverages',
+			'Coke 500ml': 'Beverages',
+			'Cream Soda 500ml':'Beverages',
+			'Iwisa Pap 5kg': 'Starch',
+			'Top Class Soy Mince':'Meat',
+			'Shampoo 1 litre':'Toiletries',
+			'Soap Bar':'Toiletries',
+			'Bananas - loose':'Fruits',
+			'Apples - loose':'Fruits',
+			'Mixed Sweets 5s':'Candy',
+			'Heart Chocolates': 'Candy',
+			'Rose (plastic)': 'Extras',
+			'Valentine Cards': 'Extras'
+        };
+
+
+ 	var catStats = {}
+        for(var product in prodQtyMap){
+        	if(catStats[categoryMap[product]] === undefined){
+        		catStats[categoryMap[product]] = 0
+        	}
+        	catStats[categoryMap[product]] += prodQtyMap[product]
+        }
+
+      return catStats;
 }
+
+}
+
 	

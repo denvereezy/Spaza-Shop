@@ -150,23 +150,23 @@
                 <ul class="sub-menu">
                     <li><a href = "products">Product List</a></li>
 
-                    <li><a href = "#">Most Popular Product</a></li>
+                    <li><a href = "popular">Most Popular Product</a></li>
+     
+                     <li><a href = "leastpopular">Least Popular Product</a></li>
 
-                    <li><a href = "popular">Most Popular Category</a></li>
+                      <li><a href = "popcat">Most Popular Category</a></li>
 
-                    <li><a href = "least">Least Popular Product</a></li>
-      
-                    <li><a href = "#">Least Popular Category</a></li>
-                    
+                    <li><a href = "leastpopcat">Least Popular Category</a></li>
+
                 </ul>
             </li>
             <li><a href="persona.html">Personas</a></li>
             
-            <li><a href="#">Site Help</a></li>
+            <li><a href="help.html">Site Help</a></li>
         </ul>
     </nav>
 </div>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ek+Mukta">
-<script src="anim.js"></script>
+<script src="graph.js"></script>
 </body>
 
