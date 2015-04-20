@@ -9,6 +9,9 @@ var items = products.categoryQtySold(productMap);
 var leastPopularProduct = products.leastPopular(productMap);
 var popularCategory = products.popularCategory(items);
 var leastPopularCategory = products.leastPopularCategory(items);
+
+var categories = products.groupedItems();
+var cat = products.categoryQtySold(categories);
 var app = express();
 
     // create a route
@@ -23,7 +26,16 @@ app.get('/', function(req, res){
 });
 
 app.get('/graph', function(req, res){
-	res.render("graph");
+	
+
+	var allCategories = [];
+	for (key in cat){
+		allCategories.push({
+			 name : key,
+            		qty : cat[key]
+		});	
+	}
+	res.render("graph", {products : allCategories});
 });
 
 app.get('/products', function (req, res) {
