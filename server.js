@@ -22,6 +22,10 @@ app.get('/', function(req, res){
 	res.render("index");
 });
 
+app.get('/graph', function(req, res){
+	res.render("graph");
+});
+
 app.get('/products', function (req, res) {
     
     var productList = [];
@@ -97,6 +101,15 @@ var productList = [];
     }
   res.render("leastpopcat",{products : productList});
 });
+
+app.get('/persona', function(req, res){
+	res.render("persona");
+});
+
+app.get('/site_help', function(req, res){
+	res.render("site_help");
+});
+	
 		
    //start the server
    var server = app.listen(8080, function () {
