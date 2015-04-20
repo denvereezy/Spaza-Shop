@@ -9,6 +9,8 @@ var items = products.categoryQtySold(productMap);
 var leastPopularProduct = products.leastPopular(productMap);
 var popularCategory = products.popularCategory(items);
 var leastPopularCategory = products.leastPopularCategory(items);
+var prodQtyMap = products.groupedItems();
+var categoryQty = products.categoryQtySold(prodQtyMap);
 var app = express();
 
     // create a route
@@ -71,6 +73,22 @@ var productList = [];
     }
   res.render("leastpopular",{products : productList});
 });
+
+ //category list
+ app.get('/category_list', function (req, res) {
+var productList = [];
+
+    for(key in categoryQty){
+
+        productList.push({
+            name : key,
+            qty : categoryQty[key]
+        });
+     
+    }
+  res.render("category_list",{products : productList});
+});
+
 
 //most popular category
 app.get('/popularCategory', function (req, res) {

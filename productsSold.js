@@ -142,7 +142,7 @@ this.categoryQtySold = function(prodQtyMap){
         	}
         	catStats[categoryMap[product]] += prodQtyMap[product]
         }
-
+      // console.log(catStats);
       return catStats;
 }
 
