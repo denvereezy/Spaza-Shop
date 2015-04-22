@@ -140,13 +140,12 @@ app.get('/persona', function(req, res){
 app.get('/site_help', function(req, res){
 	res.render("site_help");
 });
-	app.listen(process.env.PORT || 8080);
-
-   /*var port = process.env.PORT || 8080;		
+	//app.listen(3000);
+   var port = process.env.PORT || 8080;		
    //start the server
    var server = app.listen(port, function () {
         var host = server.address().address;
         var port = server.address().port;
      	console.log('Example app listeng at http://%s:%s', host, port);
 
-   });*/
+   });
