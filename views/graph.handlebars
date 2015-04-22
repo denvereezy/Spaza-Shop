@@ -23,9 +23,16 @@ window.onload = function () {
 		{
 			type: "column", //change type to bar, line, area, pie, etc
 			dataPoints: [
+<<<<<<< HEAD
                                   {{#each products}}
 				{ label: "{{this.name}}", y: {{this.qty}} },
 				 {{/each}}
+=======
+				{{#each products}}
+					{ label: "{{this.name}}", y: {{this.qty}} },
+  				{{/each}}
+	
+>>>>>>> 0bd8ed66338e0c10ef14908ce6b15ceacdba240f
 			]
 		}
 		]
