@@ -138,9 +138,9 @@ app.get('/site_help', function(req, res){
 	res.render("site_help");
 });
 	
-		
+   var port = process.env.PORT || 8080;		
    //start the server
-   var server = app.listen(8080, function () {
+   var server = app.listen(port, function () {
         var host = server.address().address;
         var port = server.address().port;
      console.log('Example app listening at http://%s:%s', host, port);
