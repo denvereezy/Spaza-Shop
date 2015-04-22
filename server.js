@@ -140,7 +140,7 @@ app.get('/persona', function(req, res){
 app.get('/site_help', function(req, res){
 	res.render("site_help");
 });
-	
+	//app.listen(3000);
    var port = process.env.PORT || 8080;		
    //start the server
    var server = app.listen(port, function () {
