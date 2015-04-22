@@ -1,7 +1,9 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
+
 var Products = require("./productsSold");
 var products = new Products('./Nelisa Sales History.csv');
+
 
 var productMap = products.groupedItems();
 var popularProduct = products.mostPopular(productMap);
@@ -11,6 +13,7 @@ var popularCategory = products.popularCategory(items);
 var leastPopularCategory = products.leastPopularCategory(items);
 var prodQtyMap = products.groupedItems();
 var categoryQty = products.categoryQtySold(prodQtyMap);
+
 var app = express();
 
     // create a route
@@ -143,6 +146,6 @@ app.get('/site_help', function(req, res){
    var server = app.listen(port, function () {
         var host = server.address().address;
         var port = server.address().port;
-     console.log('Example app listening at http://%s:%s', host, port);
+     	console.log('Example app listeng at http://%s:%s', host, port);
 
    });
