@@ -115,7 +115,7 @@ describe("Find most popular product in file", function(){
         var categoryMap = {
         'beverages': 328,
         'Dairy': 297,
-        'Canned Food': 278,
+        'Canned Food': 278,EpisodeEpisode 188 188
         'Fruit': 228,
         'Candy': 192,
         'Bakery': 130,

@@ -3,10 +3,7 @@
 
 <head>
 <style>
-       body{
-       background-color:blue;
-      
-}
+  
        a{
         color:black;
         font-size:20px;
@@ -26,16 +23,9 @@ window.onload = function () {
 		{
 			type: "column", //change type to bar, line, area, pie, etc
 			dataPoints: [
-				{ label: "dairy", y: 268},
-				{ label: "bakery", y: 131 },
-				{ label: "can food",y:181},                                    
-				{ label: "beverages",  y: 329 },
-				{ label: "starch",  y: 48 },
-                                { label: "meat",  y: 99 },
-                                { label: "toiletries",  y: 77 },
-                                { label: "fruits",  y: 229 },
-                                { label: "candy",  y: 193 },
-                                { label: "extras",  y: 29 }
+                                  {{#each products}}
+				{ label: "{{this.name}}", y: {{this.qty}} },
+				 {{/each}}
 			]
 		}
 		]

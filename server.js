@@ -25,7 +25,17 @@ app.get('/', function(req, res){
 });
 
 app.get('/graph', function(req, res){
-	res.render("graph");
+  var allCategories = [];
+
+    for(key in categoryQty){
+
+        allCategories.push({
+            name : key,
+            qty : categoryQty[key]
+        });
+     
+    }
+	res.render("graph", {products : allCategories} );
 });
 
 app.get('/products', function (req, res) {
@@ -46,78 +56,78 @@ app.get('/products', function (req, res) {
 
 //most popular product
 app.get('/popular', function (req, res) {
-var productList = [];
+var popular = [];
 
     for(key in popularProduct){
 
-        productList.push({
+        popular.push({
             name : key,
             qty : popularProduct[key]
         });
      
     }
-  res.render("popular",{products : productList});
+  res.render("popular",{products : popular});
 });
 
 //least popular product
 app.get('/leastpopular', function (req, res) {
-var productList = [];
+var leastPop = [];
 
     for(key in leastPopularProduct){
 
-        productList.push({
+        leastPop.push({
             name : key,
             qty : leastPopularProduct[key]
         });
      
     }
-  res.render("leastpopular",{products : productList});
+  res.render("leastpopular",{products : leastPop});
 });
 
  //category list
  app.get('/category_list', function (req, res) {
-var productList = [];
+var categoryList = [];
 
     for(key in categoryQty){
 
-        productList.push({
+        categoryList.push({
             name : key,
             qty : categoryQty[key]
         });
      
     }
-  res.render("category_list",{products : productList});
+  res.render("category_list",{products : categoryList});
 });
 
 
 //most popular category
 app.get('/popularCategory', function (req, res) {
-var productList = [];
+var mostPop = [];
 
     for(key in popularCategory){
 
-        productList.push({
+        mostPop.push({
             name : key,
             qty : popularCategory[key]
         });
      
     }
-  res.render("popularCategory",{products : productList});
+  res.render("popularCategory",{products : mostPop});
 });
 
 // least popular category
  app.get('/leastpopcat', function (req, res) {
-var productList = [];
+var leastPopCat = [];
 
     for(key in leastPopularCategory){
 
-        productList.push({
+        leastPopCat.push({
             name : key,
             qty : leastPopularCategory[key]
         });
      
     }
-  res.render("leastpopcat",{products : productList});
+  res.render("leastpopcat",{products : leastPopCat});
 });
 
 app.get('/persona', function(req, res){
