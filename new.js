@@ -2,6 +2,7 @@ var Products = require("./productsSold");
 var products = new Products('./Nelisa Sales History.csv');
 
 var prodQtyMap = products.groupedItems();
+var prices = products.earningsPerProduct();
 var categoryQty = products.categoryQtySold(prodQtyMap);
 console.log(categoryQty);
 
@@ -10,6 +11,10 @@ var mostPopularCategory = products.popularCategory(categoryQty);
 
 for(var key in mostPopularCategory){
     console.log(key + " => " + mostPopularCategory[key] );
+}
+
+for(var key in prices){
+    console.log(key + " => " + "R" + prices[key] );
 }
 
 console.log("========================================");

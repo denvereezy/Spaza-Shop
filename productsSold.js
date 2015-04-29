@@ -87,18 +87,23 @@ module.exports = function(filePath){
 		productLines.forEach(function(productLine){
 
 			var splitLines = productLine.split(';');
-			//console.log(splitLines);
+			//console.log(splitLines);W3Schools
 
 			var currentItem = splitLines[2];
 			var numberSold =  splitLines[3];
 			var price 		=	splitLines[4];
+			//replace things here...
+			var replaceR = price.replace("R", " ");
+			var replaceComma = replaceR.replace(",", ".");
+			//
+
 			if(totalPrices[currentItem] === undefined)
             {
                 totalPrices[currentItem] = 0;
             }
-            totalPrices[currentItem] += Number(numberSold*price);
+            totalPrices[currentItem] += Number(numberSold) * Number(replaceComma);
 		});
-
+		//console.log(totalPrices);
 		return totalPrices;
 	};
 
