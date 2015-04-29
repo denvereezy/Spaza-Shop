@@ -88,11 +88,12 @@ module.exports = function(filePath){
 
 			var splitLines = productLine.split(';');
 			//console.log(splitLines);W3Schools
-
+                         if(splitLines.length === 5){
 			var currentItem = splitLines[2];
 			var numberSold =  splitLines[3];
-			var price 		=	splitLines[4];
+			var price = splitLines[4];
 			//replace things here...
+                        //console.log(productLine);
 			var replaceR = price.replace("R", " ");
 			var replaceComma = replaceR.replace(",", ".");
 			//
@@ -102,7 +103,9 @@ module.exports = function(filePath){
                 totalPrices[currentItem] = 0;
             }
             totalPrices[currentItem] += Number(numberSold) * Number(replaceComma);
+}
 		});
+
 		//console.log(totalPrices);
 		return totalPrices;
 	};
