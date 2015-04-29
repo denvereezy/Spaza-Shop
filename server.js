@@ -14,6 +14,8 @@ var leastPopularCategory = products.leastPopularCategory(items);
 var prodQtyMap = products.groupedItems();
 var categoryQty = products.categoryQtySold(prodQtyMap);
 
+var prices = products.earningsPerProduct()
+
 var app = express();
 
     // create a route
@@ -87,6 +89,17 @@ var leastPop = [];
   res.render("leastpopular",{products : leastPop});
 });
 
+app.get('/earningsPerProduct', function (req, res) {
+    var allPrices = []
+        for(key in prices){
+            allPrices.push({
+                name : key,
+                salesTotal : prices[key]
+            })
+        }
+    res.render("earningsPerProduct")
+    })
+
  //category list
  app.get('/category_list', function (req, res) {
 var categoryList = [];
@@ -132,6 +145,9 @@ var leastPopCat = [];
     }
   res.render("leastpopcat",{products : leastPopCat});
 });
+app.get('/earningsPerCategory', function (req, res) {
+	res.render("earningsPerCategory")
+	})
 
 app.get('/persona', function(req, res){
 	res.render("persona");

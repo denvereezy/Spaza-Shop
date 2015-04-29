@@ -38,9 +38,9 @@ module.exports = function(filePath){
 
 			if(productCountMap[currentItem] === undefined)
             {
-                    productCountMap[currentItem] = 0;
+                productCountMap[currentItem] = 0;
             }
-                productCountMap[currentItem] += Number(numberSold);
+            productCountMap[currentItem] += Number(numberSold);
 		});
 
 		return productCountMap;
@@ -63,21 +63,46 @@ module.exports = function(filePath){
   		return mostPopularProduct ;
     };
      this.leastPopular = function(productCountMap){
-           var leastPopularProduct = {};
-           var min = 172;
-           for(var prop in productCountMap) {
-             var value = productCountMap[prop];
-             if(value < min) {
-              min = value;
-              leastPopularProduct = {
-               leastPopularProduct : prop,
-               AmountSold  : min
-             }
-           }
-         }
+	           var leastPopularProduct = {};
+	           var min = 172;
+	           for(var prop in productCountMap) {
+	             var value = productCountMap[prop];
+	             if(value < min) {
+	              min = value;
+	              leastPopularProduct = {
+	               leastPopularProduct : prop,
+	               AmountSold  : min
+	             }
+	           }
+	         }
          //console.log(itemMap);
          return leastPopularProduct;
-    };
+        }
+
+
+    this.earningsPerProduct = function(){
+		var linesInFile = 	fs.readFileSync(filePath, "utf8");
+		var productLines = linesInFile.split('\r');
+		var totalPrices = {};
+		productLines.forEach(function(productLine){
+
+			var splitLines = productLine.split(';');
+			//console.log(splitLines);
+
+			var currentItem = splitLines[2];
+			var numberSold =  splitLines[3];
+			var price 		=	splitLines[4];
+			if(totalPrices[currentItem] === undefined)
+            {
+                totalPrices[currentItem] = 0;
+            }
+            totalPrices[currentItem] += Number(numberSold*price);
+		});
+
+		return totalPrices;
+	};
+
+
     this.popularCategory = function(productCountMap){
         var mostPopularCategory = {};
         var max = 0;
