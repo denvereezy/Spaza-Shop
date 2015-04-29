@@ -97,8 +97,8 @@ app.get('/earningsPerProduct', function (req, res) {
                 salesTotal : prices[key]
             })
         }
-    res.render("earningsPerProduct")
-    })
+    res.render("earningsPerProduct", {products : allPrices})
+})
 
  //category list
  app.get('/category_list', function (req, res) {
