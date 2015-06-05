@@ -15,7 +15,8 @@ module.exports = function(filePath){
 
 			var productMap = {
 				itemName : currentItem,
-				soldItems : Number(productTotal)
+				soldItems : Number(productTotal),
+                                totalCost :totalCost 
 			};
 			totalProducts.push(productMap);
 		  });
@@ -81,7 +82,7 @@ module.exports = function(filePath){
 
 
     this.earningsPerProduct = function(){
-		var linesInFile = 	fs.readFileSync(filePath, "utf8");
+		var linesInFile = fs.readFileSync(filePath, "utf8");
 		var productLines = linesInFile.split('\r');
 		var totalPrices = {};
 		productLines.forEach(function(productLine){
@@ -109,6 +110,14 @@ module.exports = function(filePath){
 		//console.log(totalPrices);
 		return totalPrices;
 	};
+ 
+  	this.CategoryEarnings = function(){
+	   
+
+       if(catStats[categoryMap[product]] === undefined){
+        		catStats[categoryMap[product]] = 0
+        	}
+}
 
 
     this.popularCategory = function(productCountMap){
@@ -175,7 +184,7 @@ this.categoryQtySold = function(prodQtyMap){
         	}
         	catStats[categoryMap[product]] += prodQtyMap[product]
         }
-      // console.log(catStats);
+      //console.log(catStats);
       return catStats;
 }
 
