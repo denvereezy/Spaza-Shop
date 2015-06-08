@@ -13,7 +13,9 @@ var popularCategory = products.popularCategory(items);
 var leastPopularCategory = products.leastPopularCategory(items);
 var prodQtyMap = products.groupedItems();
 var categoryQty = products.categoryQtySold(prodQtyMap);
-
+var x = products.earningsPerProduct();
+var y = products.groupedItems();
+var earningsPerCat = products.earningsPerCategory(y, x);
 var prices = products.earningsPerProduct()
 
 var app = express();

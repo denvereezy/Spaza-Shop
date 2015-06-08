@@ -5,7 +5,7 @@ describe("Find most popular product in file", function(){
 
     it('should return the most popular product', function(){
  console.log("=================================");
-         var Products = require("./popular");
+         var Products = require("./productsSold");
          var products = new Products();
 
         var list = { 
@@ -41,7 +41,7 @@ describe("Find most popular product in file", function(){
     
    it('should return the least popular product', function(){
         console.log("======================================");
-         var Products = require("./popular");
+         var Products = require("./productsSold");
          var products = new Products();
          var lists = { 
                      'Mixed Sweets 5s': 172,
@@ -77,7 +77,7 @@ describe("Find most popular product in file", function(){
 
    it('should return most popular category', function(){
         console.log("==============================================");
-        var Products = require("./popular");
+        var Products = require("./productsSold");
         var products = new Products();
         var categoryMap = {
         'beverages': 328,
@@ -110,12 +110,12 @@ describe("Find most popular product in file", function(){
 });
     it('should return least popular category', function(){
         console.log("===============================================");
-        var Products = require("./popular");
+        var Products = require("./productsSold");
         var products = new Products();
         var categoryMap = {
         'beverages': 328,
         'Dairy': 297,
-        'Canned Food': 278,EpisodeEpisode 188 188
+        'Canned Food': 278,
         'Fruit': 228,
         'Candy': 192,
         'Bakery': 130,
@@ -140,6 +140,10 @@ describe("Find most popular product in file", function(){
         for(var key in leastPopularCategory){
             console.log(key + " => " + leastPopularCategory[key] );
         }
+});
+
+   it('should return the earnings per category', function(){
+   console.log("================================================");
 });
 });
 

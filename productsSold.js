@@ -16,7 +16,7 @@ module.exports = function(filePath){
 			var productMap = {
 				itemName : currentItem,
 				soldItems : Number(productTotal),
-                                totalCost :totalCost 
+                           
 			};
 			totalProducts.push(productMap);
 		  });
@@ -43,7 +43,7 @@ module.exports = function(filePath){
             }
             productCountMap[currentItem] += Number(numberSold);
 		});
-
+                
 		return productCountMap;
 	}
 	
@@ -110,7 +110,42 @@ module.exports = function(filePath){
 		//console.log(totalPrices);
 		return totalPrices;
 	};
- 
+
+//earnings per category
+   this.earningsPerCategory = function(productCountMap, totalPrices){
+    var earningsPerCat = {};
+
+    for(var key in productCountMap){
+}
+ for(var key in totalPrices){
+
+ var total = productCountMap[key] * totalPrices[key];
+console.log(key + ":" + "R"+ total);
+ return key + ":" + "R"+ total;
+}
+
+    
+
+};
+    
+   this.leastpCat = function(){
+        var leastPopularory = {};
+        var max = 0;
+        for(var cat in catStats) {
+            var value = catStats[cat];
+            if(value > max) {
+              	max = value;
+	            leastPopularory = {
+	               catStats : cat,
+	               AmountSold  : max
+	            }
+    		}
+        }
+                //console.log(leastPopularory);
+  		return  leastPopularCategory ;
+    };
+
+
   	this.CategoryEarnings = function(){
 	   
 
@@ -133,7 +168,7 @@ module.exports = function(filePath){
 	            }
     		}
         }
-         //console.log(itemMap);
+        // console.log(mostPopularCategory);
   		return  mostPopularCategory ;
     };
  this.leastPopularCategory = function(productCountMap){
@@ -177,14 +212,14 @@ this.categoryQtySold = function(prodQtyMap){
         };
 
 
- 	var catStats = {}
+ 	catStats = {}
         for(var product in prodQtyMap){
         	if(catStats[categoryMap[product]] === undefined){
         		catStats[categoryMap[product]] = 0
         	}
         	catStats[categoryMap[product]] += prodQtyMap[product]
         }
-      //console.log(catStats);
+     //console.log(catStats);
       return catStats;
 }
 
