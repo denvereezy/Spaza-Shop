@@ -14,7 +14,9 @@ var leastPopularCategory = products.leastPopularCategory(items);
 var prodQtyMap = products.groupedItems();
 var totalPrices = products.earningsPerProduct();
 var categoryQty = products.categoryQtySold(prodQtyMap);
+var profit = products.mostProfitableProduct(totalPrices);
 var earnings = products.earningsPerCategory(totalPrices);
+var amount = products.mostProfitableCategory(earnings);
 var prices = products.earningsPerProduct()
 
 var app = express();
@@ -148,7 +150,18 @@ var leastPopCat = [];
 });
 
 app.get('/mostProfitableProduct', function (req, res) {
-	res.render("mostProfitableProduct")
+      var profitable = [];
+
+    for(key in profit){
+
+        profitable.push({
+            name : key,
+            qty : profit[key]
+        });
+     
+    }
+   
+	res.render("mostProfitableProduct",{products : profitable})
 	})
 
 app.get('/earningsPerCategory', function (req, res) {
@@ -164,6 +177,21 @@ app.get('/earningsPerCategory', function (req, res) {
     }
 
 	res.render("earningsPerCategory",{products : totalEarnings})
+	})
+
+app.get('/mostProfitableCat', function (req, res) {
+    var totalEarnings = [];
+
+    for(key in amount){
+
+        totalEarnings.push({
+            name : key,
+            qty : amount[key]
+        });
+     
+    }
+
+	res.render("mostProfitableCat",{products : totalEarnings})
 	})
 
 	//app.listen(3000);

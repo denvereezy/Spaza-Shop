@@ -233,8 +233,41 @@ this.earningsPerCategory = function(totalPrices){
    //  console.log(earnings);
       return earnings;
 }
+//most profitable product
+this.mostProfitableProduct = function(totalPrices){
+        var mostProfitable = {};
+        var max = 0;
+        for(var prop in totalPrices) {
+            var value = totalPrices[prop];
+            if(value > max) {
+              	max = value;
+	            mostProfitable = {
+	               mostProfitable : prop,
+	               AmountSold  : max
+	            }
+    		}
+        }
+         console.log(mostProfitable);
+  		return mostProfitable ;
+    };
 
-
+//most profitable category
+this.mostProfitableCategory = function(earnings){
+        var mostProfitableCat = {};
+        var max = 0;
+        for(var cat in earnings) {
+            var value = earnings[cat];
+            if(value > max) {
+              	max = value;
+	            mostProfitableCat = {
+	               mostProfitableCat : cat,
+	               Amount_earned_R : max
+	            }
+    		}
+        }
+        // console.log(mostPopularCategory);
+  		return  mostProfitableCat ;
+    };
 }
 
 	
