@@ -112,61 +112,9 @@ module.exports = function(filePath){
 	};
 
 //earnings per category
-   this.earningsPerCategory = function(productCountMap, totalPrices){
-       var earnings ={};
-       for(var key in productCountMap){
-       console.log(productCountMap[key]);
-       }
-       for(var key in totalPrices){
-
-     var total = productCountMap[key] * totalPrices[key];
-      earnings={
-             key :key,
-             total : total
-}
-   //console.log(earnings);
-   return earnings;
-}
-
-};
-
-this.totalEarningsPerCategory = function(earnings){
-
-   var categoryMap = {
-			'Milk 1l':'Dairy',
-			'Imasi':'Dairy',
-			'Bread': 'Bakery',
-			'Chakalaka Can': 'CanFood',
-			'Gold Dish Vegetable Curry Can': 'CanFood',
-			'Fanta 500ml':'Beverages',
-			'Coke 500ml': 'Beverages',
-			'Cream Soda 500ml':'Beverages',
-			'Iwisa Pap 5kg': 'Starch',
-			'Top Class Soy Mince':'Meat',
-			'Shampoo 1 litre':'Toiletries',
-			'Soap Bar':'Toiletries',
-			'Bananas - loose':'Fruits',
-			'Apples - loose':'Fruits',
-			'Mixed Sweets 5s':'Candy',
-			'Heart Chocolates': 'Candy',
-			'Rose (plastic)': 'Extras',
-			'Valentine Cards': 'Extras'
-        };
+   
 
 
- 	catStats = {}
-        for(var product in earnings){
-        	if(catStats[categoryMap[product]] === undefined){
-        		catStats[categoryMap[product]] = 0
-        	}
-        	catStats[categoryMap[product]] += earnings[product]
-        }
-     console.log(catStats);
-      return catStats;
-
-
-};
-    
    this.leastpCat = function(){
         var leastPopularory = {};
         var max = 0;
@@ -261,6 +209,41 @@ this.categoryQtySold = function(prodQtyMap){
      //console.log(catStats);
       return catStats;
 }
+this.earningsPerCategory = function(totalPrices){
+	
+	var categoryMap = {
+			'Milk 1l':'Dairy',
+			'Imasi':'Dairy',
+			'Bread': 'Bakery',
+			'Chakalaka Can': 'CanFood',
+			'Gold Dish Vegetable Curry Can': 'CanFood',
+			'Fanta 500ml':'Beverages',
+			'Coke 500ml': 'Beverages',
+			'Cream Soda 500ml':'Beverages',
+			'Iwisa Pap 5kg': 'Starch',
+			'Top Class Soy Mince':'Meat',
+			'Shampoo 1 litre':'Toiletries',
+			'Soap Bar':'Toiletries',
+			'Bananas - loose':'Fruits',
+			'Apples - loose':'Fruits',
+			'Mixed Sweets 5s':'Candy',
+			'Heart Chocolates': 'Candy',
+			'Rose (plastic)': 'Extras',
+			'Valentine Cards': 'Extras'
+        };
+
+
+ 	earnings = {}
+        for(var product in totalPrices){
+        	if(earnings[categoryMap[product]] === undefined){
+        		earnings[categoryMap[product]] = 0
+        	}
+        	earnings[categoryMap[product]] += totalPrices[product]
+        }
+   //  console.log(earnings);
+      return earnings;
+}
+
 
 }
 

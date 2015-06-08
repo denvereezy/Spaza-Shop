@@ -12,12 +12,9 @@ var leastPopularProduct = products.leastPopular(productMap);
 var popularCategory = products.popularCategory(items);
 var leastPopularCategory = products.leastPopularCategory(items);
 var prodQtyMap = products.groupedItems();
+var totalPrices = products.earningsPerProduct();
 var categoryQty = products.categoryQtySold(prodQtyMap);
-var x = products.earningsPerProduct();
-var y = products.groupedItems();
-var earningsPerCat = products.earningsPerCategory(y, x);
-var linda
-var dmd = products.totalEarningsPerCategory(earnings);
+var earnings = products.earningsPerCategory(totalPrices);
 var prices = products.earningsPerProduct()
 
 var app = express();
@@ -155,7 +152,18 @@ app.get('/mostProfitableProduct', function (req, res) {
 	})
 
 app.get('/earningsPerCategory', function (req, res) {
-	res.render("earningsPerCategory")
+    var totalEarnings = [];
+
+    for(key in earnings){
+
+        totalEarnings.push({
+            name : key,
+            qty : earnings[key]
+        });
+     
+    }
+
+	res.render("earningsPerCategory",{products : totalEarnings})
 	})
 
 	//app.listen(3000);
