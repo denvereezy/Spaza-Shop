@@ -111,8 +111,6 @@ module.exports = function(filePath){
 		return totalPrices;
 	};
 
-//earnings per category
-   
 
 
    this.leastpCat = function(){
@@ -131,15 +129,6 @@ module.exports = function(filePath){
                 //console.log(leastPopularory);
   		return  leastPopularCategory ;
     };
-
-
-  	this.CategoryEarnings = function(){
-	   
-
-       if(catStats[categoryMap[product]] === undefined){
-        		catStats[categoryMap[product]] = 0
-        	}
-}
 
 
     this.popularCategory = function(productCountMap){
@@ -209,6 +198,7 @@ this.categoryQtySold = function(prodQtyMap){
      //console.log(catStats);
       return catStats;
 }
+//earnings per category
 this.earningsPerCategory = function(totalPrices){
 	
 	var categoryMap = {
