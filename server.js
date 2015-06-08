@@ -16,6 +16,8 @@ var categoryQty = products.categoryQtySold(prodQtyMap);
 var x = products.earningsPerProduct();
 var y = products.groupedItems();
 var earningsPerCat = products.earningsPerCategory(y, x);
+var linda
+var dmd = products.totalEarningsPerCategory(earnings);
 var prices = products.earningsPerProduct()
 
 var app = express();
