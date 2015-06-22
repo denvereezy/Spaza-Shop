@@ -1,8 +1,8 @@
 INSERT INTO Products (Category_Id,Name) VALUES (1,'Milk 1l');
 INSERT INTO Products (Category_Id,Name) VALUES (1,'Imasi');
-INSERT INTO Products (Category_Id,Name) VALUES (2,'Bread');INSERT INTO Products (Category_Id,Name) VALUES (1,'Milk 1l');
+INSERT INTO Products (Category_Id,Name) VALUES (2,'Bread');
 INSERT INTO Products (Category_Id,Name) VALUES (3,'Chakalaka Can');
-INSERT INTO Products (Category_Id,Name) VALUES (3'Gold Dish Vegetable Curry Can');
+INSERT INTO Products (Category_Id,Name) VALUES (3,'Gold Dish Vegetable Curry Can');
 INSERT INTO Products (Category_Id,Name) VALUES (4,'Fanta 500ml');
 INSERT INTO Products (Category_Id,Name) VALUES (4,'Coke 500ml');
 INSERT INTO Products (Category_Id,Name) VALUES (4,'Cream Soda 500ml');
