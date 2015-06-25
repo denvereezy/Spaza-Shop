@@ -30,6 +30,8 @@ app.get('/productGraph',spaza.showProductGraph);
 app.get('/graph',spaza.showCategoryGraph);
 app.get('/leastpopcat',spaza.showLeastPopularCategory);
 app.get('/leastpopular',spaza.showLeastPopularProduct);
+app.get('/earningsPerCategory',spaza.showEarningsPerCategory);
+app.get('/earningsPerproduct',spaza.showEarningsPerProduct);
 
 
 app.get('/', function(req, res){

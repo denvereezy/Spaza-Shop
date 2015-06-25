@@ -46,6 +46,22 @@ exports.showLeastPopularProduct = function (req, res, next) {
 	});
 };
 
+//earnings per product
+exports.showEarningsPerProduct = function (req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err) 
+            return next(err);
+        connection.query('SELECT Name,SUM(Sales_price*Qty) AS TotalEarnings from Sales INNER JOIN Products ON Sales.Product_id = Products.Id GROUP BY Name ORDER BY TotalEarnings', 
+        [], function(err, results) {
+            if (err) return next(err);
+ 
+            res.render( 'earningsPerProduct', {
+                products : results
+            });
+      });
+    });
+};
+
 //categorylist
 exports.showCategoryList = function (req, res, next) {
 	req.getConnection(function(err, connection){
@@ -91,6 +107,22 @@ exports.showLeastPopularCategory = function (req, res, next) {
     		});
       });
 	});
+};
+
+//earnings per category
+exports.showEarningsPerCategory = function (req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err) 
+            return next(err);
+        connection.query('SELECT  Categories.Name, sum(Sales.Qty*Sales_price) AS TotalQty from Sales INNER JOIN Products ON Sales.Product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.Name ORDER BY TotalQty', 
+        [], function(err, results) {
+            if (err) return next(err);
+ 
+            res.render( 'earningsPerCategory', {
+                products : results
+            });
+      });
+    });
 };
 
 //product graph
