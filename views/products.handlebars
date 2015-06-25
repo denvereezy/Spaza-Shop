@@ -1,12 +1,21 @@
-<div id="container"><h2>Products</h2>
-
-
+<div id="container"><h2>Products Sales</h2>
 <ul class="people_list">
   
-  {{#each products}}
-    <li>{{this.name}} -{{this.qty}}</li>
-  {{/each}}
+  
+  
+  
+  
 
- 
+   {{#each products}}
+  <table id='box' style="width:100%">
+  
+    <td>{{Name}}</td>
+    <td>{{TotalQty}}</td>		
+    <td align="right"><a class="link" href="/products/edit/{{Id}}">Edit</a></td>
+    <td align="right"><a class="link" href="/products/delete/{{Id}}">Delete</a></td>
+  
+</table> 
+{{/each}}
 </ul>
 </div>
+

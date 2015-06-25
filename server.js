@@ -195,7 +195,7 @@ app.get('/mostProfitableCat', function (req, res) {
 	})
 
 	//app.listen(3000);
-   var port = process.env.PORT || 8080;		
+   var port = process.env.PORT || 8000;		
    //start the server
    var server = app.listen(port, function () {
         var host = server.address().address;

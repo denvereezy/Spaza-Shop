@@ -29,6 +29,24 @@ body{
          background-color:black;
 }
 
+.link{
+    font-family:Arial;
+    font-size:20px;
+    color:red;
+}
+
+table, th, td {
+    background-color: grey;
+    border: 1px solid black;
+    border-color:black;
+    text-align:left;
+    width:90%;
+    font-family:Arial;
+    font-size:25px;
+    
+}
+
+  
 </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,8 +86,16 @@ body{
                     <a href="/">Refresh</a>
                 </li>
                 <li>
-                    <a href="graph">Graphs</a>
-                </li>
+                 <a href="javascript:;" data-toggle="collapse" data-target="#new">Graphs <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="new" class="collapse">
+                            <li>
+                                <a href="productGraph">Product Graph</a>
+                            </li>
+                            <li>
+                                <a href="graph">Category Graph</a>
+                            </li>
+                        </ul>
+                    </li>
                 <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo">Products <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
