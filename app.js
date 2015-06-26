@@ -12,7 +12,7 @@ var dbOptions = {
       user: 'green_grocer',
       password: 'password',
       port: 3306,
-      database: 'spaza_shop'
+      database: 'spaza'
 };
 
     // create a route
