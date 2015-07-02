@@ -60,7 +60,7 @@ exports.update = function(req, res, next){
 };
 
 exports.delete = function(req, res, next){
-	var id = req.params.id;
+	var Id = req.params.Id;
 	req.getConnection(function(err, connection){
 		connection.query('DELETE FROM Categories WHERE Id = ?', [Id], function(err,rows){
 			if(err){
