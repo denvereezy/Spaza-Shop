@@ -51,7 +51,23 @@ table, th, td {
 	font-size:25px;
 }
 
-  
+#add-products {
+	border : 1px solid;
+	width: 50%;
+	padding: 15px;
+}
+
+input[type=text] {
+	margin: 10px;
+	padding: 10px;
+	font-size: 20px;
+}
+
+input[type=submit] {
+	padding: 13px;
+  	border: 2px solid #000;  	
+};
+
 </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -106,7 +122,10 @@ table, th, td {
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo">Products <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="products">Product List</a>
+                                <a href="list">Add Product</a>
+                            </li>
+                            <li>
+                                <a href="products_list">Product List</a>
                             </li>
                             <li>
                                 <a href="popular">Most Popular Product</a>
@@ -125,6 +144,9 @@ table, th, td {
                 <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#dmd"><i class="fa fa-fw fa-arrows-v"></i> Categories <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="dmd" class="collapse">
+                            <li>
+                                <a href="#">Add Category</a>
+                            </li>
                             <li>
                                 <a href="category_list">Category List</a>
                             </li>

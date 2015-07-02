@@ -1,9 +1,9 @@
-<h1>Products</h1>
+<h1>Add Category</h1>
 
 {{#products}}
   <h2>{{Name}}</h2>
-  <a href="/products/edit/{{id}}">Edit</a>
-  <a href="/products/delete/{{id}}">Delete</a>
+  <a href="/categories/edit/{{Id}}">Edit</a>
+  <a href="/categories/delete/{{Id}}">Delete</a>
 {{/products}}
 
 {{#empty}}
@@ -13,7 +13,7 @@
 <div id="add-products">
 	
 	<h1>Add a product</h1>
-	<form action="products/add" method="POST">
+	<form action="categories/add" method="POST">
 		Description: <input type="text" name="Name">	
 		<input type="submit">
 	</form>

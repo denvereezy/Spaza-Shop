@@ -60,6 +60,8 @@ module.exports = function(filePath){
 	            }
     		}
         }
+
+//mostpopular[key] key
          //console.log(itemMap);
   		return mostPopularProduct ;
     };

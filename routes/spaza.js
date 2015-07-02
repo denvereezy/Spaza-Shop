@@ -7,7 +7,7 @@ exports.showProductList = function (req, res, next) {
 		[], function(err, results) {
         	if (err) return next(err);
 
-    		res.render( 'products', {
+    		res.render( 'products_list', {
     			products : results
     		});
       });

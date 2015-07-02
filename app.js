@@ -1,9 +1,12 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
-mysql = require('mysql'), 
-myConnection = require('express-myconnection'),
-//bodyParser = require('body-parser'),
-spaza = require('./routes/spaza');
+     mysql = require('mysql'), 
+     myConnection = require('express-myconnection'),
+     bodyParser = require('body-parser'),
+     Products = require('./routes/Products'),
+     spaza = require('./routes/spaza');
+     Categories = require('./routes/categories');
+     
 var app = express();
 
 
@@ -12,7 +15,7 @@ var dbOptions = {
       user: 'green_grocer',
       password: 'password',
       port: 3306,
-      database: 'spaza'
+      database: 'spaza_shop'
 };
 
     // create a route
@@ -21,9 +24,31 @@ app.use(express.static('public'));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+//setup middleware
+app.use(myConnection(mysql, dbOptions, 'single'));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
-app.get('/products', spaza.showProductList);
-app.get('/category_list', spaza.showCategoryList);
+app.get('/list', Products.show);
+//app.get('/products', products.show);
+app.get('/Products/edit/:id', Products.get);
+app.post('/Products/update/:id', Products.update);
+app.post('/Products/add', Products.add);
+//this should be a post but this is only an illustration of CRUD - not on good practices
+app.get('/Products/delete/:id', Products.delete);
+
+app.get('/category_list', Categories.show);
+//app.get('/products', products.show);
+app.get('/Categories/edit/:Id', Categories.get);
+app.post('/Categories/update/:Id', Categories.update);
+app.post('/Categories/add', Categories.add);
+//this should be a post but this is only an illustration of CRUD - not on good practices
+app.get('/Categories/delete/:Id', Categories.delete);
+
+app.get('/products_list', spaza.showProductList);
+//app.get('/category_list', spaza.showCategoryList);
 app.get('/popular', spaza.showPopularProduct);
 app.get('/popularCategory',spaza.showPopularCategory);
 app.get('/productGraph',spaza.showProductGraph);
@@ -32,6 +57,7 @@ app.get('/leastpopcat',spaza.showLeastPopularCategory);
 app.get('/leastpopular',spaza.showLeastPopularProduct);
 app.get('/earningsPerCategory',spaza.showEarningsPerCategory);
 app.get('/earningsPerproduct',spaza.showEarningsPerProduct);
+
 
 
 app.get('/', function(req, res){

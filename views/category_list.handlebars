@@ -6,12 +6,20 @@
   
     <td>{{Name}}</td>
     <td>{{TotalQty}}</td>		
-    <td align="right"><a class="link" href="/products/edit/{{Id}}">Edit</a></td>
-    <td align="right"><a class="link" href="/products/delete/{{Id}}">Delete</a></td>
+    <td align="right"><a class="link" href="/categories/edit/{{Id}}">Edit</a></td>
+    <td align="right"><a class="link" href="/categories/delete/{{Id}}">Delete</a></td>
   
 </table> 
 {{/each}}
 
  
 </ul>
+
+
+	
+	<h1>Add a Category</h1>
+	<form action="categories/add" method="POST">
+		Description: <input type="text" name="Name">	
+		<input type="submit">
+	</form>
 </div>
