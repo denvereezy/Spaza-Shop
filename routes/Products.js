@@ -3,10 +3,10 @@ exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) 
 			return next(err);
-		connection.query('SELECT * from products', [], function(err, results) {
+		connection.query('SELECT * from Products', [], function(err, results) {
         	if (err) return next(err);
 
-    		res.render( 'home', {
+    		res.render( 'products_list', {
     			products : results
     		});
       });
@@ -21,13 +21,14 @@ exports.add = function (req, res, next) {
 		
 		var input = JSON.parse(JSON.stringify(req.body));
 		var data = {
-            		description : input.description,
+            		Name : input.Name,
+                        Category_Id:input.Category_Id
         	};
-		connection.query('insert into products set ?', data, function(err, results) {
+		connection.query('insert into Products set ?', data, function(err, results) {
         		if (err)
               			console.log("Error inserting : %s ",err );
          
-          		res.redirect('/list');
+          		res.redirect('/products_list');
       		});
 	});
 };
@@ -35,7 +36,7 @@ exports.add = function (req, res, next) {
 exports.get = function(req, res, next){
 	var id = req.params.id;
 	req.getConnection(function(err, connection){
-		connection.query('SELECT * FROM products WHERE id = ?', [id], function(err,rows){
+		connection.query('SELECT * FROM Products WHERE id = ?', [id], function(err,rows){
 			if(err){
     				console.log("Error Selecting : %s ",err );
 			}
@@ -49,11 +50,11 @@ exports.update = function(req, res, next){
 	var data = JSON.parse(JSON.stringify(req.body));
     	var id = req.params.id;
     	req.getConnection(function(err, connection){
-    		connection.query('UPDATE products SET ? WHERE id = ?', [data, id], function(err, rows){
+    		connection.query('UPDATE Products SET ? WHERE id = ?', [data, id], function(err, rows){
     			if (err){
               			console.log("Error Updating : %s ",err );
     			}
-          		res.redirect('/list');
+          		res.redirect('/products_list');
     		});
     		
     });
@@ -62,11 +63,11 @@ exports.update = function(req, res, next){
 exports.delete = function(req, res, next){
 	var id = req.params.id;
 	req.getConnection(function(err, connection){
-		connection.query('DELETE FROM products WHERE id = ?', [id], function(err,rows){
+		connection.query('DELETE FROM Products WHERE id = ?', [id], function(err,rows){
 			if(err){
     				console.log("Error Selecting : %s ",err );
 			}
-			res.redirect('/list');
+			res.redirect('/products_list');
 		});
 	});
 };

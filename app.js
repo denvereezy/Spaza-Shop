@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/list', Products.show);
+app.get('/products_list', Products.show);
 //app.get('/products', products.show);
 app.get('/Products/edit/:id', Products.get);
 app.post('/Products/update/:id', Products.update);
@@ -47,8 +47,8 @@ app.post('/Categories/add', Categories.add);
 //this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/Categories/delete/:Id', Categories.delete);
 
-app.get('/products_list', spaza.showProductList);
-//app.get('/category_list', spaza.showCategoryList);
+app.get('/list', spaza.showProductList);
+app.get('/category_sales', spaza.showCategoryList);
 app.get('/popular', spaza.showPopularProduct);
 app.get('/popularCategory',spaza.showPopularCategory);
 app.get('/productGraph',spaza.showProductGraph);

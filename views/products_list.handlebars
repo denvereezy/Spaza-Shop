@@ -1,4 +1,4 @@
-<div id="container"><h2>Products Sales</h2>
+<div id="container"><h2>Products</h2>
 <ul class="people_list">
   
    {{#each products}}
@@ -6,12 +6,24 @@
   <table id='box' style="width:100%">
   
     <td>{{Name}}</td>
-    <td>{{TotalQty}}</td>		
-    <td align="right"><a class="link" href="/products/edit/{{Id}}">Edit</a></td>
-    <td align="right"><a class="link" href="/products/delete/{{Id}}">Delete</a></td>
+    <td align="right"><a class="link" href="/Products/edit/{{Id}}">Edit</a></td>
+    <td align="right"><a class="link" href="/Products/delete/{{Id}}">Delete</a></td>
   
 </table> 
 {{/each}}
 </ul>
+<form action="Products/add" method="POST">
+     NAME:<input type="text" name="Name">
+
+ <select name="Category_Id">
+  <option value="1">Dairy</option>
+  <option value="2">Bakery</option>
+  <option value="6">Meat</option>
+  <option value="8">Fruits</option>
+</select> 
+     <input type="submit">
+   
+
+</form>
 </div>
 

@@ -7,7 +7,7 @@ exports.showProductList = function (req, res, next) {
 		[], function(err, results) {
         	if (err) return next(err);
 
-    		res.render( 'products_list', {
+    		res.render( 'list', {
     			products : results
     		});
       });
@@ -70,7 +70,7 @@ exports.showCategoryList = function (req, res, next) {
 		connection.query('SELECT  Categories.Name, sum(Sales.Qty) AS TotalQty from Sales INNER JOIN Products ON Sales.Product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.Name',  [], function(err, results) {
         	if (err) return next(err);
 
-    		res.render( 'category_list', {
+    		res.render( 'category_sales', {
     			products : results
     		});
       });
