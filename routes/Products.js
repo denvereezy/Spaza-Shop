@@ -3,14 +3,20 @@ exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) 
 			return next(err);
-		connection.query('SELECT * from Products', [], function(err, results) {
-        	if (err) return next(err);
+		   connection.query('SELECT * from Products', [], function(err, results, fields) {
+            if (err)
+                return next(err);
+            connection.query('SELECT * from Categories', [], function(err, cat, fields) {
+                if (err)
+                    return next(err);
+                res.render('products_list', {
+                    products: results,
+                    categories: cat
+                });
 
-    		res.render( 'products_list', {
-    			products : results
-    		});
-      });
+            });
 	});
+});
 };
 
 exports.add = function (req, res, next) {
@@ -22,7 +28,7 @@ exports.add = function (req, res, next) {
 		var input = JSON.parse(JSON.stringify(req.body));
 		var data = {
             		Name : input.Name,
-                        Category_Id:input.Category_Id
+                    Category_Id:input.Category_Id
         	};
 		connection.query('insert into Products set ?', data, function(err, results) {
         		if (err)
@@ -48,9 +54,9 @@ exports.get = function(req, res, next){
 exports.update = function(req, res, next){
 
 	var data = JSON.parse(JSON.stringify(req.body));
-    	var id = req.params.id;
+    	var id = req.params.Id;
     	req.getConnection(function(err, connection){
-    		connection.query('UPDATE Products SET ? WHERE id = ?', [data, id], function(err, rows){
+    		connection.query('UPDATE Products SET ? WHERE Id = ?', [data, id], function(err, rows){
     			if (err){
               			console.log("Error Updating : %s ",err );
     			}

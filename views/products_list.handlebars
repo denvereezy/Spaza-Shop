@@ -15,12 +15,12 @@
 <form action="Products/add" method="POST">
      NAME:<input type="text" name="Name">
 
- <select name="Category_Id">
-  <option value="1">Dairy</option>
-  <option value="2">Bakery</option>
-  <option value="6">Meat</option>
-  <option value="8">Fruits</option>
-</select> 
+  <select name="Category_Id">
+    {{#each categories}}
+      <option value = "{{Id}}">{{Name}}</option>
+    {{/each}}
+  </select> 
+  
      <input type="submit">
    
 
