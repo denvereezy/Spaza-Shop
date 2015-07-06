@@ -3,9 +3,10 @@
 <h1>Edit</h1>
 
 {{#data}}
-<form action="/Products/update/{{id}}" method="POST">
-	Description: <input type="text" name="description" value="{{Name}}">	
+<form action="/categories/update/{{Id}}" method="POST">
+	Description: <input type="text" name="Name" value="{{Name}}">	
 	<input type="submit">
+
 </form>
 {{/data}}
 </ul>

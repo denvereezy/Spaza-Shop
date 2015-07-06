@@ -40,13 +40,13 @@ exports.add = function (req, res, next) {
 };
 
 exports.get = function(req, res, next){
-	var id = req.params.id;
+	var Id = req.params.Id;
 	req.getConnection(function(err, connection){
-		connection.query('SELECT * FROM Products WHERE id = ?', [id], function(err,rows){
+		connection.query('SELECT * FROM Products WHERE Id = ?', [Id], function(err,rows){
 			if(err){
     				console.log("Error Selecting : %s ",err );
 			}
-			res.render('edit',{page_title:"Edit Customers - Node.js", data : rows[0]});      
+			res.render('products_edit',{page_title:"Edit Customers - Node.js", data : rows[0]});      
 		}); 
 	});
 };
@@ -54,9 +54,9 @@ exports.get = function(req, res, next){
 exports.update = function(req, res, next){
 
 	var data = JSON.parse(JSON.stringify(req.body));
-    	var id = req.params.Id;
+    	var Id = req.params.Id;
     	req.getConnection(function(err, connection){
-    		connection.query('UPDATE Products SET ? WHERE Id = ?', [data, id], function(err, rows){
+    		connection.query('UPDATE Products SET ? WHERE Id = ?', [data, Id], function(err, rows){
     			if (err){
               			console.log("Error Updating : %s ",err );
     			}
@@ -67,9 +67,9 @@ exports.update = function(req, res, next){
 };
 
 exports.delete = function(req, res, next){
-	var id = req.params.id;
+	var Id = req.params.Id;
 	req.getConnection(function(err, connection){
-		connection.query('DELETE FROM Products WHERE id = ?', [id], function(err,rows){
+		connection.query('DELETE FROM Products WHERE Id = ?', [Id], function(err,rows){
 			if(err){
     				console.log("Error Selecting : %s ",err );
 			}

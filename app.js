@@ -15,7 +15,7 @@ var dbOptions = {
       user: 'green_grocer',
       password: 'password',
       port: 3306,
-      database: 'spaza'
+      database: 'spaza_shop'
 };
 
     // create a route
@@ -33,11 +33,11 @@ app.use(bodyParser.json())
 
 app.get('/products_list', Products.show);
 //app.get('/products', products.show);
-app.get('/Products/edit/:id', Products.get);
-app.post('/Products/update/:id', Products.update);
+app.get('/Products/products_edit/:Id', Products.get);
+app.post('/Products/update/:Id', Products.update);
 app.post('/Products/add', Products.add);
 //this should be a post but this is only an illustration of CRUD - not on good practices
-app.get('/Products/delete/:id', Products.delete);
+app.get('/Products/delete/:Id', Products.delete);
 
 app.get('/category_list', Categories.show);
 //app.get('/products', products.show);
@@ -72,3 +72,4 @@ app.get('/', function(req, res){
      	console.log('Example app listening at http://%s:%s', host, port);
 
    });
+
