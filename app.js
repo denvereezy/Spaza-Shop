@@ -6,6 +6,7 @@ var exphbs  = require('express-handlebars');
      Products = require('./routes/Products'),
      spaza = require('./routes/spaza');
      Categories = require('./routes/categories');
+     sales = require('./routes/sales');
      
 var app = express();
 
@@ -47,7 +48,11 @@ app.post('/Categories/add', Categories.add);
 //this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/Categories/delete/:Id', Categories.delete);
 
-app.get('/list', spaza.showProductList);
+app.get('/list', sales.show);
+//app.get('/sales/edit/:Id',sales.get);
+app.post('/sales/update/:Id',sales.update);
+app.post('/sales/add',sales.add);
+//app.get('/sales/delete/:Id',sales.delete);
 app.get('/category_sales', spaza.showCategoryList);
 app.get('/popular', spaza.showPopularProduct);
 app.get('/popularCategory',spaza.showPopularCategory);

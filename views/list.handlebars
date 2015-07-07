@@ -10,10 +10,18 @@
   {{/each}}
 
 </ul>
+
 <form action="sales/add" method="POST">
-     NAME:<input type="text" name="Name">
-     Amount:<input type="text" name="Qty">
-    
+     <select name="Id">
+    {{#each product}}
+      <option value = "{{Id}}">{{Name}}</option>
+    {{/each}}
+  </select> 
+     Amount:<input type="number" name="Qty">
+     <br> 
+     Price:<input type="number" step="any" name="Sales_price">
+     <br>
+     Date:<input type="date" name="Sales_date" placeholder="yyyy-mm-dd"/>  
  <input type="submit">
    
 

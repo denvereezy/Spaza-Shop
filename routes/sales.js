@@ -1,17 +1,31 @@
 
+/*exports.show = function (req, res, next) {
+	req.getConnection(function(err, connection){
+		if (err) 
+			return next(err);
+		connection.query('SELECT SUM(Qty) AS TotalQty , Product_Id, Name from Sales s INNER JOIN Products p ON s.Product_Id = p.Id 					GROUP BY Name', 
+		[], function(err, results) {
+        	if (err) return next(err);
+
+    		res.render( 'list', {
+    			product : results
+    		});
+      });
+	});
+};*/
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) 
 			return next(err);
-		   connection.query('SELECT Qty from Sales', [], function(err, results, fields) {
+		   connection.query('SELECT SUM(Qty) AS TotalQty , Product_Id, Name from Sales s INNER JOIN Products p ON s.Product_Id = p.Id 					GROUP BY Name', [], function(err, results, fields) {
             if (err)
                 return next(err);
-            connection.query('SELECT SUM(Qty) AS TotalQty , Product_Id, Name from Sales s INNER JOIN Products p ON s.Product_Id = p.Id 					GROUP BY Name', [], function(err, cat, fields) {
+            connection.query('SELECT * from Products', [], function(err, pdt, fields) {
                 if (err)
                     return next(err);
                 res.render('list', {
                     products: results,
-                    categories: cat
+                    product: pdt
                 });
 
             });
@@ -27,8 +41,12 @@ exports.add = function (req, res, next) {
 		
 		var input = JSON.parse(JSON.stringify(req.body));
 		var data = {
-            		Name : input.Name,
-                    Category_Id:input.Category_Id
+                    Product_Id:input.Id,
+                    Qty :input.Qty,
+                    Sales_date:input.Sales_date,
+                    Sales_price:input.Sales_price
+                    
+                         //sold :input.Qty
         	};
 		connection.query('insert into Sales set ?', data, function(err, results) {
         		if (err)
@@ -40,9 +58,9 @@ exports.add = function (req, res, next) {
 };
 
 exports.get = function(req, res, next){
-	var id = req.params.id;
+	var Id = req.params.Id;
 	req.getConnection(function(err, connection){
-		connection.query('SELECT * FROM Sales WHERE id = ?', [id], function(err,rows){
+		connection.query('SELECT * FROM Sales WHERE id = ?', [Id], function(err,rows){
 			if(err){
     				console.log("Error Selecting : %s ",err );
 			}
