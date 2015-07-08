@@ -1,15 +1,19 @@
 <div id="container"><h1>Product Sales</h1>
 
-<ul class="people_list">
-  
-  {{#each products}}
-<table id='box' style="width:100%">
-    <td>{{Name}}</td>
-    <td>{{TotalQty}}</td>
-</table> 
-  {{/each}}
-
-</ul>
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Qty Sold</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each products}}
+                <td>{{Name}}</td>
+                <td>{{TotalQty}}</td>
+            </tr>
+            {{/each}}
+    </table>
 
 <form action="sales/add" method="POST" class="form-horizontal" >
 	<div class="form-group">

@@ -1,12 +1,21 @@
-<div id="container"><h1>Sales Per Product</h1>
-  
-  {{#each products}}
-<table id='box' style="width:100%">
-    <td>{{Name}}</td>
-    <td>{{AmtSold}}</td>
-    <td>{{Sales_price}}</td>
-    <td>{{Sales_date}}</td>   
-</table> 
-  {{/each}}
-
+<div id="container"><h2>Sales Per Category</h2>
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Qty Sold</th>
+            <th>Price(R)</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each products}}
+                <td>{{Name}}</td>
+                <td>{{AmtSold}}</td>
+    		<td>{{Sales_price}}</td>
+    		<td>{{Sales_date}}</td>
+            </tr>
+            {{/each}}
+    </table>
 </div>
+

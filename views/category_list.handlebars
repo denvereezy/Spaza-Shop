@@ -1,22 +1,28 @@
-<div id="container"><h2>Category List</h2>
-<ul class="people_list">
-  
-    {{#each products}}
-  <table id='box' style="width:100%">
-  
-    <td>{{Name}}</td>		
-    <td align="right"><a class="link" href="/categories/edit/{{Id}}">Edit</a></td>
-    <br>
-    <td align="right"><a class="link" href="/categories/delete/{{Id}}">Delete</a></td>
-  
-</table> 
-{{/each}}
+<div id="container">
 
- 
-</ul>
-	<h1>Add a Category</h1>
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Categories</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each products}}
+                <td>{{Name}}</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="/categories/edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/categories/delete/{{Id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            </tr>
+            {{/each}}
+    </table>
+   
+<h1>Add a Category</h1>
 	<form action="categories/add" method="POST">
 		Description: <input type="text" name="Name">	
 		<input type="submit">
 	</form>
+
+</form>
+ </div>
+</div>
+
 </div>
