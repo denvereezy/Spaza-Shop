@@ -7,6 +7,7 @@ var exphbs  = require('express-handlebars');
      spaza = require('./routes/spaza');
      Categories = require('./routes/categories');
      sales = require('./routes/sales');
+     salesPerProduct = require('./routes/salesPerProduct');
      
 var app = express();
 
@@ -33,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/products_list', Products.show);
-//app.get('/products', products.show);
+app.get('/salesPerProduct', salesPerProduct.show);
 app.get('/Products/products_edit/:Id', Products.get);
 app.post('/Products/update/:Id', Products.update);
 app.post('/Products/add', Products.add);

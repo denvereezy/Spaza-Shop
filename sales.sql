@@ -1,6 +1,6 @@
-SELECT SUM(Qty) 
-AS TotalQty , Product_Id, Name 
+SELECT Qty 
+AS AmtSold , Sales_date, sales_price, Name 
 from Sales s 
 INNER JOIN Products p 
 ON s.Product_Id = p.Id 					
-GROUP BY Name
+ORDER BY Sales_date DESC 
