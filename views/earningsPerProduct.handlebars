@@ -1,11 +1,16 @@
-<div id="container"><h2>Earnings Per Product</h2>
+<div id="container">
 
-
-<ul class="people_list">
-  
-  {{#each products}}
-    <table><td>{{Name}}</td>  <td>R{{TotalEarnings}}</td></table>
-  {{/each}}
-	
- 
-</ul></div>
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Amount(R)</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each products}}
+                <td>{{Name}}</td>
+                <td>{{TotalEarnings}}</td>
+            </tr>
+            {{/each}}
+    </table></div>
