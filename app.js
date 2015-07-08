@@ -70,10 +70,6 @@ app.get('/', function(req, res){
 	res.render("index");
 });
 
-app.get('/products/products_edit', function(req, res){
-	res.render("products_edit");
-});
-
    var port = process.env.PORT || 8090;		
    //start the server
    var server = app.listen(port, function () {
