@@ -1,4 +1,4 @@
-<div id="container"><h1> Total Product Sales</h1>
+<div id="container"><h1>Product Sales</h1>
 
 <ul class="people_list">
   
@@ -11,23 +11,42 @@
 
 </ul>
 
-<form action="sales/add" method="POST">
-     <select name="Id">
-    {{#each product}}
-      <option value = "{{Id}}">{{Name}}</option>
-    {{/each}}
-  </select>
-    
-        <div class="form-group">
-            <input type="number" class="form-control" name="Qty" placeholder="Quantity">
-        </div>
-        <div class="form-group">
-            <input type="number" step="any" class="form-control" name="Sales_price" placeholder="Price">
-        </div>
-        <div class="form-group">
-            <input type="date" name="Sales_date" placeholder="Date:yyyy-dd-mm"/>
-        </div>
-        <input type="submit">
-    </form>
+<form action="sales/add" method="POST" class="form-horizontal" >
+	<div class="form-group">
+		<label class="control-label col-xs-2">Products</label>
+		<div class="col-xs-10">	 
+     			<select name="Id">
+    				{{#each product}}
+      					<option value = "{{Id}}">{{Name}}</option>
+    				{{/each}}
+  			</select>
+		</div>
+	</div>
 
+	<div class="form-group">
+		<label for="Amount" class="control-label col-xs-2">Qauntity</label>	 
+		 <div class="col-xs-10">
+			<input type="number" name="Qty" class="form-control" placeholder="Please Enter Sales Amount">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label for="number" class="control-label col-xs-2">Price</label>
+		<div class="col-xs-10">	 
+     			<input type="number" step="any" name="Sales_price" placeholder="Please Enter Sales Price">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="date" class="control-label col-xs-2">Date</label>
+			<div class="col-xs-10">	 
+     				<input type="date" class="form-control" name="Sales_date" placeholder="yyyy-mm-dd"/>
+			</div>
+		
+		</div> 
+ 	<input type="submit" class="btn btn-primary">
+   
+
+</form>
 </div>
