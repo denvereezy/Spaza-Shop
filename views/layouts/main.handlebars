@@ -77,6 +77,20 @@ th{
   color:red;
   background-color:grey;
 }
+a.back-to-top {
+	display: none;
+	width: 60px;
+	height: 60px;
+	text-indent: -9999px;
+	position: fixed;
+	z-index: 999;
+	right: 20px;
+	bottom: 20px;
+	background: #0066cc url("up-arrow.png") no-repeat center 43%;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
 </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -253,6 +267,30 @@ th{
         interval: 7000 //changes the speed
     })
     </script>
+<!--back to top -->
+    <script type="text/javascript">
+	$('body').prepend('<a href="#" class="back-to-top">Back to Top</a>');
+   </script>
+   <script>
+      var amountScrolled = 300;
+
+        $(window).scroll(function() {
+	if ($(window).scrollTop() > amountScrolled) {
+		$('a.back-to-top').fadeIn('slow');
+	} else {
+		$('a.back-to-top').fadeOut('slow');
+	}
+   });
+  </script>
+  <script>
+       $('a.back-to-top').click(function() {
+	$('html,body').animate({
+		scrollTop: 0
+	}, 700);
+	return false;
+    });
+  </script>
+  <script></script>
 
 </body>
 
