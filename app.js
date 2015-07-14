@@ -8,14 +8,15 @@ var exphbs  = require('express-handlebars');
      Categories = require('./routes/categories');
      sales = require('./routes/sales');
      salesPerProduct = require('./routes/salesPerProduct');
+     purchase = require('./routes/purchase');
      
 var app = express();
 
 
 var dbOptions = {
       host: 'localhost',
-      user: 'green_grocer',
-      password: 'password',
+      user: 'root',
+      password: '951022',
       port: 3306,
       database: 'spaza_shop'
 };
@@ -64,6 +65,11 @@ app.get('/leastpopular',spaza.showLeastPopularProduct);
 app.get('/earningsPerCategory',spaza.showEarningsPerCategory);
 app.get('/earningsPerproduct',spaza.showEarningsPerProduct);
 
+app.get('/purchase',purchase.show);
+app.post('/purchase/update/:Id',purchase.update);
+app.post('/purchase/add',purchase.add);
+app.get('/purchase/delete/:Id', purchase.delete);
+app.get('/purchase/suppliers_edit/:Id', purchase.get);
 
 
 app.get('/', function(req, res){

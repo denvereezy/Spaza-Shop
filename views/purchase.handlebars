@@ -1,0 +1,34 @@
+
+<div id="container">
+
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Supplier</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each purchase}}
+                <td>{{Name}}</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="/purchase/suppliers_edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/purchase/delete/{{Id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            </tr>
+            {{/each}}
+    </table>
+
+<form action="purchase/add" method="POST" class="form-horizontal" >
+        <div class="form-group">
+		<label for="Amount" class="control-label col-xs-2">Supplier:</label>	 
+		 <div class="col-xs-10">
+			<input type="text" name="Name" class="form-control" placeholder="Please Enter A Supplier" required>
+		</div>
+	</div>
+
+
+
+	
+ 	<input type="submit" class="btn btn-primary">
+   
+
+</form>
+</div>
