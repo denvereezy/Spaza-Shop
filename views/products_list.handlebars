@@ -10,7 +10,7 @@
             <tr>
                 {{#each products}}
                 <td>{{Name}}</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="/Products/products_edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/Products/delete/{{Id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="/Products/products_edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/Products/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
             </tr>
             {{/each}}
     </table>
@@ -25,10 +25,16 @@
     {{/each}}
   </select> 
   
-     <input type="submit">
+     <input type="submit" onclick="myFunction()">
    
 
 </form>
  </div>
 </div>
-
+<script>
+function myFunction() {
+    
+    alert("New product added");
+   
+}
+</script>

@@ -10,7 +10,7 @@
             <tr>
                 {{#each products}}
                 <td>{{Name}}</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="/categories/edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/categories/delete/{{Id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="/categories/edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/categories/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
             </tr>
             {{/each}}
     </table>
@@ -18,7 +18,7 @@
 <h1>Add a Category</h1>
 	<form action="categories/add" method="POST">
 		Description: <input type="text" name="Name" required>	
-		<input type="submit">
+		<input type="submit" onclick="myFunction()">
 	</form>
 
 </form>
@@ -26,3 +26,10 @@
 </div>
 
 </div>
+<script>
+function myFunction() {
+    
+    alert("New category added");
+   
+}
+</script>
