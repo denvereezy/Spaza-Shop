@@ -8,7 +8,9 @@ var exphbs  = require('express-handlebars');
      Categories = require('./routes/categories');
      sales = require('./routes/sales');
      salesPerProduct = require('./routes/salesPerProduct');
+     suppliers = require('./routes/suppliers');
      purchase = require('./routes/purchase');
+
      
 var app = express();
 
@@ -65,11 +67,19 @@ app.get('/leastpopular',spaza.showLeastPopularProduct);
 app.get('/earningsPerCategory',spaza.showEarningsPerCategory);
 app.get('/earningsPerproduct',spaza.showEarningsPerProduct);
 
-app.get('/purchase',purchase.show);
+app.get('/suppliers',suppliers.show);
+app.post('/suppliers/update/:Id',suppliers.update);
+app.post('/suppliers/add',suppliers.add);
+app.get('/suppliers/delete/:Id', suppliers.delete);
+app.get('/suppliers/suppliers_edit/:Id', suppliers.get);
+
+
+
+app.get('/addPurchase',purchase.show);
 app.post('/purchase/update/:Id',purchase.update);
 app.post('/purchase/add',purchase.add);
 app.get('/purchase/delete/:Id', purchase.delete);
-app.get('/purchase/suppliers_edit/:Id', purchase.get);
+app.get('/purchase/purchase_edit/:Id', purchase.get);
 
 
 app.get('/', function(req, res){
