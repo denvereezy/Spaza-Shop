@@ -10,17 +10,16 @@ var exphbs  = require('express-handlebars');
      salesPerProduct = require('./routes/salesPerProduct');
      suppliers = require('./routes/suppliers');
      purchase = require('./routes/purchase');
-
      
 var app = express();
 
 
 var dbOptions = {
       host: 'localhost',
-      user: 'root',
-      password: '951022',
+      user: 'green_grocer',
+      password: 'password',
       port: 3306,
-      database: 'spaza_shop'
+      database: 'spaza'
 };
 
     // create a route
@@ -79,7 +78,10 @@ app.get('/addPurchase',purchase.show);
 app.post('/purchase/update/:Id',purchase.update);
 app.post('/purchase/add',purchase.add);
 app.get('/purchase/delete/:Id', purchase.delete);
+app.post('/purchase/purchase_edit/:Id', purchase.update);
 app.get('/purchase/purchase_edit/:Id', purchase.get);
+
+
 
 
 app.get('/', function(req, res){
