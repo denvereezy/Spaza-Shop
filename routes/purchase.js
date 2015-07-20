@@ -53,30 +53,72 @@ exports.add = function (req, res, next) {
 };
 
 exports.get = function(req, res, next){
+
+    //return res.send("......");
+
+
 	req.getConnection(function(err, connection){
-        if (err) 
+        if (err){
+            console.log(err)
             return next(err);
-                connection.query('SELECT p.Id, Purchase_date,Qty, Purchase_price,s.Name as suppliers,c.Name as products from Purchases p inner join Products s on p.Product_Id = s.Id inner join Suppliers c on p.Supplier_Id = c.Id', [], function(err, purchases, fields) {
-                    if (err)
+        }
+            
+
+        console.log(req)
+
+        var purchaseId = req.params.purchase_id;
+        //
+        console.log( 'purchaseId : ' + purchaseId);
+
+        var purchaseSql = 'SELECT p.Id, Purchase_date,Qty, Purchase_price,s.Name as suppliers,c.Name as products from Purchases p inner join Products s on p.Product_Id = s.Id inner join Suppliers c on p.Supplier_Id = c.Id where p.Id = ?'; 
+        connection.query(purchaseSql, [purchaseId], function(err, purchases, fields) {
+                    if (err){
+                        console.log(err)
                         return next(err);
-                        connection.query('SELECT * from Suppliers', [], function(err, supply, fields) {
+                    }
+
+                    connection.query('SELECT * from Suppliers', [], function(err, supply, fields) {
                         if (err)
-                        return next(err);
+                            return next(err);
                     //
-                        
-                connection.query('SELECT * FROM Products', [], function(err, product, fields) {
-                    if (err)
-                        return next(err);
+                    
+                    
+
+                    connection.query('SELECT * FROM Products', [], function(err, products, fields) {
+                        if (err)
+                            return next(err);
                         //console.log(product)
-                        console.log(purchases)
-                        res.render('purchase_edit', {
-                        products : product,
-                        purchases: purchases,
+                        
+                        //res.send("...");
+ 
+                        var purchase = purchases.length > 0 ? purchases[0] : {};
+
+                        var productList = products.map(function(product){
+
+                            console.log(product.Id);
+                            console.log(purchase);
+
+                            var result = {
+                                Id : product.Id,
+                                Name : product.Name,
+                                selected : product.Id === purchase.Product_Id                            
+                            }        
+                            console.log("**** : " + result.selected);
+                            return result;
+                        }); 
+                        
+                        var context = {
+                            products : productList,
+                            purchase: purchases.length > 0 ? purchases[0] : {},
                       
                             //purchase: purchase,
-                        Suppliers: supply
+                            Suppliers: supply
+                        };
+
+                        console.log(context);
+
+                        res.render('purchase_edit', context);
                     });
-                });
             });
         });
     });

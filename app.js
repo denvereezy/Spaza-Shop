@@ -23,7 +23,7 @@ var dbOptions = {
 };
 
     // create a route
-app.use(myConnection(mysql, dbOptions, 'single'));
+//app.use(myConnection(mysql, dbOptions, 'single'));
 app.use(express.static('public'));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -72,17 +72,12 @@ app.post('/suppliers/add',suppliers.add);
 app.get('/suppliers/delete/:Id', suppliers.delete);
 app.get('/suppliers/suppliers_edit/:Id', suppliers.get);
 
-
-
 app.get('/addPurchase',purchase.show);
-app.post('/purchase/update/:Id',purchase.update);
-app.post('/purchase/add',purchase.add);
-app.get('/purchase/delete/:Id', purchase.delete);
-app.post('/purchase/purchase_edit/:Id', purchase.update);
-app.get('/purchase/purchase_edit/:Id', purchase.get);
-
-
-
+//app.post('/purchase/update/:Id',purchase.update);
+//app.post('/purchase/add',purchase.add);
+//app.get('/purchase/delete/:Id', purchase.delete);
+//app.post('/purchase/purchase_edit/:Id', purchase.update);
+app.get('/purchase/purchase_edit/:purchase_id', purchase.get);
 
 app.get('/', function(req, res){
 	res.render("index");

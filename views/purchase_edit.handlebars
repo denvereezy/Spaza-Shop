@@ -1,6 +1,6 @@
 <div id="container">
 
-<form action="purchase/add" method="POST" class="form-horizontal" >
+<form action="/purchase/purchase_edit/add" method="POST" class="form-horizontal" >
 
 	<div class="form-group">
 		<label class="control-label col-xs-2">Suppliers</label>
@@ -15,19 +15,29 @@
       
 	<div class="form-group">
 		<label class="control-label col-xs-2">Products</label>
-		<div class="col-xs-10">	 
+		<div class="col-xs-10">
+                      
+	 
      			<select name="Product_Id">
     				{{#each products}}
-      					<option value = "{{Id}}">{{Name}}</option>
-    				{{/each}}
+
+                {{#if selected }}
+      			 		  <option value = "{{Id}}" selected="selected" >{{Name}}</option>
+    				    {{else}}
+                  <option value = "{{Id}}" >{{Name}}</option>
+                {{/if}}
+                  
+            {{/each}}
   			</select>
 		</div>
 	</div>
 	
 	<div class="form-group">
-		<label for="Amount" class="control-label col-xs-2">Qauntity</label>	 
+		<label for="number" class="control-label col-xs-2">Qauntity</label>	 
 		 <div class="col-xs-10">
-			<input type="number" name="Qty" class="form-control" value="{{Qty}}" required>
+     
+			   <input type="number" name="Qty" class="form-control" value="{{purchase.Qty}}" required>
+    
 		</div>
 	</div>
 	
@@ -35,28 +45,31 @@
 	<div class="form-group">
 		<label for="number" class="control-label col-xs-2">Price</label>
 		<div class="col-xs-10">	 
-     			<input type="number" name="Purchase_price" value="{{Purchase_price}}" required>
+        
+     			<input type="number" class="form-control" name="Purchase_price" value="{{purchase.Purchase_price}}" required>
+        
 		</div>
 	</div>
-
+ 
 	<div class="form-group">
 		<label for="date" class="control-label col-xs-2">Date</label>
-			<div class="col-xs-10">	 
-     				<input type="date" class="form-control" name="Purchase_date" placeholder="yyyy-mm-dd" required/>
+			<div class="col-xs-10">
+          
+     			    <input type="date" class="form-control" name="Purchase_date" value= "{{purchase.Purchase_date}}" required/>
+           
 			</div>
 		
 		</div> 
- 	
+
       <input type="submit" onclick="myFunction()">
-   
 
 </form>
 </div>
-<script>
-function myFunction() {
-    
-    alert("New purchase has been edited");
-   
-}
-</script>
+      <script>
+      function myFunction() {
+          
+          alert("New purchase has been edited");
+         
+        }
+      </script>
 </div>
