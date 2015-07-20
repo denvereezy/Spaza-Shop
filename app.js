@@ -16,10 +16,10 @@ var app = express();
 
 var dbOptions = {
       host: 'localhost',
-      user: 'green_grocer',
-      password: 'password',
+      user: 'root',
+      password: '951022',
       port: 3306,
-      database: 'spaza'
+      database: 'spaza_shop'
 };
 
     // create a route
