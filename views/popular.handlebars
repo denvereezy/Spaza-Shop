@@ -1,10 +1,18 @@
-<div id="container"><h2>Most Popular Product</h2>
+<div id="container">
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+       		<th>Product</th>
+       		<th>Amount sold</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each products}}
+                <td>{{Name}}</td>
+                <td>{{TotalQty}}</td>     
+            </tr>
+            {{/each}}
+</table>
+</div>
 
 
-<ul class="people_list">
-  
-  {{#each products}}
-    <li><h3>{{Name}} -{{TotalQty}}</h3></li>
-  {{/each}}
-
-</ul></div>

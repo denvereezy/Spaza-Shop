@@ -42,7 +42,7 @@ exports.add = function (req, res, next) {
                     Purchase_price: input.Purchase_price,
                     Qty:input.Qty
         	};
-            //console.log(data)
+            console.log(data)
 		connection.query('insert into Purchases set ?', data, function(err, results) {
         		if (err)
               			//console.log("Error inserting : %s ",err );
@@ -64,7 +64,7 @@ exports.get = function(req, res, next){
         }
             
 
-        var purchaseId = Number(req.params.purchase_id);
+        var purchaseId = Number(req.params.purchase_Id);
         //
         //console.log( 'purchaseId : ' + purchaseId);
 
@@ -151,6 +151,7 @@ exports.update = function(req, res, next){
     		connection.query('UPDATE Purchases SET ? WHERE Id = ?', [data, Id], function(err, rows){
     			if (err){
               			console.log("Error Updating : %s ",err );
+                                
     			}
           		res.redirect('/addPurchase');
     		});

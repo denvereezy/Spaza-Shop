@@ -1,9 +1,16 @@
-<div id="container"><h2>Most Popular Category</h2>
-
-
-<ul class="people_list">
-  
-  {{#each products}}
-    <li class = "bold">{{{Name}}} - {{{TotalQty}}}</li>
-  {{/each}}
-</ul></div>
+<div id="container">
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+       		<th>Product</th>
+       		<th>Amount sold</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each products}}
+                <td>{{Name}}</td>
+                <td>{{TotalQty}}</td>     
+            </tr>
+            {{/each}}
+</table>
+</div>
