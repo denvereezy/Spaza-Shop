@@ -144,21 +144,18 @@ exports.get = function(req, res, next){
 };
 
 exports.update = function(req, res, next){
-
 	var data = JSON.parse(JSON.stringify(req.body));
     	var Id = req.params.Id;
     	req.getConnection(function(err, connection){
     		connection.query('UPDATE Purchases SET ? WHERE Id = ?', [data, Id], function(err, rows){
     			if (err){
               			console.log("Error Updating : %s ",err );
-                                
     			}
           		res.redirect('/addPurchase');
     		});
     		
     });
 };
-
 exports.delete = function(req, res, next){
 	var Id = req.params.Id;
 	req.getConnection(function(err, connection){

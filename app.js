@@ -76,7 +76,6 @@ app.get('/addPurchase',purchase.show);
 app.post('/purchase/update/:Id',purchase.update);
 app.post('/purchase/add',purchase.add);
 app.get('/purchase/delete/:Id', purchase.delete);
-//app.post('/purchase/purchase_edit/:Id', purchase.update);
 app.get('/purchase/purchase_edit/:purchase_Id', purchase.get);
 
 app.get('/', function(req, res){
