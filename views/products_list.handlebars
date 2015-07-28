@@ -1,5 +1,20 @@
 <div id="container">
+<div id="addProduct">
+    <form action="Products/add" method="POST">
+    <h1>Add a product</h1>
+     NAME:<input id="newName" type="text" name="Name" required>
 
+  <select name="Category_Id">
+    {{#each categories}}
+      <option value = "{{Id}}">{{Name}}</option>
+    {{/each}}
+  </select> 
+  
+     <input type="submit" onclick="myFunction()">
+   
+
+</form>
+    </div>
 <table class="table table-striped custab">
     <thead>
         <tr>
@@ -15,20 +30,6 @@
             {{/each}}
     </table>
    
-<form action="Products/add" method="POST">
-    <h1>Add a product</h1>
-     NAME:<input id="newName" type="text" name="Name" required>
-
-  <select name="Category_Id">
-    {{#each categories}}
-      <option value = "{{Id}}">{{Name}}</option>
-    {{/each}}
-  </select> 
-  
-     <input type="submit" onclick="myFunction()">
-   
-
-</form>
  </div>
 </div>
 <script>

@@ -1,5 +1,13 @@
 <div id="container">
+    
+<div id="addcategory"><h1>Add a Category</h1>
+	<form action="categories/add" method="POST">
+		Description: <input type="text" name="Name" required>	
+		<input type="submit" onclick="myFunction()">
+	</form>
 
+</form>
+</div>
 <table class="table table-striped custab">
     <thead>
         <tr>
@@ -15,15 +23,6 @@
             {{/each}}
     </table>
    
-<h1>Add a Category</h1>
-	<form action="categories/add" method="POST">
-		Description: <input type="text" name="Name" required>	
-		<input type="submit" onclick="myFunction()">
-	</form>
-
-</form>
- </div>
-</div>
 
 </div>
 <script>

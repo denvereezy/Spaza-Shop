@@ -146,6 +146,9 @@ exports.get = function(req, res, next){
 exports.update = function(req, res, next){
 	var data = JSON.parse(JSON.stringify(req.body));
     	var Id = req.params.Id;
+        var Qty = req.params.Qty;
+        var Purchase_date = req.params.Purchase_date;
+        var Purchase_price = req.params.Purchase_price;
     	req.getConnection(function(err, connection){
     		connection.query('UPDATE Purchases SET ? WHERE Id = ?', [data, Id], function(err, rows){
     			if (err){

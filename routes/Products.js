@@ -3,7 +3,7 @@ exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) 
 			return next(err);
-		   connection.query('SELECT * from Products', [], function(err, results, fields) {
+		   connection.query('SELECT * from Products order by Id desc', [], function(err, results, fields) {
             if (err)
                 return next(err);
             connection.query('SELECT * from Categories', [], function(err, cat, fields) {

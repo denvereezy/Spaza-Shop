@@ -1,20 +1,5 @@
 <div id="container">
-
-<table class="table table-striped custab">
-    <thead>
-        <tr>
-            <th>Product</th>
-            <th>Qty Sold</th>
-        </tr>
-    </thead>
-            <tr>
-                {{#each products}}
-                <td>{{Name}}</td>
-                <td>{{TotalQty}}</td>
-            </tr>
-            {{/each}}
-    </table>
-
+<div id="addSale"> <h1>Add Sale</h1>  
 <form action="sales/add" method="POST" class="form-horizontal" >
       
 	<div class="form-group">
@@ -50,10 +35,26 @@
 			</div>
 		
 		</div> 
- 	<input type="submit" class="btn btn-primary" onclick="myFunction()">
+ 	<input type="submit" class="btn btn-primary" id"enter" onclick="myFunction()">
    
 
 </form>
+    </div>
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Qty Sold</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each products}}
+                <td>{{Name}}</td>
+                <td>{{TotalQty}}</td>
+            </tr>
+            {{/each}}
+    </table>
+
 </div>
 <script>
 function myFunction() {
