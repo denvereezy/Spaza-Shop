@@ -1,0 +1,32 @@
+<div id="container">
+<head>
+
+<title>Login</title>
+</head>
+<body>
+<h1>Nelisa Spaza Login</h1>
+<form name="login">
+<p id='username'>Username<input type="text" name="userid"/></p>
+<p id='password'>Password<input type="password" name="pswrd"/></p>
+<input id='button' type="button" onclick="check(this.form)" value="Login"/>
+<input type="reset" value="Cancel"/>
+</form>
+<script language="javascript">
+function check(form)/*function to check userid & password*/
+{
+ /*the following code checkes whether the entered userid and password are matching*/
+ if(form.userid.value == "denver" && form.pswrd.value == "password")
+  {
+    window.open('admin','_self')/*opens the target page while Id & password matches*/
+  }
+ else if (form.userid.value == "lindani" && form.pswrd.value == "password")
+  {
+    window.open('home','_self')/*opens the target page while Id & password matches*/
+  }else
+ {
+   alert("Error Password or Username")/*displays error message*/
+  }
+}
+</script>
+</div>
+

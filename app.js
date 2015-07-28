@@ -78,10 +78,19 @@ app.post('/purchase/add',purchase.add);
 app.get('/purchase/delete/:Id', purchase.delete);
 app.get('/purchase/purchase_edit/:purchase_Id', purchase.get);
 
-app.get('/', function(req, res){
-	res.render("index");
-});
+/*app.get('/', function(req, res){
+	res.render("login");
+});*/
 
+app.get('/admin', function(req, res,next){
+	res.render("admin",{layout: 'mainAdmin'});
+});
+app.get('/home', function(req, res,next){
+	res.render("index",{layout: 'main'});
+});
+app.get('/', function(req, res,next){
+	res.render("login",{layout: 'mainLogin'});
+});
    var port = process.env.PORT || 8090;		
    //start the server
    var server = app.listen(port, function () {
