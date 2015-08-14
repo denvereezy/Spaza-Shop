@@ -1,6 +1,22 @@
 
 <div id="container">
+<div id="addProduct">
+<form action="suppliers/add" method="POST" class="form-horizontal" >
+        <div class="form-group">
+               <h1>Add a Supplier</h1>
+		<label for="Amount" class="control-label col-xs-2">Name:</label>	 
+		 <div class="col-xs-10">
+			<input id="newName" type="text" name="Name" class="form-control" placeholder="Please Enter A Supplier" required>
+		</div>
+	</div>
 
+ 	<input type="submit" class="btn btn-primary" onclick="myFunction()">
+       
+   
+
+</form>
+</div>
+{{#in_ca}}
 <table class="table table-striped custab">
     <thead>
         <tr>
@@ -18,22 +34,23 @@
             {{/each}}
     </table>
 
-<form action="suppliers/add" method="POST" class="form-horizontal" >
-        <div class="form-group">
-		<label for="Amount" class="control-label col-xs-2">Supplier:</label>	 
-		 <div class="col-xs-10">
-			<input type="text" name="Name" class="form-control" placeholder="Please Enter A Supplier" required>
-		</div>
-	</div>
 
+{{/in_ca}}
+{{#action}}
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Supplier</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each suppliers}}
+                <td>{{Name}}</td>
+            </tr>
+            {{/each}}
+    </table>
 
-
-	
- 	<input type="submit" class="btn btn-primary" onclick="myFunction()">
-       
-   
-
-</form>
+{{/action}}
 </div>
 <script>
 function myFunction() {

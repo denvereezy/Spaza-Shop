@@ -1,4 +1,6 @@
+<body id ="background">
 <div id="container">
+{{#in_ca}}
 <div id="addSale"> <h1>Add Sale</h1>  
 <form action="sales/add" method="POST" class="form-horizontal" >
       
@@ -11,6 +13,7 @@
     				{{/each}}
   			</select>
 		</div>
+
 	</div>
 
 	<div class="form-group">
@@ -40,6 +43,7 @@
 
 </form>
     </div>
+ {{/in_ca}}
 <table class="table table-striped custab">
     <thead>
         <tr>
@@ -62,4 +66,4 @@ function myFunction() {
     alert("New sale added");
    
 }
-</script>
+</script></body>

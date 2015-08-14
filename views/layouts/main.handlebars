@@ -1,342 +1,224 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-<style>
-body{
-   background-image:url("/cash-register.jpg");
-   background-repeat: no-repeat;
-   background-position: center center;
-   background-attachment: fixed;
-   -webkit-background-size: cover;
-   -moz-background-size: cover;
-   -o-background-size: cover; 
-   background-size: cover;
-}
+    <head>
 
-#container{
-          background-color:#0066cc;
-          box-shadow: 0px 0px 0px 15px red, 0px 20px 15px 0px rgba(0, 0, 0, 0.6); 
-          border-radius: 35px;
-          width:90%;
-          height:auto;
-          opacity:0.75;
-          margin-left: auto;
-          margin-right: auto;
-          padding:15px;
-}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-#sidebar-wrapper{
-         background-color:black;
-}
+        <title>Nelisa's Spaza Shop</title>
+          <link rel="icon" type="image/png" href="./icon.png">
 
-.link{
-    font-family:Arial;
-    font-size:20px;
-    color:red;
-}
+        <!-- Bootstrap Core CSS -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/user.css" rel="stylesheet">
 
-table, th, td {
-    background-color: white;
-    border: 4px solid black;
-    text-align:left;
-    width:90%;
-    font-family:Arial;
-    font-size:25px;
-    
-}
+        <!-- Custom CSS -->
+        <link href="/css/simple-sidebar.css" rel="stylesheet">
+        <link href="/css/half-slider.css" rel="stylesheet">
 
-.bold {
-	 font-weight: bold;
-	font-size:25px;
-}
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
-#add-products {
-	border : 1px solid;
-	width: 50%;
-	padding: 15px;
-}
+    </head>
 
-input[type=submit] {
-	color:red;
-	font-size: 20px;
-}
-.custab{
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin: 5% 0;
-    box-shadow: 8px 8px 4px red;
-    transition: 0.5s;
-    }
-.custab:hover{
-    box-shadow: 3px 3px 0px transparent;
-    transition: 0.5s;
-    }
-th{
-  color:red;
-  background-color:grey;
-}
-a.back-to-top {
-	display: none;
-	width: 60px;
-	height: 60px;
-	text-indent: -9999px;
-	position: fixed;
-	z-index: 999;
-	right: 20px;
-	bottom: 20px;
-	background: #0066cc url("up-arrow.png") no-repeat center 43%;
-        box-shadow: 0px 0px 0px 15px red, 0px 20px 15px 0px rgba(0, 0, 0, 0.6);
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-	border-radius: 30px;
-}
-    #addProduct{
-      background: white;
-      border: 5px solid red;
-      border-radius:35px;
-      margin: 50px;
-      width:auto;
-      height: inherit;
-      text-align: center;
-      box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.3), 
-                  0px 20px 15px 0px rgba(0, 0, 0, 0.6);
-      text-align: center;
-    }
-    #addSale{
-      background: white;
-      border: 5px solid red;
-      border-radius: 35px;
-      width:auto;
-      height: 350px;
-      margin: 50px;
-      padding-left: 20px;
-      box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.3), 
-                  0px 20px 15px 0px rgba(0, 0, 0, 0.6);
-    }
-    #addcategory{
-      background: white;
-      border: 5px solid red;
-      border-radius:35px;
-      margin: 50px;
-      width:auto;
-      height: inherit;
-      text-align: center;
-      box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.3), 
-                  0px 20px 15px 0px rgba(0, 0, 0, 0.6);
-      text-align: center;
-    }
-   
-</style>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <body>
 
-    <title>Nelisa's Spaza Shop</title>
-      <link rel="icon" type="image/png" href="./icon.png">
+        <div id="wrapper">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
 
-    <!-- Custom CSS -->
-    <link href="/css/simple-sidebar.css" rel="stylesheet">
-    <link href="/css/half-slider.css" rel="stylesheet">
+                        <img src="/nelisa.png" class=".img-responsive" width="250px;"/>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-             
-                    <img src="/nelisa.png" class=".img-responsive" width="250px;"/>
-                
-                <li>
-                    <a href="/">Refresh</a>
-                </li>
-                <li>
-                 <a href="javascript:;" data-toggle="collapse" data-target="#new">Graphs <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="new" class="collapse">
-                            <li>
-                                <a href="productGraph">Product Graph</a>
-                            </li>
-                            <li>
-                                <a href="graph">Category Graph</a>
-                            </li>
-                        </ul>
+                    <li>
+                        <a href="/home">Refresh</a>
                     </li>
-                <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo">Products <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="products_list">Product List</a>
-                            </li>
-                            <li>
-                                <a href="list">Grouped Product Sales</a>
-                            </li>
-                            <li>
-                                <a href="salesPerProduct">Sales Per Product</a>
-                            </li>
-                            <li>
-                                <a href="popular">Most Popular Product</a>
-                            </li>
-                            <li>
-                                <a href="leastpopular">Least Popular Product</a>
-                            </li>
-                            <li>
-                                <a href="earningsPerProduct">Earnings Per Product</a>
-                            </li>
-                        </ul>
-                    </li>
-                <li>
-                 <a href="javascript:;" data-toggle="collapse" data-target="#d">Purchases <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="d" class="collapse">
-                            <li>
-                                <a href="suppliers">Add supplier</a>
-                            </li>
-                            <li>
-                                <a href="addPurchase">Add purchase</a>
-                            </li>
-                        </ul>
-                    </li>
-                <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#dmd"><i class="fa fa-fw fa-arrows-v"></i> Categories <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="dmd" class="collapse">
-                            <li>
-                                <a href="category_list">Category List</a>
-                            </li>
-                            <li>
-                                <a href="category_sales">Category Sales</a>
-                            </li>
-                            <li>
-                                <a href="popularCategory">Most Popular Category</a>
-                            </li>
-                            <li>
-                                <a href="leastpopcat">Least Popular Category</a>
-                            </li>
-                            <li>
-                                <a href="earningsPerCategory">Earnings Per Category</a>
-                            </li>
-                        </ul>
-                       <li>
-                                <a href="login">Admin Login</a>
-                            </li>
-                    </li>
-            </ul>
-       
-        
+                    <li>
+                     <a href="javascript:;" data-toggle="collapse" data-target="#new">Graphs <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="new" class="collapse">
+                                <li>
+                                    <a href="productGraph">Product Graph</a>
+                                </li>
+                                <li>
+                                    <a href="graph">Category Graph</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo">Products <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="demo" class="collapse">
+                                <li>
+                                    <a href="products_list">Product List</a>
+                                </li>
+                                <li>
+                                    <a href="list">Grouped Product Sales</a>
+                                </li>
+                                <li>
+                                    <a href="salesPerProduct">Sales Per Product</a>
+                                </li>
+                                <li>
+                                    <a href="popular">Most Popular Product</a>
+                                </li>
+                                <li>
+                                    <a href="leastpopular">Least Popular Product</a>
+                                </li>
+                                <li>
+                                    <a href="earningsPerProduct">Earnings Per Product</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <li>
+                     <a href="javascript:;" data-toggle="collapse" data-target="#d">Purchases <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="d" class="collapse">
+                                <li>
+                                    <a href="suppliers">Suppliers</a>
+                                </li>
+                                <li>
+                                    <a href="addPurchase">Purchases</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#dmd"><i class="fa fa-fw fa-arrows-v"></i> Categories <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="dmd" class="collapse">
+                                <li>
+                                    <a href="category_list">Category List</a>
+                                </li>
+                                <li>
+                                    <a href="category_sales">Category Sales</a>
+                                </li>
+                                <li>
+                                    <a href="popularCategory">Most Popular Category</a>
+                                </li>
+                                <li>
+                                    <a href="leastpopcat">Least Popular Category</a>
+                                </li>
+                                <li>
+                                    <a href="earningsPerCategory">Earnings Per Category</a>
+                                </li>
+                            </ul>
+
+                        </li>
+
+                        <li>
+                                   <a href="users">Users</a>
+                        </li>
+
+                        <li>
+                                   <a href="/logout">Logout</a>
+                        </li>
+                </ul>
+
+
+            </div>
+            <!-- /#sidebar-wrapper -->
+            <!-- Carousel -->
+             <header id="myCarousel" class="carousel slide">
+
+            <!-- Wrapper for Slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="fill" style="background-image:url('/mixed-sweets.jpg');"></div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="fill" style="background-image:url('/img.png');"></div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="fill" style="background-image:url('/amasi.png');"></div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                 <div class="item">
+                    <div class="fill" style="background-image:url('/dairy-products-600.jpg');"></div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="icon-prev"></span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="icon-next"></span>
+            </a>
+
+        </header>
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+    <br>
+    <br>
+           <div container="class theme-showcase" role="main"><strong>
+                      {{{body}}}    
+         </strong></div>  
+    <br>
+    <br> 
+             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
+
+            </div>
+            <!-- /#page-content-wrapper -->
+
         </div>
-        <!-- /#sidebar-wrapper -->
-        <!-- Carousel -->
-         <header id="myCarousel" class="carousel slide">
+        <!-- /#wrapper -->
 
-        <!-- Wrapper for Slides -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <div class="fill" style="background-image:url('/mixed-sweets.jpg');"></div>
-                <div class="carousel-caption">
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('/img.png');"></div>
-                <div class="carousel-caption">
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('/amasi.png');"></div>
-                <div class="carousel-caption">
-                </div>
-            </div>
-             <div class="item">
-                <div class="fill" style="background-image:url('/dairy-products-600.jpg');"></div>
-                <div class="carousel-caption">
-                </div>
-            </div>
-        </div>
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="icon-next"></span>
-        </a>
+        <!-- jQuery -->
+        <script src="/js/jquery.js"></script>
 
-    </header>
-       
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-<br>
-<br>
-       <div container="class theme-showcase" role="main"><strong>
-                  {{{body}}}    
-     </strong></div>  
-<br>
-<br> 
-         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
-      
-        </div>
-        <!-- /#page-content-wrapper -->
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/js/bootstrap.min.js"></script>
 
-    </div>
-    <!-- /#wrapper -->
-      
-  
-    <!-- jQuery -->
-    <script src="/js/jquery.js"></script>
+        <!-- Menu Toggle Script -->
+        <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        </script>
+         <script>
+        $('.carousel').carousel({
+            interval: 7000 //changes the speed
+        })
+        </script>
+    <!--back to top -->
+        <script type="text/javascript">
+        $('body').prepend('<a href="#" class="back-to-top">Back to Top</a>');
+       </script>
+       <script>
+          var amountScrolled = 300;
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
+            $(window).scroll(function() {
+        if ($(window).scrollTop() > amountScrolled) {
+            $('a.back-to-top').fadeIn('slow');
+        } else {
+            $('a.back-to-top').fadeOut('slow');
+        }
+       });
+      </script>
+      <script>
+           $('a.back-to-top').click(function() {
+        $('html,body').animate({
+            scrollTop: 0
+        }, 700);
+        return false;
+        });
+      </script>
+      <script></script>
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
-     <script>
-    $('.carousel').carousel({
-        interval: 7000 //changes the speed
-    })
-    </script>
-<!--back to top -->
-    <script type="text/javascript">
-	$('body').prepend('<a href="#" class="back-to-top">Back to Top</a>');
-   </script>
-   <script>
-      var amountScrolled = 300;
+    </body>
 
-        $(window).scroll(function() {
-	if ($(window).scrollTop() > amountScrolled) {
-		$('a.back-to-top').fadeIn('slow');
-	} else {
-		$('a.back-to-top').fadeOut('slow');
-	}
-   });
-  </script>
-  <script>
-       $('a.back-to-top').click(function() {
-	$('html,body').animate({
-		scrollTop: 0
-	}, 700);
-	return false;
-    });
-  </script>
-  <script></script>
-
-</body>
-
-</html>
+    </html>

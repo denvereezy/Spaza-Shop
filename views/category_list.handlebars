@@ -1,5 +1,7 @@
+<body id ="background">
+
 <div id="container">
-    
+{{#in_ca}}    
 <div id="addcategory"><h1>Add a Category</h1>
 	<form action="categories/add" method="POST">
 		Description: <input type="text" name="Name" required>	
@@ -23,7 +25,22 @@
             {{/each}}
     </table>
    
-
+{{/in_ca}}
+{{#action}}
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Categories</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each products}}
+                <td>{{Name}}</td>
+               
+            </tr>
+            {{/each}}
+    </table>
+{{/action}}
 </div>
 <script>
 function myFunction() {
@@ -31,4 +48,4 @@ function myFunction() {
     alert("New category added");
    
 }
-</script>
+</script></body>

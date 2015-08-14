@@ -1,0 +1,36 @@
+<div id="container">
+{{#in_ca}}
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Role</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each users}}
+                <td>{{Username}}</td>
+                <td>{{User_role}}</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="/users/users_edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a><a href="/users/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+        
+            </tr>
+          
+            {{/each}}
+    </table>
+ {{/in_ca}} 
+{{#action}}
+<h1 id="user">You don't have enough priviledges to view this page!</h1>
+{{/action}} 
+ </div>
+
+<script>
+function myFunction() {
+   
+   $('#newName').val(); 
+    if ($('#newName').val() != null){
+    alert('New product added');
+}
+};
+
+</script>

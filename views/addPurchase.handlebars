@@ -1,35 +1,10 @@
+<body id ="background">
 <div id="container">
-
-<table class="table table-striped custab">
-    <thead>
-        <tr>
-       		<th>Supplier</th>
-       		<th>Product</th>
-       		<th>Qauntity</th>
-       		<th>Price</th>
-       		<th>Date</th>
-       		<th>Action</th>
-        </tr>
-    </thead>
-            <tr>
-                {{#each purchases}}
-                <td>{{names}}</td>
-                <td>{{Name}}</td>
-                <td>{{Qty}}</td>
-                <td>{{Purchase_price}}</td>
-                <td>{{Purchase_date}}</td>
-
-                <td class="text-center"><a class='btn btn-info btn-xs' href="/purchase/purchase_edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/purchase/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-
-
-                
-            </tr>
-            {{/each}}
-    </table>
-
+<div id="addSale">
 <form action="purchase/add" method="POST" class="form-horizontal" >
 
 	<div class="form-group">
+                <h1 id="sale">Add a purchase</h1>
 		<label class="control-label col-xs-2">Suppliers</label>
 		<div class="col-xs-10">	 
      			<select name="Supplier_Id">
@@ -79,11 +54,67 @@
 
 </form>
 </div>
+{{#in_ca}}
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+       		<th>Supplier</th>
+       		<th>Product</th>
+       		<th>Qauntity</th>
+       		<th>Price</th>
+       		<th>Date</th>
+       		<th>Action</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each purchases}}
+                <td>{{names}}</td>
+                <td>{{Name}}</td>
+                <td>{{Qty}}</td>
+                <td>{{Purchase_price}}</td>
+                <td>{{Purchase_date}}</td>
+
+                <td class="text-center"><a class='btn btn-info btn-xs' href="/purchase/purchase_edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/purchase/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+
+
+                
+            </tr>
+            {{/each}}
+    </table>
+
+{{/in_ca}}
+{{#action}}
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+       		<th>Supplier</th>
+       		<th>Product</th>
+       		<th>Qauntity</th>
+       		<th>Price</th>
+       		<th>Date</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each purchases}}
+                <td>{{names}}</td>
+                <td>{{Name}}</td>
+                <td>{{Qty}}</td>
+                <td>{{Purchase_price}}</td>
+                <td>{{Purchase_date}}</td>
+
+
+
+                
+            </tr>
+            {{/each}}
+    </table>
+{{/action}}
+</div>
 <script>
 function myFunction() {
     
     alert("New purchase added");
    
 }
-</script>
+</script></body>
 
