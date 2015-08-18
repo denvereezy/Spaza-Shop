@@ -6,7 +6,7 @@ describe("Find most popular product in file", function(){
     it('should return the most popular product', function(){
  console.log("=================================");
          var Products = require("./productsSold");
-         var products = new Products();
+         var products = new Products("./Nelisa Sales History.csv");
 
         var list = { 
                      'Mixed Sweets 5s': 172,
@@ -146,7 +146,7 @@ describe("Find most popular product in file", function(){
    console.log("================================================");
           var Products = require("./productsSold");
           var products = new Products();
-          var productMap{
+          var productMap = {
 		'Milk 1l':142,
 		'Imasi':125,
 		'Bread ':130,

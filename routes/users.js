@@ -35,9 +35,9 @@
     exports.admin = function(req, res, next) {
 
         var data = JSON.parse(JSON.stringify(req.body));
-        var id = req.params.id;
+        var id = req.params.Id;
         req.getConnection(function(err, connection) {
-            connection.query('UPDATE users SET role = "Admin" WHERE userID = ?', id, function(err, rows) {
+            connection.query('UPDATE Users SET User_role = "admin" WHERE ID = ?', id, function(err, rows) {
                 if (err) {
                     console.log("Error Updating : %s ", err);
                 }
@@ -49,14 +49,29 @@
     exports.notAdmin = function(req, res, next) {
 
         var data = JSON.parse(JSON.stringify(req.body));
-        var id = req.params.id;
+        var id = req.params.Id;
         req.getConnection(function(err, connection) {
-            connection.query('UPDATE users SET role = "notAdmin" WHERE userID = ?', id, function(err, rows) {
+            connection.query('UPDATE Users SET User_role = "read-only" WHERE ID = ?', id, function(err, rows) {
                 if (err) {
                     console.log("Error Updating : %s ", err);
                 }
                 res.redirect('/users');
             });
+
+        });
+    };
+
+  exports.update = function(req, res, next){
+
+        var data = JSON.parse(JSON.stringify(req.body));
+            var Id = req.params.Id;
+            req.getConnection(function(err, connection){
+                connection.query('UPDATE Users SET ? WHERE Id = ?', [data, Id], function(err, rows){
+                    if (err){
+                            console.log("Error Updating : %s ",err );
+                    }
+                    res.redirect('/users');
+                });
 
         });
     };

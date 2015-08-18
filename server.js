@@ -75,8 +75,9 @@ app.get('/purchase/delete/:Id', login.userCheck,purchase.delete);
 app.get('/purchase/purchase_edit/:purchase_Id',login.userCheck, purchase.get);
 
 app.get('/users',login.userCheck, users.show);
-app.post('/users/admin/:Id',login.userCheck,users.admin);
-app.post('/users/notAdmin/:Id',login.userCheck,users.notAdmin);
+app.post('/users/update/:Id',login.userCheck,users.update);
+app.get('/users/admin/:Id',login.userCheck,users.admin);
+app.get('/users/notAdmin/:Id',login.userCheck,users.notAdmin);
 app.get('/users/delete/:Id',login.userCheck, users.delete);
 app.get('/users/users_edit/:user_Id',login.userCheck, users.get);
 
