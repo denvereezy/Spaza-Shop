@@ -3,8 +3,8 @@
         req.getConnection(function(err, connection){
             if (err) 
                 return next(err);
-                     var isAdmin = req.session.role === "superAdmin";
-                     var readOnly = req.session.role !== "superAdmin";
+                     var isAdmin = req.session.role === "admin";
+                     var readOnly = req.session.role !== "admin";
                connection.query('SELECT * from Users', [], function(err, results, fields) {
                     res.render('users', {
                         users: results,
