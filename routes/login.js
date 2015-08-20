@@ -104,8 +104,7 @@
 
                 bcrypt.compare(input.password, user.Password, function(err, pass) {
 
-            console.log(user);
-
+            
                     if (err) {
                         console.log(err);
                     }

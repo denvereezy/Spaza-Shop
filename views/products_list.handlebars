@@ -16,8 +16,11 @@
 
 </form>
     </div>
+<form>
+	<input class="searchBar" id="product_search" type="text" name="Name" placeholder="Search"></input>
+</form>
 
-<table class="table table-striped custab">
+<table id="products" class="table table-striped custab">
     <thead>
         <tr>
             <th>Product</th>
@@ -38,6 +41,7 @@
  </div>
 {{/in_ca}}
 {{#action}}
+
 <table class="table table-striped custab">
     <thead>
         <tr>
@@ -64,3 +68,4 @@ function myFunction() {
 };
 
 </script>
+<script src="/js/search.js"></script>

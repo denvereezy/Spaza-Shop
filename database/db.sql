@@ -26,6 +26,7 @@ CREATE TABLE Purchases
 (
 	Id int NOT NULL auto_increment,
 	Purchase_date Date,
+        Purchase_price char (100) not null,
 	Qty int NOT NULL,
 	Product_Id int,
 	Supplier_Id int,
@@ -47,4 +48,12 @@ CREATE TABLE Sales
 	FOREIGN KEY (Product_Id) REFERENCES Products(Id)
 );
 
+CREATE TABLE Users
+(
+	Id int NOT NULL auto_increment,
+	Username char (100) not null,
+        Password varchar (100) not null,
+        User_role varchar (100) not null,
+        PRIMARY KEY (Id)
+);
  

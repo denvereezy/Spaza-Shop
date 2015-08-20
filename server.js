@@ -16,6 +16,8 @@ var express = require('express'),
     salesPerProduct = require('./routes/salesPerProduct'),
     suppliers = require('./routes/suppliers'),
     purchase = require('./routes/purchase');
+    products_search = require('./routes/search');
+    
 
 var dbOptions = {
       host: 'localhost',
@@ -81,6 +83,9 @@ app.get('/users/notAdmin/:Id',login.userCheck,users.notAdmin);
 app.get('/users/delete/:Id',login.userCheck, users.delete);
 app.get('/users/users_edit/:user_Id',login.userCheck, users.get);
 
+app.get('/products/search/:searchValue',login.userCheck, products_search.search_products);
+app.get('/categories/search/:searchValue',login.userCheck, products_search.search_categories);
+
 app.get("/sign_up", function(req, res){
 
   res.render("sign_up", {layout : 'mainLogin'});
@@ -94,8 +99,7 @@ app.get('/admin_signup', function(req, res, next){
 app.post('/admin_signup',login.adminSignup); 
 
 app.get('/', function(req, res) {
-
-    console.log(req.query.status);	
+	
 
     res.render('login', {
         layout: false,
