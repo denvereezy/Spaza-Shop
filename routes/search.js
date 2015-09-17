@@ -177,4 +177,8 @@ exports.search_purchases = function(req, res, next){
         connection.query('SELECT p.Id, Purchase_date,Qty, Purchase_price,s.Name,c.Name as names from Purchases p inner join Products s on p.Product_Id = s.Id inner join Suppliers c on p.Supplier_Id = c.Id where Name Like ?', [searchValue], searchResults);
         
     })
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> ad160162decaf49d26b3986d1750a0af9a90e85a
