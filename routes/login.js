@@ -26,22 +26,27 @@
                 User_role: 'read-only'
 
             };
-
+              
+          
             //bcrypt the password===
             bcrypt.genSalt(10, function(err, salt) {
                 bcrypt.hash(input.password, salt, function(err, hash) {
                     // Store hash in your password DB. 
                     data.Password = hash;
-                    connection.query('insert into Users set ?', data, function(err, results) {
+                    connection.query('insert into Users set ?', data, function(err, users) {
+                        user = users[0]; 
+                        if(input.username === user.Username){
+                          res.redirect('/sign_up',{msg: "Username already taken, try again!"});
+                        }
                         if (err)
                             console.log("Error inserting : %s ", err);
 
                         res.redirect('/?status=user_created');
-
+                       
                     });
                 });
             });
-
+          
 
 
         });
@@ -115,6 +120,7 @@
                         return res.redirect("/home")
                     } else {
                         return res.redirect('/');
+                       
                     }
                 })
             })

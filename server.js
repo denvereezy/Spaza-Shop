@@ -16,7 +16,7 @@ var express = require('express'),
     salesPerProduct = require('./routes/salesPerProduct'),
     suppliers = require('./routes/suppliers'),
     purchase = require('./routes/purchase');
-    products_search = require('./routes/search');
+    search = require('./routes/search');
     
 
 var dbOptions = {
@@ -83,8 +83,16 @@ app.get('/users/notAdmin/:Id',login.userCheck,users.notAdmin);
 app.get('/users/delete/:Id',login.userCheck, users.delete);
 app.get('/users/users_edit/:user_Id',login.userCheck, users.get);
 
-app.get('/products/search/:searchValue',login.userCheck, products_search.search_products);
-app.get('/categories/search/:searchValue',login.userCheck, products_search.search_categories);
+app.get('/products/search/:searchValue',login.userCheck, search.search_products);
+app.get('/suppliers/search/:searchValue',login.userCheck, search.search_suppliers);
+app.get('/sales/search/:searchValue',login.userCheck, search.search_grouped_sales);
+app.get('/allsales/search/:searchValue',login.userCheck, search.search_all_sales);
+app.get('/product_earnings/search/:searchValue',login.userCheck, search.search_product_earnings);
+
+app.get('/categories/search/:searchValue',login.userCheck, search.search_categories);
+app.get('/category_sales/search/:searchValue',login.userCheck, search.search_category_sales);
+app.get('/category_earnings/search/:searchValue',login.userCheck, search.search_category_earnings);
+
 
 app.get("/sign_up", function(req, res){
 
