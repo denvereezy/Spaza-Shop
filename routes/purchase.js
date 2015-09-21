@@ -2,7 +2,7 @@
     req.getConnection(function(err, connection){
         if (err) 
             return next(err);
-                connection.query('SELECT p.Id, Purchase_date,Qty, Purchase_price,s.Name,c.Name as names from Purchases p inner join Products s on p.Product_Id = s.Id inner join Suppliers c on p.Supplier_Id = c.Id order by Purchase_date desc', [], function(err, purchases, fields) {
+                connection.query('SELECT p.Id, DATE_FORMAT(Purchase_date,"%d %b %y") as Purchase_date,Qty, Purchase_price,s.Name,c.Name as names from Purchases p inner join Products s on p.Product_Id = s.Id inner join Suppliers c on p.Supplier_Id = c.Id order by Purchase_date desc', [], function(err, purchases, fields) {
                     if (err)
                         return next(err);
                         connection.query('SELECT * from Suppliers', [], function(err, supply, fields) {

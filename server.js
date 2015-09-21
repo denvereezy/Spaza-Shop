@@ -15,8 +15,9 @@ var express = require('express'),
     sales = require('./routes/sales'),
     salesPerProduct = require('./routes/salesPerProduct'),
     suppliers = require('./routes/suppliers'),
-    purchase = require('./routes/purchase');
-    search = require('./routes/search');
+    purchase = require('./routes/purchase'),
+    search = require('./routes/search'),
+    queries = require('./routes/queries');
     
 
 var dbOptions = {

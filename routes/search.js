@@ -1,10 +1,11 @@
+//var queries = require('../routes/queries');
 
 exports.search_products = function(req, res, next){
     req.getConnection(function(err, connection){
         if(err) return next(err);
         
         var searchValue = "%" + req.params.searchValue + "%";        
-        var searchResults = function(err, results){
+        var searchResultsCb = function(err, results){
             if (err) return next(err);
             
             res.render('products_search', {
@@ -14,7 +15,9 @@ exports.search_products = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT * FROM Products where Name Like ?', [searchValue], searchResults);
+        connection.query('SELECT Categories.Name as cat_name,Products.Name from Categories INNER JOIN Products ON Products.category_Id=Categories.Id where Products.Name Like ? or Categories.name Like ?', [searchValue,searchValue], searchResultsCb);
+
+//        queries.findProductByName(searchValue,searchValue, searchResultsCb );
         
     })
 };
