@@ -3,7 +3,7 @@
         req.getConnection(function(err, connection){
             if (err) 
                 return next(err);
-               connection.query('SELECT Categories.Name as cat_name,Products.Name from Categories INNER JOIN Products where Products.category_Id=Categories.Id order by Products.Id desc', [], function(err, results, fields) {
+               connection.query('SELECT * from Products order by Id desc', [], function(err, results, fields) {
                 if (err)
                     return next(err);
 

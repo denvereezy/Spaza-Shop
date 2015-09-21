@@ -1,4 +1,4 @@
-//var queries = require('../routes/queries');
+var queries = require('../routes/queries');
 
 exports.search_products = function(req, res, next){
     req.getConnection(function(err, connection){
@@ -15,9 +15,9 @@ exports.search_products = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT Categories.Name as cat_name,Products.Name from Categories INNER JOIN Products ON Products.category_Id=Categories.Id where Products.Name Like ? or Categories.name Like ?', [searchValue,searchValue], searchResultsCb);
+        //connection.query('SELECT Categories.Name as cat_name,Products.Name from Categories INNER JOIN Products where Products.category_Id=Categories.Id order by Products.Id Products.Name Like ? or cat_name Like ?', [searchValue], searchResults);
 
-//        queries.findProductByName(searchValue,searchValue, searchResultsCb );
+        queries.findProductByName(searchValue,searchValue, searchResultsCb );
         
     })
 };
