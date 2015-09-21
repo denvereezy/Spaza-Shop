@@ -121,7 +121,7 @@ app.post("/login", login.userLogin);
 app.use(login.userCheck);
 
 app.get('/home', function(req, res) {
-    res.render('index');
+    res.render('index',{user:req.session.user, role:req.session.role });
 });
 
 
