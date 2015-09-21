@@ -92,7 +92,7 @@ app.get('/product_earnings/search/:searchValue',login.userCheck, search.search_p
 app.get('/categories/search/:searchValue',login.userCheck, search.search_categories);
 app.get('/category_sales/search/:searchValue',login.userCheck, search.search_category_sales);
 app.get('/category_earnings/search/:searchValue',login.userCheck, search.search_category_earnings);
-
+app.get('/purchases/search/:searchValue',login.userCheck, search.search_purchases);
 
 app.get("/sign_up", function(req, res){
 

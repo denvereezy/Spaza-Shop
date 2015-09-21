@@ -174,7 +174,7 @@ exports.search_purchases = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT p.Id, Purchase_date,Qty, Purchase_price,s.Name,c.Name as names from Purchases p inner join Products s on p.Product_Id = s.Id inner join Suppliers c on p.Supplier_Id = c.Id where Name Like ?', [searchValue], searchResults);
+        connection.query('SELECT p.Id, Purchase_date,Qty, Purchase_price,s.Name,c.Name as names from Purchases p inner join Products s on p.Product_Id = s.Id inner join Suppliers c on p.Supplier_Id = c.Id where s.Name Like ? or c.Name Like ?', [searchValue,searchValue], searchResults);
         
     })
 };

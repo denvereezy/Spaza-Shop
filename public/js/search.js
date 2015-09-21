@@ -86,3 +86,13 @@
 
     });
 
+//purchases search
+    $(document).ready(function(){
+        $("#purchases").keyup(function(){
+            var searchValue = $("#purchases").val();
+            $.get("/purchases/search/" + searchValue, function(results){
+                $("#all_purchases").html(results)
+            })
+        })
+
+    });

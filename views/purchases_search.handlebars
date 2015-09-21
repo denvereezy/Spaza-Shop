@@ -1,13 +1,22 @@
     <thead>
         <tr>
+            <th>Supplier</th>
             <th>Product</th>
-            <th>Qty Sold</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Date</th>
+            <th>Action</th>
         </tr>
     </thead>
             <tr>
                 {{#each products}}
+                <td>{{names}}</td>
                 <td>{{Name}}</td>
-                <td>R{{TotalEarnings}}</td>
+                <td>{{Qty}}</td>
+                <td>{{Purchase_price}}</td>
+                <td>{{Purchase_date}}</td>
+                <td class="text-center"><a class='btn btn-info btn-xs' href="/purchase/purchase_edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/purchase/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+
             </tr>
             {{/each}}
 
