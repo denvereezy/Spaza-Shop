@@ -20,7 +20,8 @@
     "express": "^4.9.8",
     "express-handlebars": "~2.0.1",
     "lodash": "~3.10.1",
-    "lodash-node": "~3.10.1"
+    "lodash-node": "~3.10.1",
+    "gulp": "~3.9.0"
   },
   "engines": {
     "node": "0.10.25"
