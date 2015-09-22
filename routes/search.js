@@ -1,10 +1,10 @@
-var queries = require('../routes/queries');
+var Queries = require('../routes/queries');
 
-exports.search_products = function(req, res, next){
+exports.search_products = function( req, res, next ) {
     req.getConnection(function(err, connection){
         if(err) return next(err);
         
-        var searchValue = "%" + req.params.searchValue + "%";        
+        var searchValue = req.params.searchValue;
         var searchResultsCb = function(err, results){
             if (err) return next(err);
             
@@ -15,9 +15,9 @@ exports.search_products = function(req, res, next){
             });            
         };
 
-        //connection.query('SELECT Categories.Name as cat_name,Products.Name from Categories INNER JOIN Products where Products.category_Id=Categories.Id order by Products.Id Products.Name Like ? or cat_name Like ?', [searchValue], searchResults);
 
-        queries.findProductByName(searchValue,searchValue, searchResultsCb );
+        var queries = new Queries(connection);
+        queries.findProductByName(searchValue, searchResultsCb);
         
     })
 };
@@ -37,7 +37,8 @@ exports.search_grouped_sales = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT SUM(Qty) AS TotalQty , Product_Id, Name from Sales s INNER JOIN Products p ON s.Product_Id=p.Id where Name Like ?',[searchValue], searchResults);
+          var querieList = new Queries(connection);
+            querieList.findGroupedSales(searchValue, searchResults);
         
     })
 };
