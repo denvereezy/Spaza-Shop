@@ -1,4 +1,3 @@
+# .travis.yml
 before_script:
-  - npm install -g gulp
-script: gulp
-
+  - mysql -e 'create database myapp_test;'

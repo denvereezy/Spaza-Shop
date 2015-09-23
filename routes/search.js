@@ -58,7 +58,8 @@ exports.search_all_sales = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT Qty AS AmtSold , Sales_date, Sales_price, Name from Sales s INNER JOIN Products p ON s.Product_Id = p.Id where Name Like ?',[searchValue], searchResults);
+            var querieList = new Queries(connection);
+            querieList.allSales(searchValue, searchResults);
         
     })
 };
@@ -78,7 +79,8 @@ exports.search_product_earnings = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT Name,SUM(Sales_price*Qty) AS TotalEarnings from Sales INNER JOIN Products ON Sales.Product_id = Products.Id where Name Like ?',[searchValue], searchResults);
+        var querieList = new Queries(connection);
+            querieList.product_earnings(searchValue, searchResults);
         
     })
 };
@@ -98,7 +100,8 @@ exports.search_categories = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT Name FROM Categories where Name Like ?',[searchValue], searchResults);
+        var allCategories = new Queries(connection);
+        allCategories.categories(searchValue,searchResults);
         
     })
 };
@@ -158,7 +161,8 @@ exports.search_suppliers = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT * FROM Suppliers where Name Like ?', [searchValue], searchResults);
+         var querieList = new Queries(connection);
+            querieList.suppliers(searchValue, searchResults);
         
     })
 };

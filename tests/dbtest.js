@@ -34,6 +34,27 @@ describe('Product search', function(){
             assert.equal(err,null);
 
             var ifExists = _.any(results, { 'Name': 'Gold Dish Vegetable Curry Can'});
+//            console.log(results);
+            assert(ifExists);
+            done();
+        });
+    });
+    
+    it('should return category searched', function(done){
+        queries.categories('be',function(err,results){
+            assert.equal(err,null);
+            
+            var ifExists = _.any(results, {'Name': 'Beverages'});
+            assert(ifExists);
+            done();
+        });
+    });
+    
+    it('should return supplier searched', function(done){
+        queries.suppliers('o',function(err,results){
+            assert.equal(err,null);
+            
+            var ifExists = _.any(results, {'Name': 'HomeMade'});
             assert(ifExists);
             done();
         });
