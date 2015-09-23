@@ -121,7 +121,8 @@ exports.search_category_sales = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT  Categories.Name, sum(Sales.Qty) AS TotalQty from Sales INNER JOIN Products ON Sales.Product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id where Categories.Name Like ?',[searchValue], searchResults);
+        var allCategories = new Queries(connection);
+        allCategories.category_sales(searchValue,searchResults);
         
     })
 };
@@ -141,7 +142,8 @@ exports.search_category_earnings = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT  Categories.Name, sum(Sales.Qty*Sales_price) AS TotalQty from Sales INNER JOIN Products ON Sales.Product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.Name Like ?',[searchValue], searchResults);
+        var categoryEarnings = new Queries(connection);
+        categoryEarnings.category_earnings(searchValue,searchResults);
         
     })
 };
@@ -182,7 +184,8 @@ exports.search_purchases = function(req, res, next){
             });            
         };
 
-        connection.query('SELECT p.Id, Purchase_date,Qty, Purchase_price,s.Name,c.Name as names from Purchases p inner join Products s on p.Product_Id = s.Id inner join Suppliers c on p.Supplier_Id = c.Id where s.Name Like ? or c.Name Like ?', [searchValue,searchValue], searchResults);
+        var allPurchases = new Queries(connection);
+        allPurchases.purchases(searchValue,searchResults);
         
     })
 };

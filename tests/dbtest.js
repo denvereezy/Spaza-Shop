@@ -59,4 +59,14 @@ describe('Product search', function(){
             done();
         });
     });
+    
+    it('should return purchase searched', function(done){
+        queries.purchases('a',function(err,results){
+            assert.equal(err,null);
+           
+            var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
+            assert(ifExists);
+            done();
+        });
+    });
 });

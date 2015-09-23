@@ -44,4 +44,28 @@ module.exports = function(connection){
         connection.query('select * from Suppliers where Name Like ?',[searchValue],cb);
         
     };
+    
+     this.category_sales = function(searchString,cb){
+        
+        searchValue = "%" + searchString + "%";
+        
+        connection.query('SELECT  Categories.Name, sum(Sales.Qty) AS TotalQty from Sales INNER JOIN Products ON Sales.Product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id where Categories.Name Like ?',[searchValue],cb);
+        
+    };
+    
+    this.category_earnings = function(searchString,cb){
+        
+        searchValue = "%" + searchString + "%";
+        
+        connection.query('SELECT  Categories.Name, sum(Sales.Qty*Sales_price) AS TotalQty from Sales INNER JOIN Products ON Sales.Product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.Name Like ?',[searchValue],cb);
+        
+    };
+    
+       this.purchases = function(searchString,cb){
+        
+        searchValue = "%" + searchString + "%";
+        
+        connection.query('SELECT p.Id, Purchase_date,Qty, Purchase_price,s.Name,c.Name as names from Purchases p inner join Products s on p.Product_Id = s.Id inner join Suppliers c on p.Supplier_Id = c.Id where s.Name Like ? or c.Name Like ?',[searchValue,searchValue],cb);
+        
+    };
 }
