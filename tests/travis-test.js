@@ -5,7 +5,7 @@ var mysql = require('mysql');
 var password = process.env.MYSQL_PWD !== null ? process.env.MYSQL_PWD : 'passw0rd';
 
 var connection = mysql.createConnection({
-  host     : '172.18.0.6',
+  host     : 'localhost',
   user     : process.env.MYSQL_USER || 'root',
   password : password,
   database : 'travis_db'
