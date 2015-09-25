@@ -31,9 +31,7 @@ describe("Test mocha from Travis", function(){
   });
 
     it('should return category Beverages ', function(done){
-        queries.findProductByName('be', function(err, results){
-            assert.equal(err, null);
-
+        queries.categories('be', function(err, results){
             var ifExists = _.any(results, { 'Name': 'Beverages'});
             assert(ifExists, "Beverages should be there...");
             done();
