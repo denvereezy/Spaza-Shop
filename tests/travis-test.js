@@ -2,13 +2,13 @@
 var assert = require('assert');
 var mysql = require('mysql');
 
-var password = process.env.MYSQL_PWD !== null ? process.env.MYSQL_PWD : '951022';
+var password = process.env.MYSQL_PWD !== null ? process.env.MYSQL_PWD : 'passw0rd';
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : '172.18.0.6',
   user     : process.env.MYSQL_USER || 'root',
   password : password,
-  database : 'spaza_shop'
+  database : 'travis_db'
 });
 
 describe("Test mocha from Travis", function(){
