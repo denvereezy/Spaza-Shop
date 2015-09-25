@@ -29,7 +29,7 @@ describe("Test mocha from Travis", function(){
 
   });
 
-    it('should return categorie Beverages ', function(done){
+    it('should return category Beverages ', function(done){
         queries.findProductByName('be', function(err, results){
             assert.equal(err, null);
 
