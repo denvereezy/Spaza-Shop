@@ -30,13 +30,12 @@ describe("Test mocha from Travis", function(){
 
   });
 
-    describe('Product search', function(){
-    it('should return a list of products containing "ea" ', function(done){
-        queries.findProductByName('ea', function(err, results){
+    it('should return categorie Beverages ', function(done){
+        queries.findProductByName('be', function(err, results){
             assert.equal(err, null);
 
-            var ifExists = _.any(results, { 'Name': 'Bread'});
-            assert(ifExists, "bread should be there...");
+            var ifExists = _.any(results, { 'Name': 'Beverages'});
+            assert(ifExists, "Beverages should be there...");
             done();
         });
   });
