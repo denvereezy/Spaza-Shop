@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
   database : 'travis_db'
 });
 
-describe("Test mocha from Travis", function(){
+describe("Test mocha from Travis", function(done){
 
   connection.connect();
 
