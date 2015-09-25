@@ -29,6 +29,25 @@ describe("Test mocha from Travis", function(){
 
 
   });
+     it('should return product sales searched', function(done){
+        queries.findGroupedSales('go', function(err,results){
+            assert.equal(err,null);
+
+            var ifExists = _.any(results, { 'Name': 'Gold Dish Vegetable Curry Can'});
+//            console.log(results);
+            assert(ifExists);
+            done();
+        });
+    });
+       it('should return supplier searched', function(done){
+        queries.suppliers('o',function(err,results){
+            assert.equal(err,null);
+            
+            var ifExists = _.any(results, {'Name': 'HomeMade'});
+            assert(ifExists);
+            done();
+        });
+    });
        it('should return a list of products containing "ea" ', function(done){
         queries.findProductByName('ea', function(err, results){
             assert.equal(err, null);
@@ -46,4 +65,13 @@ describe("Test mocha from Travis", function(){
             done();
         });
   });
+      it('should return purchase searched', function(done){
+        queries.purchases('a',function(err,results){
+            assert.equal(err,null);
+           
+            var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
+            assert(ifExists);
+            done();
+        });
+    });
 });
