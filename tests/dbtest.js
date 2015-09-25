@@ -1,7 +1,7 @@
 var assert = require('assert'),
     mysql = require('mysql'),
     _ = require('lodash-node'),
-    Queries = require('../routes/queries'),
+    Queries = require('../routes/searchQueries'),
     connection = mysql.createConnection({
 
         host: 'localhost',
@@ -13,7 +13,7 @@ var assert = require('assert'),
 connection.connect();
 
 connection.on('error', function() {
-    console.log(arguments)
+//    console.log(arguments)
 });
 
 var queries = new Queries(connection);

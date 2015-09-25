@@ -1,18 +1,20 @@
-    //product list
-    exports.showProductList = function (req, res, next) {
+var Queries = require('../routes/contentShowQueries');
+
+//product list
+ /*   exports.showProductList = function (req, res, next) {
         req.getConnection(function(err, connection){
             if (err) 
                 return next(err);
-            connection.query('SELECT SUM(Qty) AS TotalQty , Product_Id, Name from Sales s INNER JOIN Products p ON s.Product_Id = p.Id 					GROUP BY Name', 
-            [], function(err, results) {
+         var queries = new Queries(connection);
+        queries.showProducts();
                 if (err) return next(err);
 
                 res.render( 'list', {
                     products : results
                 });
-          });
+          
         });
-    };
+    };*/
 
     //most popular product
     exports.showPopularProduct = function (req, res, next) {

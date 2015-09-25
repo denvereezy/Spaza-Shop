@@ -60,7 +60,22 @@
             </tr>
             {{/each}}
     </table>
-
+{{#user}}
+    <table id="sales" class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Qty Sold</th>
+        </tr>
+    </thead>
+            <tr>
+                {{#each products}}
+                <td>{{Name}}</td>
+                <td>{{TotalQty}}</td>
+            </tr>
+            {{/each}}
+    </table>
+    {{/user}}
 </div>
 <script>
 function myFunction() {

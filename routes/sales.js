@@ -22,6 +22,7 @@
                     return next(err);
 
                     var isAdmin = req.session.role === "admin"
+                    var user = req.session.role !== "admin"
 
                 connection.query('SELECT * from Products', [], function(err, pdt, fields) {
                     if (err)
@@ -29,7 +30,8 @@
                     res.render('list', {
                         products: results,
                         product: pdt,
-                        in_ca: isAdmin
+                        in_ca: isAdmin,
+                        action: user
                     });
 
                 });

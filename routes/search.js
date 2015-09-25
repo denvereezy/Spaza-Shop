@@ -1,4 +1,4 @@
-var Queries = require('../routes/queries');
+var Queries = require('../routes/searchQueries');
 
 exports.search_products = function( req, res, next ) {
     req.getConnection(function(err, connection){

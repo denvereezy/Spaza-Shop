@@ -1,10 +1,15 @@
-var gulp = require('gulp')
-  , file = require('gulp-file');
- 
-gulp.task('gulpfile.js', function() {
-  var str = primus.library();
- 
-  return gulp.src('scripts/**.js')
-    .pipe(file('dbtest.js', str))
-    .pipe(gulp.dest('dist'));
+
+//
+//var gulp = require('gulp'),
+//    qunit = require('gulp-qunit');
+
+gulp.task('test', function() {
+    //return gulp.src('./test-setup.html')
+    //    .pipe(qunit());
+});
+
+gulp.task('go', function(){
+
+	console.log("oi!");
+
 });
