@@ -15,6 +15,7 @@ var connection = mysql.createConnection({
 describe("Test mocha from Travis", function(){
 
   connection.connect();
+    var queries = new Queries(connection);
 
   it("should pass", function(done){
 
