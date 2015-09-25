@@ -50,3 +50,16 @@ INSERT INTO Products (Category_Id,Name) VALUES (9,'Mixed Sweets 5s');
 INSERT INTO Products (Category_Id,Name) VALUES (9,'Heart Chocolates');
 INSERT INTO Products (Category_Id,Name) VALUES (10,'Rose (plastic)');
 INSERT INTO Products (Category_Id,Name) VALUES (10,'Valentine Cards');
+
+CREATE TABLE Purchases
+(
+	Id int NOT NULL auto_increment,
+	Purchase_date Date,
+        Purchase_price char (100) not null,
+	Qty int NOT NULL,
+	Product_Id int,
+	Supplier_Id int,
+	PRIMARY KEY (Id),
+	FOREIGN KEY (Supplier_Id) REFERENCES Suppliers(Id),
+	FOREIGN KEY (Product_Id) REFERENCES Products(Id)
+);
