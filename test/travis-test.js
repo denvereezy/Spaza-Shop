@@ -2,7 +2,7 @@
 var assert = require('assert');
 var mysql = require('mysql'),
       _ = require('lodash-node'),
-    Queries = require('../routes/searchQueries'),
+    Queries = require('../routes/searchQueries');
 
 var password = process.env.MYSQL_PWD !== null ? process.env.MYSQL_PWD : 'passw0rd';
 
