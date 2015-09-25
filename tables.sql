@@ -50,24 +50,3 @@ INSERT INTO Products (Category_Id,Name) VALUES (9,'Mixed Sweets 5s');
 INSERT INTO Products (Category_Id,Name) VALUES (9,'Heart Chocolates');
 INSERT INTO Products (Category_Id,Name) VALUES (10,'Rose (plastic)');
 INSERT INTO Products (Category_Id,Name) VALUES (10,'Valentine Cards');
-
-CREATE TABLE Purchases
-(
-	Id int NOT NULL auto_increment,
-	Purchase_date Date,
-        Purchase_price char (100) not null,
-	Qty int NOT NULL,
-	Product_Id int,
-	Supplier_Id int,
-	PRIMARY KEY (Id),
-	FOREIGN KEY (Supplier_Id) REFERENCES Suppliers(Id),
-	FOREIGN KEY (Product_Id) REFERENCES Products(Id)
-);
-
-INSERT INTO Purchases (Qty,Purchase_price,Purchase_date,Product_Id, Supplier_Id)
-SELECT stock_purchases_csv.quantity,stock_purchases_csv.cost,stock_purchases_csv.date, Products.Id AS product_id, Suppliers.Id AS supplier_id
-FROM stock_purchases_csv 
-INNER JOIN Suppliers
-ON Suppliers.Name = stock_purchases_csv.shop
-INNER JOIN Products
-ON Products.Name = stock_purchases_csv.item;
