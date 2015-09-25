@@ -50,3 +50,17 @@ INSERT INTO Products (Category_Id,Name) VALUES (9,'Mixed Sweets 5s');
 INSERT INTO Products (Category_Id,Name) VALUES (9,'Heart Chocolates');
 INSERT INTO Products (Category_Id,Name) VALUES (10,'Rose (plastic)');
 INSERT INTO Products (Category_Id,Name) VALUES (10,'Valentine Cards');
+
+CREATE TABLE Suppliers
+(
+	Id int NOT NULL auto_increment primary key,
+	Name varchar(255) NOT NULL
+);
+
+INSERT INTO Suppliers (Name) VALUES ('Epping Market');
+INSERT INTO Suppliers (Name) VALUES ('Makro');
+INSERT INTO Suppliers (Name) VALUES ('Game');
+INSERT INTO Suppliers (Name) VALUES ('1 Up');
+INSERT INTO Suppliers (Name) VALUES ('Homemade');
+INSERT INTO Suppliers (Name) VALUES ('Joe Spaza Shop');
+INSERT INTO Suppliers (Name) VALUES ('ChinaTown');
