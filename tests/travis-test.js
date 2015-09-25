@@ -1,8 +1,6 @@
 
 var assert = require('assert');
-var mysql = require('mysql'),
-_ = require('lodash-node'),
-    Queries = require('../routes/searchQueries');
+var mysql = require('mysql');
 
 var password = process.env.MYSQL_PWD !== null ? process.env.MYSQL_PWD : 'passw0rd';
 
@@ -28,15 +26,6 @@ describe("Test mocha from Travis", function(){
     });
 
 
-  });
-      it('should return a list of products containing "ea" ', function(done){
-        queries.findProductByName('ea', function(err, results){
-            assert.equal(err, null);
-
-            var ifExists = _.any(results, { 'Name': 'Bread'});
-            assert(ifExists, "bread should be there...");
-            done();
-        });
   });
 
 });
