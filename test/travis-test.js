@@ -29,21 +29,21 @@ describe("Test mocha from Travis", function(){
 
 
   });
-     it('should return product sales searched', function(done){
-        queries.findGroupedSales('go', function(err,results){
-            assert.equal(err,null);
-
-            var ifExists = _.any(results, { 'Name': 'Gold Dish Vegetable Curry Can'});
-//            console.log(results);
-            assert(ifExists);
-            done();
-        });
-    });
+//     it('should return product sales searched', function(done){
+//        queries.findGroupedSales('go', function(err,results){
+//            assert.equal(err,null);
+//
+//            var ifExists = _.any(results, { 'Name': 'Gold Dish Vegetable Curry Can'});
+////            console.log(results);
+//            assert(ifExists);
+//            done();
+//        });
+//    });
        it('should return supplier searched', function(done){
-        queries.suppliers('o',function(err,results){
+        queries.suppliers('ga',function(err,results){
             assert.equal(err,null);
             
-            var ifExists = _.any(results, {'Name': 'HomeMade'});
+            var ifExists = _.any(results, {'Name': 'Game'});
             assert(ifExists);
             done();
         });
@@ -65,13 +65,4 @@ describe("Test mocha from Travis", function(){
             done();
         });
   });
-      it('should return purchase searched', function(done){
-        queries.purchases('a',function(err,results){
-            assert.equal(err,null);
-           
-            var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
-            assert(ifExists);
-            done();
-        });
-    });
 });
