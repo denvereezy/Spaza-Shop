@@ -2,9 +2,8 @@
 var assert = require('assert');
 var mysql = require('mysql'),
       _ = require('lodash-node'),
-    Queries = require('../routes/searchQueries');
-
-var password = process.env.MYSQL_PWD !== null ? process.env.MYSQL_PWD : 'passw0rd';
+    Queries = require('../routes/searchQueries'),
+    password = process.env.MYSQL_PWD !== null ? process.env.MYSQL_PWD : 'passw0rd';
 
 var connection = mysql.createConnection({
   host     : 'localhost',
