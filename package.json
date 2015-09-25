@@ -2,10 +2,9 @@
   "name": "Spaza-Shop",
   "version": "0.0.0",
   "description": "Code to Nelisa's spaza shop",
-  "main": "server.js",
+   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -13,6 +12,9 @@
   },
   "author": "",
   "license": "BSD-2-Clause",
+  "devDependencies": {
+    "mocha": "*"
+  },
   "bugs": {
     "url": "https://github.com/denvereezy/Spaza-Shop/issues"
   },
@@ -21,7 +23,8 @@
     "express-handlebars": "~2.0.1",
     "lodash": "~3.10.1",
     "lodash-node": "~3.10.1",
-    "gulp": "~3.9.0"
+    "gulp": "~3.9.0",
+    "mysql": "^2.9.0"
   },
   "engines": {
     "node": "0.10.25"
