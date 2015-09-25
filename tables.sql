@@ -3,12 +3,6 @@ create table users(
   id int auto_increment primary key,
   username varchar(100)
 );
-CREATE TABLE Categories
-(
-	Id int NOT NULL auto_increment primary key,
-	Name char (100) not null
-);
-
  CREATE TABLE Products
 (
 	Id int NOT NULL auto_increment,
@@ -17,6 +11,13 @@ CREATE TABLE Categories
 	PRIMARY KEY (Id),
 	FOREIGN KEY (Category_Id) REFERENCES Categories(Id)
 );
+CREATE TABLE Categories
+(
+	Id int NOT NULL auto_increment primary key,
+	Name char (100) not null
+);
+
+
 insert into users(username) values ('denvereezy');
 INSERT INTO Products (Category_Id,Name) VALUES (1,'Milk 1l');
 INSERT INTO Products (Category_Id,Name) VALUES (1,'Imasi');
