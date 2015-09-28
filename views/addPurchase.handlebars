@@ -1,5 +1,6 @@
 <body id ="background">
 <div id="container">
+    {{#in_ca}}
 <div id="addSale">
 <form action="purchase/add" method="POST" class="form-horizontal" >
 
@@ -55,7 +56,7 @@
 </form>
 </div>
     <input id="purchases" class="searchBar" type="text" name="Name" placeholder="Search"></input>
-{{#in_ca}}
+
 <table id="all_purchases" class="table table-striped custab">
     <thead>
         <tr>

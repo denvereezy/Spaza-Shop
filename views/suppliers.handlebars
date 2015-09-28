@@ -1,6 +1,8 @@
 
 <div id="container">
+    {{#in_ca}}
 <div id="addProduct">
+
 <form action="suppliers/add" method="POST" class="form-horizontal" >
         <div class="form-group">
                <h1>Add a Supplier</h1>
@@ -17,7 +19,7 @@
 </form>
 </div>
 
-{{#in_ca}}
+
         <form>
 	<input class="searchBar" id="supplier_search" type="text" name="Name" placeholder="Search"></input>
 </form>

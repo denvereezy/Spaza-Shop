@@ -7,10 +7,24 @@
                 if (err)
                     return next(err);
 
+            /*
+            var user = {
+                name : "",
+                role : "",
+                isAdmin
+            }
+
+            var User = function(){
+
+            }
+            */
+
+            //user : req.session.user
+
             var isAdmin = req.session.role === "admin"
                 var user = req.session.role !== "admin" 
 
-            console.log(req.session);
+                console.log(req.session);
                 console.log(isAdmin);		
 
                 connection.query('SELECT * from Categories', [], function(err, cat, fields) {
@@ -19,8 +33,10 @@
                     res.render('products_list', {
                           products: results,
                           categories: cat,
-                          in_ca: isAdmin, 
-                          action: user
+                          in_ca: isAdmin,
+                          action: user,
+                          user:req.session.user,
+                          role:req.session.role
                     });
 
                 });

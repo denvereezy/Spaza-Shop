@@ -116,7 +116,7 @@
 
                     if (pass) {
                         req.session.user = username;
-                req.session.role =  user.User_role;
+                        req.session.role =  user.User_role;
                         return res.redirect("/home")
                     } else {
                         return res.redirect('/');

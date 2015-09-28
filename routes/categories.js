@@ -1,4 +1,4 @@
-
+var Content = require("../routes/contentShowQueries");
     exports.show = function (req, res, next) {
         req.getConnection(function(err, connection){
             if (err) 
@@ -6,8 +6,8 @@
 
                      var isAdmin = req.session.role === "admin"
                      var user = req.session.role !== "admin"
-
-            connection.query('SELECT * from Categories', [], function(err, results) {
+                     var resultsCb = function(err, results){
+//            connection.query('SELECT * from Categories', [], function(err, results) {
                 if (err) return next(err);
 
                 res.render( 'category_list', {
@@ -15,7 +15,9 @@
                             in_ca: isAdmin, 
                             action: user
                 });
-          });
+                     };
+            var content = new Content(connection);
+        content.categories(resultsCb);
         });
     };
 
