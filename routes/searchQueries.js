@@ -16,7 +16,7 @@ module.exports = function(connection){
 
     this.findGroupedSales = function(searchString){
         
-        connection.query('SELECT SUM(Qty) AS TotalQty , Product_Id, Name from Sales s INNER JOIN Products p ON s.Product_Id=p.Id where Name Like ?',[searchValue], function(err, sales){
+        connection.query('SELECT SUM(Qty) AS TotalQty , Product_Id, Name from Sales s INNER JOIN Products p ON s.Product_Id=p.Id where Name Like ?',[searchValue],                      function(err, sales){
         if (err) return reject (err);
             resolve(sales);
         });
