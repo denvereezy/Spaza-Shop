@@ -2,11 +2,9 @@ var Queries = require('../routes/searchQueries');
 
 exports.search_products = function( req, res, next ) {
     req.getConnection(function(err, connection){
-        if(err) return next(err);
         
         var searchValue = req.params.searchValue;
-        var searchResultsCb = function(err, results){
-            if (err) return next(err);
+        var searchResultsCb = function( results){
             
             res.render('products_search', {
                 username : req.session.user,
@@ -15,9 +13,12 @@ exports.search_products = function( req, res, next ) {
             });            
         };
 
-
         var queries = new Queries(connection);
-        queries.findProductByName(searchValue, searchResultsCb);
+        queries.findProductByName(searchValue)
+            .then(searchResultsCb)
+            .catch(function(err){
+                next(err);
+            });
         
     })
 };
@@ -38,9 +39,12 @@ exports.search_grouped_sales = function(req, res, next){
         };
 
           var querieList = new Queries(connection);
-            querieList.findGroupedSales(searchValue, searchResults);
-        
-    })
+            querieList.findGroupedSales(searchValue)
+                .then(searchResults)
+                .catch(function(err){
+                    next(err);
+                });
+    });
 };
 
 exports.search_all_sales = function(req, res, next){

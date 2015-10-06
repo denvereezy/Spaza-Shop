@@ -7,7 +7,6 @@ var Content = require("../routes/contentShowQueries");
                      var isAdmin = req.session.role === "admin"
                      var user = req.session.role !== "admin"
                      var resultsCb = function(err, results){
-//            connection.query('SELECT * from Categories', [], function(err, results) {
                 if (err) return next(err);
 
                 res.render( 'category_list', {

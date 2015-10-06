@@ -1,16 +1,25 @@
+var Promise = require("bluebird");
+
 module.exports = function(connection){
-    this.findProductByName = function(searchString, cb){
-
+    
+    
+    this.findProductByName = function(searchString){
         var searchValue = "%" + searchString + "%";
-
-        connection.query('SELECT * FROM Products where Name Like ?', [searchValue], cb);
+        return new Promise(function(resolve,reject){
+            connection.query('SELECT * FROM Products where Name Like ?', [searchValue], function(err, products){
+                if (err) return reject (err);
+                    resolve(products);
+            });
+        });
     };
+    
 
-    this.findGroupedSales = function(searchString,cb){
-
-        var searchValue = "%" + searchString + "%";
-
-        connection.query('SELECT SUM(Qty) AS TotalQty , Product_Id, Name from Sales s INNER JOIN Products p ON s.Product_Id=p.Id where Name Like ?',[searchValue], cb);
+    this.findGroupedSales = function(searchString){
+        
+        connection.query('SELECT SUM(Qty) AS TotalQty , Product_Id, Name from Sales s INNER JOIN Products p ON s.Product_Id=p.Id where Name Like ?',[searchValue], function(err, sales){
+        if (err) return reject (err);
+            resolve(sales);
+        });
 
     };
 

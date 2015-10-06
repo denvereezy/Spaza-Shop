@@ -3,4 +3,5 @@ module.exports = function(connection){
       connection.query('select * from Categories',[],cb);
 
     };
+    
 };
