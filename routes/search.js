@@ -25,12 +25,9 @@ exports.search_products = function( req, res, next ) {
 
 exports.search_grouped_sales = function(req, res, next){
     req.getConnection(function(err, connection){
-        if(err) return next(err);
-        
         var searchValue = "%" + req.params.searchValue + "%";        
-        var searchResults = function(err, results){
-            if (err) return next(err);
-            
+        var searchResults = function(results){
+
             res.render('gsales_search', {
                 username : req.session.user,
                 products : results,
@@ -38,22 +35,19 @@ exports.search_grouped_sales = function(req, res, next){
             });            
         };
 
-          var querieList = new Queries(connection);
+            var querieList = new Queries(connection);
             querieList.findGroupedSales(searchValue)
                 .then(searchResults)
                 .catch(function(err){
-                    next(err);
+                       next(err);
                 });
     });
 };
 
 exports.search_all_sales = function(req, res, next){
-    req.getConnection(function(err, connection){
-        if(err) return next(err);
-        
+    req.getConnection(function(err, connection){        
         var searchValue = "%" + req.params.searchValue + "%";        
-        var searchResults = function(err, results){
-            if (err) return next(err);
+        var searchResults = function(results){
             
             res.render('allsales_search', {
                 username : req.session.user,
@@ -63,18 +57,20 @@ exports.search_all_sales = function(req, res, next){
         };
 
             var querieList = new Queries(connection);
-            querieList.allSales(searchValue, searchResults);
+            querieList.allSales(searchValue)
+                .then(searchResults)
+                .catch(function(err){
+                next(err);
+            });
         
-    })
+    });
 };
 
 exports.search_product_earnings = function(req, res, next){
     req.getConnection(function(err, connection){
-        if(err) return next(err);
         
         var searchValue = "%" + req.params.searchValue + "%";        
-        var searchResults = function(err, results){
-            if (err) return next(err);
+        var searchResults = function(results){
             
             res.render('earnings_search', {
                 username : req.session.user,
@@ -84,19 +80,19 @@ exports.search_product_earnings = function(req, res, next){
         };
 
         var querieList = new Queries(connection);
-            querieList.product_earnings(searchValue, searchResults);
+            querieList.product_earnings(searchValue)
+                .then(searchResults)
+                .catch(function(err){
+                next(err);
+            });
         
-    })
+    });
 };
 
 exports.search_categories = function(req, res, next){
     req.getConnection(function(err, connection){
-        if(err) return next(err);
-        
         var searchValue = "%" + req.params.searchValue + "%";        
-        var searchResults = function(err, results){
-            if (err) return next(err);
-            
+        var searchResults = function( results){ 
             res.render('category_search', {
                 username : req.session.user,
                 products : results,
@@ -105,18 +101,19 @@ exports.search_categories = function(req, res, next){
         };
 
         var allCategories = new Queries(connection);
-        allCategories.categories(searchValue,searchResults);
-        
+            allCategories.categories(searchValue)
+            .then(searchResults)
+            .catch(function(err){
+                next(err);
+        }); 
     })
 };
 
 exports.search_category_sales = function(req, res, next){
     req.getConnection(function(err, connection){
-        if(err) return next(err);
         
         var searchValue = "%" + req.params.searchValue + "%";        
-        var searchResults = function(err, results){
-            if (err) return next(err);
+        var searchResults = function(results){
             
             res.render('category_sales_search', {
                 username : req.session.user,
@@ -126,18 +123,20 @@ exports.search_category_sales = function(req, res, next){
         };
 
         var allCategories = new Queries(connection);
-        allCategories.category_sales(searchValue,searchResults);
+        allCategories.category_sales(searchValue)
+            .then(searchResults)
+            .catch(function(err){
+            next(err);
+        });
         
-    })
+    });
 };
 
 exports.search_category_earnings = function(req, res, next){
     req.getConnection(function(err, connection){
-        if(err) return next(err);
         
         var searchValue = "%" + req.params.searchValue + "%";        
-        var searchResults = function(err, results){
-            if (err) return next(err);
+        var searchResults = function(results){
             
             res.render('category_earnings_search', {
                 username : req.session.user,
@@ -147,19 +146,20 @@ exports.search_category_earnings = function(req, res, next){
         };
 
         var categoryEarnings = new Queries(connection);
-        categoryEarnings.category_earnings(searchValue,searchResults);
+        categoryEarnings.category_earnings(searchValue)
+            .then(searchResults)
+            .catch(function(err){
+            next(err);
+        });
         
-    })
+    });
 };
 
 exports.search_suppliers = function(req, res, next){
     req.getConnection(function(err, connection){
-        if(err) return next(err);
-        
         var searchValue = "%" + req.params.searchValue + "%";        
-        var searchResults = function(err, results){
-            if (err) return next(err);
-            
+        var searchResults = function(results){
+
             res.render('suppliers_search', {
                 username : req.session.user,
                 products : results,
@@ -168,18 +168,19 @@ exports.search_suppliers = function(req, res, next){
         };
 
          var querieList = new Queries(connection);
-            querieList.suppliers(searchValue, searchResults);
-        
-    })
+            querieList.suppliers(searchValue)
+                .then(searchResults)
+                .catch(function(err){
+                    next(err);
+            });
+
+    });
 };
 
 exports.search_purchases = function(req, res, next){
     req.getConnection(function(err, connection){
-        if(err) return next(err);
-        
         var searchValue = "%" + req.params.searchValue + "%";        
-        var searchResults = function(err, results){
-            if (err) return next(err);
+        var searchResults = function(results){
             
             res.render('purchases_search', {
                 username : req.session.user,
@@ -189,7 +190,11 @@ exports.search_purchases = function(req, res, next){
         };
 
         var allPurchases = new Queries(connection);
-        allPurchases.purchases(searchValue,searchResults);
+        allPurchases.purchases(searchValue)
+            .then(searchResults)
+            .catch(function(err){
+            next(err);
+        });
         
-    })
+    });
 };
