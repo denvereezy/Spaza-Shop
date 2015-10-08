@@ -30,11 +30,28 @@ module.exports = function(connection){
     
     this.editCategory = function(Id){
       return new Promise(function(resolve,reject){
-//          var Id = req.params.Id;
-          updateQuery('SELECT * FROM Categories WHERE Id = ?', [Id], function(err,cb){
+          updateQuery('SELECT * FROM Categories WHERE Id = ?', [Id], function(err,results){
               if (err) return reject (err);
-                resolve(cb);
-          });
-    });
+                resolve(results);
+            });
+        });
+    };
+    
+    this.updateCategory = function(data,Id){
+        return new Promise(function(resolve,reject){
+            updateQuery('UPDATE Categories SET ? WHERE Id = ?', [data, Id], function(err, cb){
+                if (err) return reject (err);
+                    resolve(cb);
+            });
+        });
+    };
+    
+    this.deleteCategory = function(Id){
+        return new Promise(function(resolve,reject){
+            updateQuery('DELETE FROM Categories WHERE Id = ?', [Id], function(err,rows){
+                if (err) return reject (err);
+                    resolve(rows);
+            });
+        });
     };
 };

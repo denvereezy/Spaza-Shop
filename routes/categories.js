@@ -46,40 +46,45 @@ var Content = require("../routes/categoryQueries");
         var Id = req.params.Id;
         req.getConnection(function(err, connection){
             var resultsCb = function(results){
-                res.render('edit');    
+                res.render('edit',{data : results[0]});    
             };
             var content = new Content(connection);
-            content.editCategory()
-            .then(resultsCb)
-            .catch(function(err){
-                next(err);
+            content.editCategory(Id)
+                .then(resultsCb)
+                .catch(function(err){
+                    next(err);
             });
         });
     };
 
     exports.update = function(req, res, next){
-
-        var data = JSON.parse(JSON.stringify(req.body));
-            var Id = req.params.Id;
             req.getConnection(function(err, connection){
-                connection.query('UPDATE Categories SET ? WHERE Id = ?', [data, Id], function(err, rows){
-                    if (err){
-                            console.log("Error Updating : %s ",err );
-                    }
+                var resultsCb = function(results){
                     res.redirect('/category_list');
-                });
-
+                };
+                var data = JSON.parse(JSON.stringify(req.body));
+                var Id = req.params.Id;
+                
+                var content = new Content(connection);
+                content.updateCategory(data, Id)
+                    .then(resultsCb)
+                    .catch(function(err){
+                        next(err);
+            });
         });
     };
 
     exports.delete = function(req, res, next){
-        var Id = req.params.Id;
         req.getConnection(function(err, connection){
-            connection.query('DELETE FROM Categories WHERE Id = ?', [Id], function(err,rows){
-                if(err){
-                        console.log("Error Selecting : %s ",err );
-                }
+            var resultsCb = function(results){    
                 res.redirect('/category_list');
+            };
+            var Id = req.params.Id;
+            var content = new Content(connection);
+            content.deleteCategory(Id)
+                .then(resultsCb)
+                .catch(function(err){
+                    next(err);
             });
         });
     };
