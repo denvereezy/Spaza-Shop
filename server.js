@@ -55,7 +55,7 @@ app.get('/list',login.userCheck, sales.show);
 app.post('/sales/update/:Id',sales.update);
 app.post('/sales/add',sales.add);
 
-app.get('/category_sales',login.userCheck, spaza.showCategoryList);
+//app.get('/category_sales',login.userCheck, spaza.showCategoryList);
 app.get('/popular',login.userCheck, spaza.showPopularProduct);
 app.get('/popularCategory',login.userCheck,spaza.showPopularCategory);
 app.get('/productGraph',login.userCheck,spaza.showProductGraph);
