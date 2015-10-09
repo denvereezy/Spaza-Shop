@@ -22,6 +22,24 @@ var Content = require("../routes/categoryQueries");
     });
 };
 
+    exports.showCategoryList = function (req, res, next) {
+        req.getConnection(function(err, connection){
+            var resultsCb = function(results){
+
+            res.render( 'category_sales', {
+                products : results
+            });
+        };
+            var content = new Content(connection);
+            content.catSales()
+                .then(resultsCb)
+                .catch(function(err){
+                    next(err);
+        });
+     });
+};
+
+
     exports.add = function (req, res, next) {
         req.getConnection(function(err, connection){
             var resultsCb = function(results){
