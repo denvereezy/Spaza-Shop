@@ -1,47 +1,31 @@
+var Content = require("../routes/productQueries");
 
     exports.show = function (req, res, next) {
         req.getConnection(function(err, connection){
-            if (err) 
-                return next(err);
-               connection.query('SELECT * from Products order by Id desc', [], function(err, results, fields) {
-                if (err)
-                    return next(err);
-
-            /*
-            var user = {
-                name : "",
-                role : "",
-                isAdmin
-            }
-
-            var User = function(){
-
-            }
-            */
-
-            //user : req.session.user
-
-            var isAdmin = req.session.role === "admin"
-                var user = req.session.role !== "admin" 
+            var resultsCb = function(results,categories){
+            var isAdmin = req.session.role === "admin";
+                var user = req.session.role !== "admin";
 
                 console.log(req.session);
                 console.log(isAdmin);		
 
-                connection.query('SELECT * from Categories', [], function(err, cat, fields) {
-                    if (err)
-                        return next(err);
                     res.render('products_list', {
                           products: results,
-                          categories: cat,
+                          categories: categories,
                           in_ca: isAdmin,
                           action: user,
                           user:req.session.user,
                           role:req.session.role
                     });
 
-                });
+                };
+            var content = new Content(connection);
+            content.productList()
+                .then(resultsCb)
+                .catch(function(err){
+                    next(err);
+            });
         });
-    });
     };
 
     exports.add = function (req, res, next) {

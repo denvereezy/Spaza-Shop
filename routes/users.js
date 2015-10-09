@@ -1,33 +1,23 @@
+var Content = require('../routes/usersQueries');
 
     exports.show = function (req, res, next) {
         req.getConnection(function(err, connection){
-            if (err) 
-                return next(err);
                      var isAdmin = req.session.role === "admin";
                      var readOnly = req.session.role !== "admin";
-               connection.query('SELECT * from Users', [], function(err, results, fields) {
+            var resultsCb = function(results){
                     res.render('users', {
                         users: results,
                         in_ca: isAdmin,
                         action:readOnly
 
                     });
-
-                });
-        });
-
-    };
-
-    exports.get = function(req, res, next){
-        var Id = req.params.User_role;
-        req.getConnection(function(err, connection){
-            connection.query('SELECT * FROM Users WHERE User_role = ?', [Id], function(err,rows){
-                if(err){
-                        console.log("Error Selecting : %s ",err );
-                }
-                res.render('users_edit',{page_title:"Edit Customers - Node.js", data : rows[3]});   
-
-            }); 
+                };
+            var content = new Content(connection);
+            content.usersList()
+                .then(resultsCb)
+                .catch(function(err){
+                    next(err);
+            });
         });
     };
 
@@ -37,13 +27,15 @@
         var data = JSON.parse(JSON.stringify(req.body));
         var id = req.params.Id;
         req.getConnection(function(err, connection) {
-            connection.query('UPDATE Users SET User_role = "admin" WHERE ID = ?', id, function(err, rows) {
-                if (err) {
-                    console.log("Error Updating : %s ", err);
-                }
+            var resultsCb = function(Results){       
                 res.redirect('/users');
-            });
-
+            };
+            var content = new Content(connection);
+            content.adminUser(id)
+                .then(resultsCb)
+                .catch(function(err){
+                    next(err);
+                });
         });
     };
     exports.notAdmin = function(req, res, next) {
@@ -51,40 +43,24 @@
         var data = JSON.parse(JSON.stringify(req.body));
         var id = req.params.Id;
         req.getConnection(function(err, connection) {
-            connection.query('UPDATE Users SET User_role = "read-only" WHERE ID = ?', id, function(err, rows) {
-                if (err) {
-                    console.log("Error Updating : %s ", err);
-                }
+            var resultsCb = function(results){
                 res.redirect('/users');
-            });
-
-        });
-    };
-
-  exports.update = function(req, res, next){
-
-        var data = JSON.parse(JSON.stringify(req.body));
-            var Id = req.params.Id;
-            req.getConnection(function(err, connection){
-                connection.query('UPDATE Users SET ? WHERE Id = ?', [data, Id], function(err, rows){
-                    if (err){
-                            console.log("Error Updating : %s ",err );
-                    }
-                    res.redirect('/users');
+            };
+            var content = new Content(connection);
+            content.notAdmin(id)
+                .then(resultsCb)
+                .catch(function(err){
+                    next(err);
                 });
-
         });
     };
 
     exports.delete = function(req, res, next){
         var Id = req.params.Id;
         req.getConnection(function(err, connection){
-            connection.query('DELETE FROM Users WHERE Id = ?', [Id], function(err,rows){
-                if(err){
-                        console.log("Error Selecting : %s ",err );
-                }
+            var resultsCb = function(results){
                 res.redirect('/users');
-            });
+            };
         });
     };
 

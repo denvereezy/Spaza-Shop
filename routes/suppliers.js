@@ -1,41 +1,42 @@
-
+var Content = require("../routes/suppliersQueries");
         exports.show = function (req, res, next) {
             req.getConnection(function(err, connection){
-                if (err) 
-                    return next(err);
+                var resultsCb = function(results){
+                var isAdmin = req.session.role === "admin"
+                var user = req.session.role !== "admin"
 
-                           var isAdmin = req.session.role === "admin"
-                           var user = req.session.role !== "admin"
-
-                   connection.query('SELECT * from Suppliers', [], function(err, results, fields) {
-                        res.render('suppliers', {
-                            suppliers: results,
-                            in_ca: isAdmin, 
-                            action: user
-
-                        });
+                    res.render('suppliers', {
+                        suppliers: results,
+                        in_ca: isAdmin, 
+                        action: user
 
                     });
+                   };
+                var content = new Content(connection);
+                    content.suppliersList()
+                        .then(resultsCb)
+                        .catch(function(err){
+                            next(err);
             });
+        });
+     };
 
-        };
 
         exports.add = function (req, res, next) {
             req.getConnection(function(err, connection){
-                if (err){ 
-                    return next(err);
-                }
-
+                var resultsCb = function(results){
+                        res.redirect('/suppliers');
+                };
                 var input = JSON.parse(JSON.stringify(req.body));
                 var data = {
-                            Name : input.Name,
-
-                    };
-                connection.query('insert into Suppliers set ?', data, function(err, results) {
-                        if (err)
-                                console.log("Error inserting : %s ",err );
-
-                        res.redirect('/suppliers');
+                    Name : input.Name
+                };
+                
+                var content = new Content(connection);
+                content.addCategory(data)
+                    .then(resultsCb)
+                    .catch(function(err){
+                        next(err);
                     });
             });
         };
@@ -43,39 +44,47 @@
         exports.get = function(req, res, next){
             var Id = req.params.Id;
             req.getConnection(function(err, connection){
-                connection.query('SELECT * FROM Suppliers WHERE Id = ?', [Id], function(err,rows){
-                    if(err){
-                            console.log("Error Selecting : %s ",err );
-                    }
-                    res.render('suppliers_edit',{page_title:"Edit Customers - Node.js", data : rows[0]});      
-                }); 
+                var resultsCb = function(results){    
+                    res.render('suppliers_edit',{data : results[0]});      
+                }; 
+                var content = new Content(connection);
+                content.editCategory(Id)
+                  .then(resultsCb)
+                  .catch(function(err){
+                        next(err);
+                  });
             });
         };
 
         exports.update = function(req, res, next){
-
-            var data = JSON.parse(JSON.stringify(req.body));
-                var Id = req.params.Id;
                 req.getConnection(function(err, connection){
-                    connection.query('UPDATE Suppliers SET ? WHERE Id = ?', [data, Id], function(err, rows){
-                        if (err){
-                                console.log("Error Updating : %s ",err );
-                        }
-                        res.redirect('/suppliers');
-                    });
+                  var resultsCb = function(results){  
+                      res.redirect('/suppliers');
+                    };   
+                    var data = JSON.parse(JSON.stringify(req.body));
+                    var Id = req.params.Id;
 
+                    var content = new Content(connection);
+                    content.updateCategory(data,Id)
+                        .then(resultsCb)
+                        .catch(function(err){
+                            next(err);
+                    });
             });
         };
 
         exports.delete = function(req, res, next){
             var Id = req.params.Id;
             req.getConnection(function(err, connection){
-                connection.query('DELETE FROM Suppliers WHERE Id = ?', [Id], function(err,rows){
-                    if(err){
-                            console.log("Error Selecting : %s ",err );
-                    }
+                var resultsCb = function(results){        
                     res.redirect('/suppliers');
-                });
+                };
+                var content = new Content(connection);
+                content.deleteCategory(Id)
+                    .then(resultsCb)
+                    .catch(function(err){
+                        next(err);
+                    });
             });
         };
 
