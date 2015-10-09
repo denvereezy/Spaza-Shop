@@ -61,6 +61,12 @@ var Content = require('../routes/usersQueries');
             var resultsCb = function(results){
                 res.redirect('/users');
             };
+            var content = new Content(connection);
+            content.delete(Id)
+                .then(resultsCb)
+                .catch(function(err){
+                    next(err);       
+                });
         });
     };
 

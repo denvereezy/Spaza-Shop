@@ -37,7 +37,7 @@ module.exports = function(connection){
       });
     };
     
-    this.delete = function(){
+    this.delete = function(Id){
       return new Promise(function(resolve,reject){
           updateQuery('DELETE FROM Users WHERE Id = ?', [Id], function(err,results){
               if (err) return reject (err);

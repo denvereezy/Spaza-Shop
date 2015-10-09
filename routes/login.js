@@ -1,7 +1,7 @@
-    var bcrypt = require('bcrypt');
+var Content = require("../routes/loginQueries");
+var bcrypt = require('bcrypt');
 
     exports.userCheck = function (req, res, next) {
-
 
         console.log(req.path);
         if (req.session.user){
@@ -15,9 +15,6 @@
 
     exports.signup = function(req, res, next) {
         req.getConnection(function(err, connection) {
-            if (err) {
-                return next(err);
-            }
 
             var input = JSON.parse(JSON.stringify(req.body));
             var data = {
@@ -27,44 +24,33 @@
 
             };
               
-          
             //bcrypt the password===
             bcrypt.genSalt(10, function(err, salt) {
                 bcrypt.hash(input.password, salt, function(err, hash) {
                     // Store hash in your password DB. 
                     data.Password = hash;
-                    connection.query('insert into Users set ?', data, function(err, users) {
-                        user = users[0]; 
-                        if(input.username === user.Username){
-                          res.redirect('/sign_up',{msg: "Username already taken, try again!"});
-                        }
-                        if (err)
-                            console.log("Error inserting : %s ", err);
-
-                        res.redirect('/?status=user_created');
-                       
+                    var resultsCb = function(results){
+                    res.redirect('/?status=user_created');   
+                    };
+                    var content = new Content(connection);
+                    content.signup(data)
+                        .then(resultsCb)
+                        .catch(function(err){
+                            next(err);
                     });
                 });
             });
-          
-
-
         });
-
     };
 
     exports.adminSignup = function(req, res, next) {
         req.getConnection(function(err, connection) {
-            if (err) {
-                return next(err);
-            }
 
             var input = JSON.parse(JSON.stringify(req.body));
             var data = {
                 Username: input.username,
                 Password: input.password,
                 User_role: input.key,
-
 
             };
 
@@ -75,9 +61,8 @@
                 bcrypt.hash(input.password, salt, function(err, hash) {
                     // Store hash in your password DB. 
                     data.Password = hash;
-                    connection.query('insert into Users set ?', data, function(err, results) {
-                        if (err)
-                            console.log("Error inserting : %s ", err);
+                   var resultsCb = function(results){
+            
                          if(input.key == admin){                      
 
                         res.redirect('/?status=user_created');
@@ -85,14 +70,16 @@
                        else{
                            res.redirect('/admin_signup');
                           }
+                    };
+                    var content = new Content(connection);
+                    content.adminSignup(data)
+                        .then(resultsCb)
+                        .catch(function(err){
+                            next(err);
                     });
                 });
             });
-
-
-
         });
-
     };
 
 
@@ -100,20 +87,11 @@
         var input = JSON.parse(JSON.stringify(req.body));
        var username = input.username;
         req.getConnection(function(err, connection) {
-            if (err)
-                return next(err)
-
-            connection.query('SELECT * from Users WHERE Username=?', [username], function(err, users) {
-
-            var user = users[0];
+        var resultsCb = function(results){    
+            
+            var user = results[0];
 
                 bcrypt.compare(input.password, user.Password, function(err, pass) {
-
-            
-                    if (err) {
-                        console.log(err);
-                    }
-
                     if (pass) {
                         req.session.user = username;
                         req.session.role =  user.User_role;
@@ -122,7 +100,13 @@
                         return res.redirect('/');
                        
                     }
-                })
-            })
+                });
+            };
+            var content = new Content(connection);
+            content.login(username)
+                .then(resultsCb)
+                .catch(function(err){
+                    next(err);
+            });
         })
     };
