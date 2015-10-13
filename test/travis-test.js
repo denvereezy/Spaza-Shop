@@ -36,7 +36,7 @@ describe("Test mocha from Travis", function(){
             assert(ifExists);
             done();
         };
-        queries.suppliers('o')
+        queries.suppliers('Hom')
             .then(resultsCb)
             .catch(function(err){
             next(err);
