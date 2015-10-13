@@ -13,7 +13,6 @@ var express = require('express'),
     spaza = require('./routes/spaza'),
     Categories = require('./routes/categories'),
     sales = require('./routes/sales'),
-    salesPerProduct = require('./routes/salesPerProduct'),
     suppliers = require('./routes/suppliers'),
     purchase = require('./routes/purchase'),
     search = require('./routes/search'),
@@ -39,7 +38,7 @@ app.use(bodyParser.json())
 
 
 app.get('/products_list',login.userCheck, Products.show);
-app.get('/salesPerProduct',login.userCheck, salesPerProduct.show);
+app.get('/salesPerProduct',login.userCheck, sales.showAllSales);
 app.get('/Products/products_edit/:Id',login.userCheck, Products.get);
 app.post('/Products/update/:Id',login.userCheck, Products.update);
 app.post('/Products/add',login.userCheck, Products.add);
