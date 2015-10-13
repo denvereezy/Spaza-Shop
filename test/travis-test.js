@@ -30,18 +30,18 @@ describe("Test mocha from Travis", function(){
 
   });
 
-    it('should return supplier searched', function(done){
-        var resultsCb = function(results){
-            var ifExists = _.any(results, {'Name': 'HomeMade'});
-            assert(ifExists);
-            done();
-        };
-        queries.suppliers('Hom')
-            .then(resultsCb)
-            .catch(function(err){
-            console.log(err);
-        });
-    });
+//    it('should return supplier searched', function(done){
+//        var resultsCb = function(results){
+//            var ifExists = _.any(results, {'Name': 'HomeMade'});
+//            assert(ifExists);
+//            done();
+//        };
+//        queries.suppliers('Hom')
+//            .then(resultsCb)
+//            .catch(function(err){
+//            console.log(err);
+//        });
+//    });
     
     it('should return a list of products containing "ea" ', function(done){
         var resultsCb = function(results){
