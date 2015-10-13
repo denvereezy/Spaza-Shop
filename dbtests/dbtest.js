@@ -20,53 +20,72 @@ var queries = new Queries(connection);
 
 describe('Product search', function(){
     it('should return a list of products containing "ea" ', function(done){
-        queries.findProductByName('ea', function(err, results){
-            assert.equal(err, null);
-
+        var resultsCb = function(results){
             var ifExists = _.any(results, { 'Name': 'Bread'});
             assert(ifExists, "bread should be there...");
-            done();
-        });
-  });
+            done();   
+        };
+        
+        queries.findProductByName('ea')                     
+            .then(resultsCb)
+            .catch(function(err){
+                next(err);
+        });    
+    });
+
 
     it('should return product sales searched', function(done){
-        queries.findGroupedSales('go', function(err,results){
-            assert.equal(err,null);
-
+         var resultsCb = function(results){
             var ifExists = _.any(results, { 'Name': 'Gold Dish Vegetable Curry Can'});
-//            console.log(results);
             assert(ifExists);
             done();
-        });
+        };
+        
+        queries.findGroupedSales('go')
+            .then(resultsCb)
+            .catch(function(err){
+                next(err);
+        });  
     });
     
     it('should return category searched', function(done){
-        queries.categories('be',function(err,results){
-            assert.equal(err,null);
-            
+        var resultsCb = function(results){
             var ifExists = _.any(results, {'Name': 'Beverages'});
             assert(ifExists);
             done();
+        };
+        
+        queries.categories('be')
+            .then(resultsCb)
+            .catch(function(err){
+                next(err);
         });
     });
     
     it('should return supplier searched', function(done){
-        queries.suppliers('o',function(err,results){
-            assert.equal(err,null);
-            
+        var resultsCb = function(results){
             var ifExists = _.any(results, {'Name': 'HomeMade'});
             assert(ifExists);
             done();
+        };
+        queries.suppliers('o')
+            .then(resultsCb)
+            .catch(function(err){
+                next(err);
         });
     });
     
     it('should return purchase searched', function(done){
-        queries.purchases('a',function(err,results){
-            assert.equal(err,null);
-           
+        var resultsCb = function(results){
             var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
             assert(ifExists);
             done();
+        };
+        queries.purchases('a')
+            .then(resultsCb)
+            .catch(function(err){
+                next(err);
         });
     });
+    
 });

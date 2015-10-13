@@ -29,40 +29,45 @@ describe("Test mocha from Travis", function(){
 
 
   });
-//     it('should return product sales searched', function(done){
-//        queries.findGroupedSales('go', function(err,results){
-//            assert.equal(err,null);
-//
-//            var ifExists = _.any(results, { 'Name': 'Gold Dish Vegetable Curry Can'});
-////            console.log(results);
-//            assert(ifExists);
-//            done();
-//        });
-//    });
-       it('should return supplier searched', function(done){
-        queries.suppliers('ga',function(err,results){
-            assert.equal(err,null);
-            
-            var ifExists = _.any(results, {'Name': 'Game'});
+
+    it('should return supplier searched', function(done){
+        var resultsCb = function(results){
+            var ifExists = _.any(results, {'Name': 'HomeMade'});
             assert(ifExists);
             done();
+        };
+        queries.suppliers('o')
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
         });
     });
-       it('should return a list of products containing "ea" ', function(done){
-        queries.findProductByName('ea', function(err, results){
-            assert.equal(err, null);
-
+    
+    it('should return a list of products containing "ea" ', function(done){
+        var resultsCb = function(results){
             var ifExists = _.any(results, { 'Name': 'Bread'});
             assert(ifExists, "bread should be there...");
-            done();
-        });
-  });
+            done();   
+        };
+
+        queries.findProductByName('ea')                     
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
+        });    
+    });
     
-    it('should return category Beverages ', function(done){
-        queries.categories('be', function(err, results){
-            var ifExists = _.any(results, { 'Name': 'Beverages'});
-            assert(ifExists, "Beverages should be there...");
+    it('should return category searched', function(done){
+        var resultsCb = function(results){
+            var ifExists = _.any(results, {'Name': 'Beverages'});
+            assert(ifExists);
             done();
+        };
+
+        queries.categories('be')
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
         });
-  });
+    });
 });

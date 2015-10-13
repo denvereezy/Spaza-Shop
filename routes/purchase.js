@@ -1,33 +1,27 @@
-    exports.show = function (req, res, next) {
-    req.getConnection(function(err, connection){
-        if (err) 
-            return next(err);
-                connection.query('SELECT p.Id, DATE_FORMAT(Purchase_date,"%d %b %y") as Purchase_date,Qty, Purchase_price,s.Name,c.Name as names from Purchases p inner join Products s on p.Product_Id = s.Id inner join Suppliers c on p.Supplier_Id = c.Id order by Purchase_date desc', [], function(err, purchases, fields) {
-                    if (err)
-                        return next(err);
-                        connection.query('SELECT * from Suppliers', [], function(err, supply, fields) {
-                        if (err)
-                        return next(err);
-               var isAdmin = req.session.role === "admin"
-                   var user = req.session.role !== "admin"
+var Promise = require("bluebird");
+var Purchases = require("../routes/purchaseQueries");
 
-                connection.query('SELECT * FROM Products', [], function(err, product, fields) {
-                    if (err)
-                        return next(err);
-                        //console.log(product)
-                        //console.log(purchases)
-                        res.render('addPurchase', {
-                        products : product,
-                        purchases: purchases,
-                        in_ca: isAdmin, 
-                        action: user,
-                        Suppliers: supply
-                    });
-                });
+exports.show = function (req, res, next) {
+    req.getConnection(function(err, connection){
+        var isAdmin = req.session.role === "admin";
+        var user = req.session.role !== "admin";
+        console.log(connection);
+
+        var purchases = new Purchases(connection);
+        
+        Promise.join(purchases.purchases(), purchases.suppliers(), purchases.products(),
+                     function(purchases,suppliers,products){
+            res.render('addPurchase', {
+                products : products,
+                purchases: purchases,
+                Suppliers: suppliers,
+                in_ca: isAdmin, 
+                action: user
+
             });
         });
     });
-    };
+};
 
     exports.add = function (req, res, next) {
     req.getConnection(function(err, connection){
@@ -146,23 +140,23 @@
 
     exports.update = function(req, res, next){
     var data = JSON.parse(JSON.stringify(req.body));
+        
         var Id = req.params.Id;
-        var Qty = req.params.Qty;
-        var Purchase_date = req.params.Purchase_date;
-        var Purchase_price = req.params.Purchase_price;
-        var suppId = req.params.supplier_Id;
-        var prodId = req.params.product_Id;
+        var items = {
+         Qty : req.params.Qty,
+         Purchase_date : req.params.Purchase_date,
+         Purchase_price : req.params.Purchase_price,
+         suppId : req.params.supplier_Id,
+         prodId : req.params.product_Id
+        };
         req.getConnection(function(err, connection){
-            connection.query('UPDATE Purchases SET ? WHERE Id = ?', [data, Id,Qty,Purchase_date,Purchase_price], function(err, rows){
-                connection.query('UPDATE Suppliers SET ? WHERE Id = ?', [data, suppId], function(err, rows){
-                 connection.query('UPDATE Products SET ? WHERE Id = ?', [data, prodId], function(err, rows){
+            connection.query('UPDATE Purchases SET ? WHERE Id = ?', [data,Id], function(err, rows){
+        
                 if (err){
                         console.log("Error Updating : %s ",err );
                 }
                 res.redirect('/addPurchase');
-            });
-        });
-      });	
+              });	
     });
     };
     exports.delete = function(req, res, next){
