@@ -25,7 +25,8 @@
     "lodash-node": "~3.10.1",
     "gulp": "~3.9.0",
     "mysql": "^2.9.0",
-    "bluebird": "~2.10.2"
+    "bluebird": "~2.10.2",
+    "connection-provider": "git://github.com/avermeulen/connection-provider"
   },
   "engines": {
     "node": "0.10.25"
