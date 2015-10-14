@@ -137,7 +137,7 @@ describe("Test mocha from Travis", function(){
     
     it('should return the least popular category', function(done){
         var resultsCb = function(results){
-            assert('Chakalaka Can');
+            assert('ascac');
             done();
         };
         spaza.leastPopularCat()
