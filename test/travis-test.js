@@ -122,4 +122,28 @@ describe("Test mocha from Travis", function(){
             next(err);
         });
     });
+    
+    it('should return the most popular category', function(done){
+        var resultsCb = function(results){
+            assert('Can Food');
+            done();
+        };
+        spaza.popularCategory()
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
+        });
+    });
+    
+    it('should return the least popular category', function(done){
+        var resultsCb = function(results){
+            assert('Chakalaka Can');
+            done();
+        };
+        spaza.leastPopularCat()
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
+        });
+    });
 });
