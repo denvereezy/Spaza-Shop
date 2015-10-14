@@ -101,19 +101,21 @@ describe("Test mocha from Travis", function(){
     
     it('should return the most popular product', function(done){
         var resultsCb = function(results){
-            assert('Gold Dish Vegetable Curry Can');
+            var ifExists = _.any(results, {'Name': 'Gold Dish Vegetable Curry Can'});
+            assert(ifExists);
             done();
         };
         spaza.popularProduct()
             .then(resultsCb)
             .catch(function(err){
-            next(err);
+            console.log(err);
         });
     });
     
     it('should return the least popular product', function(done){
         var resultsCb = function(results){
-            assert('Chakalaka Can');
+            var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
+            assert(ifExists);
             done();
         };
         spaza.popularProduct()
@@ -125,7 +127,8 @@ describe("Test mocha from Travis", function(){
     
     it('should return the most popular category', function(done){
         var resultsCb = function(results){
-            assert('Can Food');
+            var ifExists = _.any(results, {'Name': 'Can Food'});
+            assert(ifExists);
             done();
         };
         spaza.popularCategory()
@@ -137,7 +140,8 @@ describe("Test mocha from Travis", function(){
     
     it('should return the least popular category', function(done){
         var resultsCb = function(results){
-            assert('ascac');
+            var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
+            assert(ifExists);
             done();
         };
         spaza.leastPopularCat()
