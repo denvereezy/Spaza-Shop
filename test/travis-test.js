@@ -101,7 +101,7 @@ describe("Test mocha from Travis", function(){
     
     it('should return the most popular product', function(done){
         var resultsCb = function(results){
-            var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
+            var ifExists = _.any(results, {'Name': 'Bread'});
             assert(ifExists);
             done();
         };
