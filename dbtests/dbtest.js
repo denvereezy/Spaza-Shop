@@ -2,6 +2,7 @@ var assert = require('assert'),
     mysql = require('mysql'),
     _ = require('lodash-node'),
     Queries = require('../routes/searchQueries'),
+    Spaza = require('../routes/spazaQueries'),
     connection = mysql.createConnection({
 
         host: 'localhost',
@@ -17,6 +18,7 @@ connection.on('error', function() {
 });
 
 var queries = new Queries(connection);
+var spaza = new Spaza(connection);
 
 describe('Product search', function(){
     it('should return a list of products containing "ea" ', function(done){
@@ -88,6 +90,16 @@ describe('Product search', function(){
         });
     });
     
-    
+    it('should return the most popular product', function(done){
+        var resultsCb = function(results){
+            assert('Gold Dish Vegetable Curry Can');
+            done();
+        };
+        spaza.popularProduct()
+            .then(resultsCb)
+            .catch(function(err){
+            console.log(err);
+        });
+    });
     
 });

@@ -3,6 +3,7 @@ var assert = require('assert');
 var mysql = require('mysql');
 var _ = require('lodash-node');
 var Queries = require('../routes/searchQueries');
+var Spaza = require('../routes/spazaQueries');
 var password = process.env.MYSQL_PWD !== null ? process.env.MYSQL_PWD : 'passw0rd';
 
 var connection = mysql.createConnection({
@@ -16,7 +17,7 @@ describe("Test mocha from Travis", function(){
 
   connection.connect();
     var queries = new Queries(connection);
-
+    var spaza = new Spaza(connection);
 //  it("should pass", function(done){
 //
 //    connection.query('select count(*) as userCount from users', function(err, users) {
@@ -96,5 +97,29 @@ describe("Test mocha from Travis", function(){
             .catch(function(err){
             next(err);
         });  
+    });
+    
+    it('should return the most popular product', function(done){
+        var resultsCb = function(results){
+            assert('Gold Dish Vegetable Curry Can');
+            done();
+        };
+        spaza.popularProduct()
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
+        });
+    });
+    
+    it('should return the least popular product', function(done){
+        var resultsCb = function(results){
+            assert('Chakalaka Can');
+            done();
+        };
+        spaza.popularProduct()
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
+        });
     });
 });
