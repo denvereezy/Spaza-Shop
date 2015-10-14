@@ -64,3 +64,37 @@ INSERT INTO Suppliers (Name) VALUES ('1 Up');
 INSERT INTO Suppliers (Name) VALUES ('Homemade');
 INSERT INTO Suppliers (Name) VALUES ('Joe Spaza Shop');
 INSERT INTO Suppliers (Name) VALUES ('ChinaTown');
+
+CREATE TABLE Purchases
+(
+    Id int NOT NULL auto_increment,
+    Purchase_date Date,
+    Purchase_price char (100) not null,
+    Qty int NOT NULL,
+    Product_Id int,
+    Supplier_Id int,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (Supplier_Id) REFERENCES Suppliers(Id),
+    FOREIGN KEY (Product_Id) REFERENCES Products(Id)
+);
+
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 4, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 8, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 4, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 4, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 4, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 4, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);

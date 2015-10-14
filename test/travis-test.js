@@ -70,4 +70,17 @@ describe("Test mocha from Travis", function(){
             next(err);
         });
     });
+    
+    it('should return purchase searched', function(done){
+        var resultsCb = function(results){
+            var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
+            assert(ifExists);
+            done();
+        };
+        queries.purchases('a')
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
+        });
+    });
 });
