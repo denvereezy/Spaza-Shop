@@ -72,6 +72,20 @@ describe("Test mocha from Travis", function(){
         });
     });
     
+    it('should return category sales searched', function(done){
+        var resultsCb = function(results){
+            var ifExists = _.any(results, {'Name': 'Beverages'});
+            assert(ifExists);
+            done();
+        };
+
+        queries.category_sales('be')
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
+        });
+    });
+    
     it('should return purchase searched', function(done){
         var resultsCb = function(results){
             var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
