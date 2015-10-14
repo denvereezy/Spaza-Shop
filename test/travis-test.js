@@ -137,17 +137,17 @@ describe("Test mocha from Travis", function(){
             next(err);
         });
     });
-//    
-//    it('should return the least popular category', function(done){
-//        var resultsCb = function(results){
-//            var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
-//            assert(ifExists);
-//            done();
-//        };
-//        spaza.leastPopularCat()
-//            .then(resultsCb)
-//            .catch(function(err){
-//            next(err);
-//        });
-//    });
+    
+    it('should return the least popular category', function(done){
+        var resultsCb = function(results){
+            var ifExists = _.any(results, {'Name': 'Beverages'});
+            assert(ifExists);
+            done();
+        };
+        spaza.leastPopularCat()
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
+        });
+    });
 });
