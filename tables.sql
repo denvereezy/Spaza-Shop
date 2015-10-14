@@ -98,3 +98,32 @@ INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_
 INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
 INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
 INSERT INTO Purchases (Purchase_date, Purchase_price, Qty, Product_Id, Supplier_Id) VALUES(2015-1-23, 7.00, 3, 7, 1);
+
+CREATE TABLE Sales
+(
+    Id int NOT NULL auto_increment,
+    Sales_date Date,
+    Qty int NOT NULL,
+    Sales_price decimal(10,2),
+    Product_Id int,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (Product_Id) REFERENCES Products(Id)
+);
+
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 4);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 3);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 4);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 3);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 4);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 4);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 4);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 4);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 4);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 4);

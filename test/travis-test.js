@@ -83,4 +83,18 @@ describe("Test mocha from Travis", function(){
             next(err);
         });
     });
+    
+    it('should return product sales searched', function(done){
+        var resultsCb = function(results){
+            var ifExists = _.any(results, { 'Name': 'Gold Dish Vegetable Curry Can'});
+            assert(ifExists);
+            done();
+        };
+
+        queries.findGroupedSales('go')
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
+        });  
+    });
 });
