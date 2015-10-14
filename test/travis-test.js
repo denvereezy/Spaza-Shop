@@ -86,12 +86,12 @@ describe("Test mocha from Travis", function(){
     
     it('should return product sales searched', function(done){
         var resultsCb = function(results){
-            var ifExists = _.any(results, { 'Name': 'Gold Dish Vegetable Curry Can'});
+            var ifExists = _.any(results, { 'Name': 'Chakalaka Can'});
             assert(ifExists);
             done();
         };
 
-        queries.findGroupedSales('go')
+        queries.findGroupedSales('aka')
             .then(resultsCb)
             .catch(function(err){
             next(err);
