@@ -125,5 +125,5 @@ INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 3
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 3, 30, 4);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
-INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 3, 30, 4);
-INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 3, 30, 4);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 300, 30, 3);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 150, 30, 3);
