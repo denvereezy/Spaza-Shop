@@ -112,18 +112,18 @@ CREATE TABLE Sales
 
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 10, 30, 4);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 60, 80, 3);
-INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 2, 30, 8);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 3, 30, 4);
-INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 4, 30, 8);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 60, 30, 3);
-INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 3, 30, 8);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 3, 30, 4);
-INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 5, 30, 8);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 3, 30, 4);
-INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 1, 30, 8);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 3, 30, 4);
-INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 2, 30, 8);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 3, 30, 4);
-INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 20, 30, 8);
+INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 6, 30, 8);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 300, 30, 3);
 INSERT INTO Sales (Sales_date, Qty, Sales_price, Product_Id) VALUES(2015-1-23, 150, 30, 3);
