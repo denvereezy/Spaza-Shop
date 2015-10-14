@@ -36,4 +36,32 @@ module.exports = function(connection){
             });
         });
     };
+    
+    this.addPurchase = function(data){
+        return new Promise(function(resolve,reject){
+            updateQuery('insert into Purchases set ?', data, function(err, results) {  
+                if (err) return reject (err)
+                    resolve(results);                 
+            });  
+        });
+    };
+    
+    this.deletePurchase = function(Id){
+        return new Promise(function(resolve,reject){
+            updateQuery('DELETE FROM Purchases WHERE Id = ?', [Id], function(err,results){
+                if (err) return reject (err)
+                    resolve(results);
+            });
+        });
+    };
+    
+    this.getPurchase = function(purchaseId){
+        return new Promise(function(resolve,reject){
+            updateQuery('SELECT * from Purchases p where p.Id = ?', [purchaseId], function(err, results, fields) {
+                if (err) return reject (err)
+                    resolve(results);
+            });
+        });
+    };
+    
 };
