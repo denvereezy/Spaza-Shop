@@ -112,18 +112,18 @@ describe("Test mocha from Travis", function(){
         });
     });
     
-//    it('should return the least popular product', function(done){
-//        var resultsCb = function(results){
-//            var ifExists = _.any(results, {'Name': 'Chakalaka Can'});
-//            assert(ifExists);
-//            done();
-//        };
-//        spaza.popularProduct()
-//            .then(resultsCb)
-//            .catch(function(err){
-//            next(err);
-//        });
-//    });
+    it('should return the least popular product', function(done){
+        var resultsCb = function(results){
+            var ifExists = _.any(results, {'Name': 'Cream Soda 500ml'});
+            assert(ifExists);
+            done();
+        };
+        spaza.leastPopularPrd()
+            .then(resultsCb)
+            .catch(function(err){
+            next(err);
+        });
+    });
 //    
 //    it('should return the most popular category', function(done){
 //        var resultsCb = function(results){
