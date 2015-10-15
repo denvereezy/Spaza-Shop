@@ -19,7 +19,7 @@ module.exports = function(connection){
       });
     };
     
-    this.addCategory = function(data){
+    this.addSupplier = function(data){
       return new Promise(function(resolve,reject){
           updateQuery('insert into Suppliers set ?', data, function(err, results) {
              if (err) return reject (err);
@@ -28,7 +28,7 @@ module.exports = function(connection){
       });
     };
     
-    this.editCategory = function(Id){
+    this.editSupplier = function(Id){
       return new Promise(function(resolve,reject){
           updateQuery('SELECT * FROM Suppliers WHERE Id = ?', [Id], function(err,results){
               if (err) return reject (err);
@@ -37,7 +37,7 @@ module.exports = function(connection){
       });
     };
     
-    this.updateCategory = function(data,Id){
+    this.updateSupplier = function(data,Id){
       return new Promise(function(resolve,reject){
           updateQuery('UPDATE Suppliers SET ? WHERE Id = ?', [data, Id], function(err, results){
                 if (err) return reject (err);
@@ -46,7 +46,7 @@ module.exports = function(connection){
       });
     };
     
-    this.deleteCategory = function(Id){
+    this.deleteSupplier = function(Id){
       return new Promise(function(resolve,reject){
           updateQuery('DELETE FROM Suppliers WHERE Id = ?', [Id], function(err,results){
               if (err) return reject (err);

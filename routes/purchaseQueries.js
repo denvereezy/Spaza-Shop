@@ -64,4 +64,13 @@ module.exports = function(connection){
         });
     };
     
+    this.update = function(data,Id){
+        return new Promise(function(resolve,reject){
+            updateQuery('UPDATE Purchases SET ? WHERE Id = ?', [data,Id], function(err, results){
+                if (err) return reject (err)
+                    resolve(results);
+            });
+        });
+    };
+    
 };

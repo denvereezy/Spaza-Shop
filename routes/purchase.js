@@ -44,21 +44,22 @@ exports.show = function (req, res, next) {
     };
 
     exports.get = function(req, res, next){
-    req.getConnection(function(err, connection){
-
-        var purchaseId = Number(req.params.purchase_Id);
-        var purchase = new Purchases(connection);
-        Promise.join(purchase.getPurchase(purchaseId),purchase.suppliers(),purchase.products(),
-                     function(purchases,supply,products){
-                        var supplier = purchases.length > 0 ? purchases[0] : {};
-                        var suppList = supply.map(function(storedSupplier){
-                            var supplierResult = {
-                                Id : storedSupplier.Id,
-                                Name : storedSupplier.Name,
-                                selectedSupplier : storedSupplier.Id === supplier.Supplier_Id                            
-                            };
-                                return supplierResult;
-                        });
+        req.getConnection(function(err, connection){
+            var purchaseId = Number(req.params.purchase_Id);
+            var purchase = new Purchases(connection);
+            Promise.join(purchase.getPurchase(purchaseId),
+                purchase.suppliers(),
+                purchase.products(),
+                function(purchases, supply, products){
+                    var supplier = purchases.length > 0 ? purchases[0] : {};
+                    var suppList = supply.map(function(storedSupplier){
+                        var supplierResult = {
+                            Id : storedSupplier.Id,
+                            Name : storedSupplier.Name,
+                            selectedSupplier : storedSupplier.Id === supplier.Supplier_Id        
+                        };
+                        return supplierResult;
+                    });
             
                         var purchase = purchases.length > 0 ? purchases[0] : {};
                         var productList = products.map(function(product){
@@ -66,14 +67,13 @@ exports.show = function (req, res, next) {
                                 Id : product.Id,
                                 Name : product.Name,
                                 selectedProduct : product.Id === purchase.Product_Id
-
                             };
-                                return result;
+                            return result;
                         }); 
 
                         var context = {
                             products : productList,
-                            purchase: purchases.length > 0 ? purchases[0] : {},
+                            purchase: purchase,
                             Suppliers: suppList
                         };
                         res.render('purchase_edit', context);
@@ -82,25 +82,19 @@ exports.show = function (req, res, next) {
         };
 
     exports.update = function(req, res, next){
-    var data = JSON.parse(JSON.stringify(req.body));
-        
+        var data = JSON.parse(JSON.stringify(req.body));
         var Id = req.params.Id;
-        var items = {
-         Qty : req.params.Qty,
-         Purchase_date : req.params.Purchase_date,
-         Purchase_price : req.params.Purchase_price,
-         suppId : req.params.supplier_Id,
-         prodId : req.params.product_Id
-        };
         req.getConnection(function(err, connection){
-            connection.query('UPDATE Purchases SET ? WHERE Id = ?', [data,Id], function(err, rows){
-        
-                if (err){
-                        console.log("Error Updating : %s ",err );
-                }
+            var resultsCb = function(results){
                 res.redirect('/addPurchase');
-              });	
-    });
+            };
+            var updatePurchase = new Purchases(connection);
+            updatePurchase.update(data,Id)
+                .then(resultsCb)
+                .catch(function(err){
+                        next(err);
+                });
+        });
     };
 
     exports.delete = function(req, res, next){

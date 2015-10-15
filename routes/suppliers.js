@@ -33,7 +33,7 @@ var Content = require("../routes/suppliersQueries");
                 };
                 
                 var content = new Content(connection);
-                content.addCategory(data)
+                content.addSupplier(data)
                     .then(resultsCb)
                     .catch(function(err){
                         next(err);
@@ -48,7 +48,7 @@ var Content = require("../routes/suppliersQueries");
                     res.render('suppliers_edit',{data : results[0]});      
                 }; 
                 var content = new Content(connection);
-                content.editCategory(Id)
+                content.editSupplier(Id)
                   .then(resultsCb)
                   .catch(function(err){
                         next(err);
@@ -65,7 +65,7 @@ var Content = require("../routes/suppliersQueries");
                     var Id = req.params.Id;
 
                     var content = new Content(connection);
-                    content.updateCategory(data,Id)
+                    content.updateSupplier(data,Id)
                         .then(resultsCb)
                         .catch(function(err){
                             next(err);
@@ -80,7 +80,7 @@ var Content = require("../routes/suppliersQueries");
                     res.redirect('/suppliers');
                 };
                 var content = new Content(connection);
-                content.deleteCategory(Id)
+                content.deleteSupplier(Id)
                     .then(resultsCb)
                     .catch(function(err){
                         next(err);
