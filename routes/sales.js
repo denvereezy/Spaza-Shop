@@ -1,16 +1,15 @@
-var Sales = require("../routes/salesQueries");
 var Promise = require("bluebird");
 
     exports.showAllSales = function (req, res, next) {
-        req.getConnection(function(err, connection){
-            var resultsCb = function(results){
+        req.getServices()
+          .then(function(services){
+            var salesDataService = services.salesDataService;
+            salesDataService.showAllSales()
+               .then(function(results){
                 res.render('salesPerProduct', {
                     products: results,
                 });
-            };
-            var sales = new Sales(connection);
-            sales.showAllSales()
-                .then(resultsCb)
+            })
                 .catch(function(err){
                     next(err);
             });
@@ -18,12 +17,12 @@ var Promise = require("bluebird");
     };
 
     exports.show = function (req, res, next) {
-        req.getConnection(function(err, connection){
-
+        req.getServices()
+          .then(function(services){
                     var isAdmin = req.session.role === "admin"
                     var user = req.session.role !== "admin"
-                    var salesList = new Sales(connection);
-                Promise.join(salesList.sales(), salesList.products(),
+                    var salesDataService = services.salesDataService;
+                    Promise.join(salesDataService.sales(), salesDataService.products(),
                              function(sales, products){
                     res.render('list', {
                         products: sales,
@@ -31,13 +30,16 @@ var Promise = require("bluebird");
                         in_ca: isAdmin,
                         action: user
                 });
+            })
+            .catch(function(err){
+              next(err);
             });
         });
     };
 
     exports.add = function (req, res, next) {
-        req.getConnection(function(err, connection){
-  
+        req.getServices()
+          .then(function(services){
             var input = JSON.parse(JSON.stringify(req.body));
             var data = {
                         Product_Id:input.Id,
@@ -45,12 +47,11 @@ var Promise = require("bluebird");
                         Sales_date:input.Sales_date,
                         Sales_price:input.Sales_price
                 };
-                 var resultsCb = function(results){
+            var salesDataService = services.salesDataService;
+            salesDataService.add(data)
+                 .then(function(results){
                     res.redirect('/list');
-                };
-                var sales = new Sales(connection);
-                sales.add(data)
-                    .then(resultsCb)
+                })
                     .catch(function(err){
                         next(err);
             });
@@ -58,14 +59,14 @@ var Promise = require("bluebird");
     };
 
     exports.get = function(req, res, next){
-        var Id = req.params.Id;
-        req.getConnection(function(err, connection){
-            var resultsCb = function(results){
-                res.render('edit',{data : results[0]});      
-            }; 
-            var sales = new Sales(connection);
-            sales.edit(Id)
-                .then(resultsCb)
+        req.getServices()
+          .then(function(services){
+          var Id = req.params.Id;
+          var salesDataService = services.salesDataService;
+          salesDataService.edit(Id)
+            .then(function(results){
+                res.render('edit',{data : results[0]});
+            })
                 .catch(function(err){
                     next(err);
             });
@@ -73,18 +74,17 @@ var Promise = require("bluebird");
     };
 
     exports.update = function(req, res, next){
-        var data = JSON.parse(JSON.stringify(req.body));
+        req.getServices()
+          .then(function(services){
+            var data = JSON.parse(JSON.stringify(req.body));
             var id = req.params.Id;
-            req.getConnection(function(err, connection){
-                var resultsCb = function(results){
+            var salesDataService = services.salesDataService;
+            salesDataService.update(data, id)
+                .then(function(results){
                     res.redirect('/list');
-                };
-                var sales = new Sales(connection)
-                sales.update(data, id)
-                    .then(resultsCb)
+                })
                     .catch(function(err){
                         next(err);
             });
         });
     };
-

@@ -1,28 +1,31 @@
 var Promise = require("bluebird");
-var Purchases = require("../routes/purchaseQueries");
 
 exports.show = function (req, res, next) {
-    req.getConnection(function(err, connection){
+    req.getServices()
+      .then(function(services){
         var isAdmin = req.session.role === "admin";
         var user = req.session.role !== "admin";
-        var purchases = new Purchases(connection);
-        
-        Promise.join(purchases.purchases(), purchases.suppliers(), purchases.products(),
+        var purchaseDataService = services.purchaseDataService;
+        Promise.join(purchaseDataService.purchases(), purchaseDataService.suppliers(), purchaseDataService.products(),
                      function(purchases,suppliers,products){
             res.render('addPurchase', {
                 products : products,
                 purchases: purchases,
                 Suppliers: suppliers,
-                in_ca: isAdmin, 
+                in_ca: isAdmin,
                 action: user
 
             });
-        });
+        })
+          .catch(function(err){
+            next(err);
+          })
     });
 };
 
     exports.add = function (req, res, next) {
-    req.getConnection(function(err, connection){
+    req.getServices()
+      .then(function(services){
         var input = JSON.parse(JSON.stringify(req.body));
         var data = {
             Supplier_Id:input.Supplier_Id,
@@ -31,12 +34,11 @@ exports.show = function (req, res, next) {
             Purchase_price: input.Purchase_price,
             Qty:input.Qty
         };
-        var resultsCb = function(results){
+        var purchaseDataService = services.purchaseDataService;
+        purchaseDataService.addPurchase(data)
+          .then(function(results){
             res.redirect('/addPurchase');
-        };
-        var purchases = new Purchases(connection);
-        purchases.addPurchase(data)
-            .then(resultsCb)
+      })
             .catch(function(err){
                 next(err);
             });
@@ -44,23 +46,24 @@ exports.show = function (req, res, next) {
     };
 
     exports.get = function(req, res, next){
-        req.getConnection(function(err, connection){
+        req.getServices()
+          .then(function(services){
             var purchaseId = Number(req.params.purchase_Id);
-            var purchase = new Purchases(connection);
-            Promise.join(purchase.getPurchase(purchaseId),
-                purchase.suppliers(),
-                purchase.products(),
+            var purchaseDataService = services.purchaseDataService;
+            Promise.join(purchaseDataService.getPurchase(purchaseId),
+                purchaseDataService.suppliers(),
+                purchaseDataService.products(),
                 function(purchases, supply, products){
                     var supplier = purchases.length > 0 ? purchases[0] : {};
                     var suppList = supply.map(function(storedSupplier){
                         var supplierResult = {
                             Id : storedSupplier.Id,
                             Name : storedSupplier.Name,
-                            selectedSupplier : storedSupplier.Id === supplier.Supplier_Id        
+                            selectedSupplier : storedSupplier.Id === supplier.Supplier_Id
                         };
                         return supplierResult;
                     });
-            
+
                         var purchase = purchases.length > 0 ? purchases[0] : {};
                         var productList = products.map(function(product){
                             var result = {
@@ -69,7 +72,7 @@ exports.show = function (req, res, next) {
                                 selectedProduct : product.Id === purchase.Product_Id
                             };
                             return result;
-                        }); 
+                        });
 
                         var context = {
                             products : productList,
@@ -78,19 +81,22 @@ exports.show = function (req, res, next) {
                         };
                         res.render('purchase_edit', context);
                 });
-            });
+            })
+              .catch(function(err){
+                  next(err);
+              });
         };
 
     exports.update = function(req, res, next){
-        var data = JSON.parse(JSON.stringify(req.body));
-        var Id = req.params.Id;
-        req.getConnection(function(err, connection){
-            var resultsCb = function(results){
+        req.getServices()
+          .then(function(services){
+            var data = JSON.parse(JSON.stringify(req.body));
+            var Id = req.params.Id;
+            var purchaseDataService = services.purchaseDataService;
+            purchaseDataService.updatePurchase(data,Id)
+              .then(function(results){
                 res.redirect('/addPurchase');
-            };
-            var updatePurchase = new Purchases(connection);
-            updatePurchase.update(data,Id)
-                .then(resultsCb)
+            })
                 .catch(function(err){
                         next(err);
                 });
@@ -98,14 +104,14 @@ exports.show = function (req, res, next) {
     };
 
     exports.delete = function(req, res, next){
-    req.getConnection(function(err, connection){
+    req.getServices()
+      .then(function(services){
         var Id = req.params.Id;
-        var resultsCb = function(results){
+        var purchaseDataService = services.purchaseDataService;
+        purchaseDataService.deletePurchase(Id)
+          .then(function(results){
             res.redirect('/addPurchase');
-        };
-        var purchases = new Purchases(connection);
-        purchases.deletePurchase(Id)
-            .then(resultsCb)
+        })
             .catch(function(err){
                 next(err);
             });

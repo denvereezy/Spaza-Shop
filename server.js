@@ -2,7 +2,7 @@ var express = require('express'),
     exphbs  = require('express-handlebars'),
     app = express(),
     cookieParser = require('cookie-parser'),
-    session = require('express-session'), 
+    session = require('express-session'),
     bodyParser = require('body-parser'),
     mysql = require('mysql'),
     bcrypt = require('bcrypt'),
@@ -16,8 +16,17 @@ var express = require('express'),
     suppliers = require('./routes/suppliers'),
     purchase = require('./routes/purchase'),
     search = require('./routes/search'),
-    queries = require('./routes/queries');
-    
+    queries = require('./routes/queries'),
+    LoginDataService = require('./routes/loginQueries'),
+    SpazaDataService = require('./routes/spazaQueries'),
+    connectionProvider = require('connection-provider'),
+    productDataService = require('./routes/productQueries'),
+    categoryDataService = require('./routes/categoryQueries'),
+    purchaseDataService = require('./routes/purchaseQueries'),
+    salesDataService = require('./routes/salesQueries'),
+    searchDataService = require('./routes/searchQueries'),
+    suppliersDataService = require('./routes/suppliersQueries'),
+    usersDataService = require('./routes/usersQueries');
 
 var dbOptions = {
       host: 'localhost',
@@ -27,15 +36,28 @@ var dbOptions = {
       database: 'spaza_shop'
 };
 
-app.use(myConnection(mysql, dbOptions, 'single'));
+var serviceSetupCallback = function(connection){
+     return {
+        loginDataService     : new LoginDataService(connection),
+        spazaDataServise     : new SpazaDataService(connection),
+        productDataService   : new productDataService(connection),
+        categoryDataService  : new categoryDataService(connection),
+        purchaseDataService  : new purchaseDataService(connection),
+        salesDataService     : new salesDataService(connection),
+        searchDataService    : new searchDataService(connection),
+        suppliersDataService : new suppliersDataService(connection),
+        usersDataService     : new usersDataService(connection)
+    }
+};
+
+app.use(connectionProvider(dbOptions, serviceSetupCallback));
 app.use(cookieParser('shhhh, very secret'));
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 3600000 }, resave: true, saveUninitialized: true})); -
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 3600000 }, resave: true, saveUninitialized: true}));
 app.use(express.static('public'));
 app.engine('handlebars', exphbs({defaultLayout: "main"}));
 app.set('view engine', 'handlebars');
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/products_list',login.userCheck, Products.show);
 app.get('/salesPerProduct',login.userCheck, sales.showAllSales);
@@ -77,11 +99,9 @@ app.get('/purchase/delete/:Id', login.userCheck,purchase.delete);
 app.get('/purchase/purchase_edit/:purchase_Id',login.userCheck, purchase.get);
 
 app.get('/users',login.userCheck, users.show);
-//app.post('/users/update/:Id',login.userCheck,users.update);
 app.get('/users/admin/:Id',login.userCheck,users.admin);
 app.get('/users/notAdmin/:Id',login.userCheck,users.notAdmin);
 app.get('/users/delete/:Id',login.userCheck, users.delete);
-//app.get('/users/users_edit/:user_Id',login.userCheck, users.get);
 
 app.get('/products/search/:searchValue',login.userCheck, search.search_products);
 app.get('/suppliers/search/:searchValue',login.userCheck, search.search_suppliers);
@@ -95,46 +115,35 @@ app.get('/category_earnings/search/:searchValue',login.userCheck, search.search_
 app.get('/purchases/search/:searchValue',login.userCheck, search.search_purchases);
 
 app.get("/sign_up", function(req, res){
-
   res.render("sign_up", {layout : 'mainLogin'});
-
 })
 app.post('/sign_up', login.signup);
 
 app.get('/admin_signup', function(req, res, next){
         res.render('admin_signup',{layout: 'mainLogin'});
-}); 
-app.post('/admin_signup',login.adminSignup); 
+});
+app.post('/admin_signup',login.adminSignup);
 
 app.get('/', function(req, res) {
-	
-
     res.render('login', {
         layout: false,
-
     });
 });
-app.post("/login", login.userLogin); 
-
+app.post("/login", login.userLogin);
 
 app.use(login.userCheck);
-
 app.get('/home', function(req, res) {
     res.render('index',{ user:req.session.user, role:req.session.role });
 });
 
-
-app.get('/logout', function(req, res){ 
+app.get('/logout', function(req, res){
      delete req.session.user
-     res.redirect("/");	
+     res.redirect("/");
 });
 
-
- var port = process.env.PORT || 8090;		
-   //start the server
+ var port = process.env.PORT || 8090;
    var server = app.listen(port, function () {
         var host = server.address().address;
         var port = server.address().port;
         console.log('Example app listening at http://%s:%s', host, port);
-
    });
