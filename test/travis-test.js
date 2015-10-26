@@ -40,7 +40,7 @@ describe("Test mocha from Travis", function(){
         queries.suppliers('Home')
             .then(resultsCb)
             .catch(function(err){
-            next(err);
+            console.log(err);
         });
     });
     
