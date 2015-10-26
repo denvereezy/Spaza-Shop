@@ -36,6 +36,7 @@ describe("Test mocha from Travis", function(){
             var ifExists = _.any(results, {'Name': 'HomeMade'});
             assert(ifExists);
             done();
+            console.log(results);
         };
         queries.suppliers('Home')
             .then(resultsCb)
