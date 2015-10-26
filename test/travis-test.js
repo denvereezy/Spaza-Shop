@@ -33,11 +33,11 @@ describe("Test mocha from Travis", function(){
 
     it('should return supplier searched', function(done){
         var resultsCb = function(results){
-            var ifExists = _.any(results, {'Name': 'Makro'});
+            var ifExists = _.any(results, {'Name': 'HomeMade'});
             assert(ifExists);
             done();
         };
-        queries.suppliers('Mak')
+        queries.suppliers('Home')
             .then(resultsCb)
             .catch(function(err){
             next(err);
