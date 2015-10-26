@@ -32,11 +32,11 @@ describe("Test mocha from Travis", function(){
 //  });
 
     it('should return supplier searched', function(done){
-        var resultsCb = function(results){
+        var resultsCb = function(suppliers){
             var ifExists = _.any(results, {'Name': 'HomeMade'});
             assert(ifExists);
             done();
-            console.log(results);
+//            console.log(results);
         };
         queries.suppliers('Home')
             .then(resultsCb)
