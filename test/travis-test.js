@@ -15,38 +15,13 @@ var connection = mysql.createConnection({
   database : 'travis_db'
 });
 
-describe("Test mocha from Travis", function(){
-
-  connection.connect();
+ connection.connect();
     var queries = new Queries(connection);
     var spaza = new Spaza(connection);
-//  it("should pass", function(done){
-//
-//    connection.query('select count(*) as userCount from users', function(err, users) {
-//
-//        console.log(err);
-//
-//        assert.equal(1, users[0].userCount);
-//        done();
-//    });
-//
-//
-//  });
+    var login = new Login(connection);
 
-   /* it('should return supplier searched', function(done){
-        var resultsCb = function(results){
-            var ifExists = _.any(results, {'Name': 'HomeMade'});
-            assert(ifExists);
-            done();
-        };
-        queries.suppliers('o')
-            .then(resultsCb)
-            .catch(function(err){
-            console.log(err);
-        });
-    });*/
-    
-    it('should return a list of products containing "ea" ', function(done){
+describe("Test mocha from Travis", function(){
+ it('should return a list of products containing "ea" ', function(done){
         var resultsCb = function(results){
             var ifExists = _.any(results, { 'Name': 'Bread'});
             assert(ifExists, "bread should be there...");
