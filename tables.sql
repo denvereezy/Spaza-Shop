@@ -1,5 +1,5 @@
 
-create table users(
+create table Users(
   id int auto_increment primary key,
   username varchar(100)
 );
