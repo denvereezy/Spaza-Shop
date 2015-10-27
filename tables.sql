@@ -1,7 +1,8 @@
 
 create table Users(
   id int auto_increment primary key,
-  username varchar(100)
+  Username varchar(100),
+  Password varchar(100)
 );
 
 CREATE TABLE Categories
@@ -10,8 +11,6 @@ CREATE TABLE Categories
 	Name char (100) not null
 );
 
-
-insert into users(username) values ('denvereezy');
 INSERT INTO Categories (Name) VALUES ('Dairy');
 INSERT INTO Categories (Name) VALUES ('Bakery');
 INSERT INTO Categories (Name) VALUES ('Can Food');
