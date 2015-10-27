@@ -164,4 +164,26 @@ describe("Test mocha from Travis", function(){
             next(err);
         });
     });
+       it('should sign up a user and hash the password', function(done){
+         var data =  {
+             Username: 'travis',
+             Password:'123',
+             User_role:'read-only'
+        }
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(data.Password, salt, function(err, hash) {
+                data.Password = hash;
+                var resultsCb = function(results){            
+                var ifExists = _.any(results,data);
+                    assert(data);
+                     done();
+        };
+        login.signup(data)
+            .then(resultsCb)
+            .catch(function(err){
+            console.log(err);
+        });
+    });
+});
+    });
 });

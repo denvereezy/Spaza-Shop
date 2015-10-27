@@ -1,6 +1,4 @@
-var bcrypt = require('bcrypt');
-
-    exports.userCheck = function (req, res, next) {
+ exports.userCheck = function (req, res, next) {
         if (req.session.user){
              next();
         }
@@ -18,25 +16,15 @@ var bcrypt = require('bcrypt');
                     Password: input.password,
                     User_role: 'read-only'
                 };
-                bcrypt.genSalt(10, function(err, salt) {
-                    bcrypt.hash(data.Password, salt, function(err, hash) {
-                        // Store hash in your password DB.
-                        if (err){
-                            return console.log(err);
-                        }
-                        
-                        data.Password = hash;
-                        var loginDataService = services.loginDataService;
-                        loginDataService.signup(data)
-                            .then(function(results){
-                                res.redirect('/?status=user_created');
-                            })
-                            .catch(function(err){
-                                next(err);
-                            });               
-                    });
-                });
-            });
+                var loginDataService = services.loginDataService;
+                loginDataService.signup(data)
+                    .then(function(results){
+                        res.redirect('/?status=user_created');
+                    })
+            })
+                .catch(function(err){
+                        next(err);
+                });                           
     };
 
     exports.adminSignup = function(req, res, next) {
@@ -48,27 +36,21 @@ var bcrypt = require('bcrypt');
                     Password: input.password,
                     User_role: input.key
                 };
-                admin = 'admin';
-                        //bcrypt the password===
-                bcrypt.genSalt(10, function(err, salt) {
-                    bcrypt.hash(data.Password, salt, function(err, hash) {                
-                        data.Password = hash;       
-                        var loginDataService = services.loginDataService;
-                        loginDataService.adminSignup(data)
-                            .then(function(results){
-                                if(input.key == admin){
-                                    res.redirect('/?status=user_created');
-                                }
-                                else{
-                                    res.redirect('/admin_signup');
-                                }
-                            })
-                            .catch(function(err){
-                                next(err);
-                            });               
-                    });
-                });
-          });
+                admin = 'admin';    
+                var loginDataService = services.loginDataService;
+                loginDataService.adminSignup(data)
+                    .then(function(results){
+                        if(input.key == admin){
+                            res.redirect('/?status=user_created');
+                        }
+                        else{
+                            res.redirect('/admin_signup');
+                        }
+                    })
+                        .catch(function(err){
+                            next(err);
+                        });               
+            });
     };
 
     exports.userLogin = function(req, res, next) {
@@ -96,3 +78,4 @@ var bcrypt = require('bcrypt');
                 next(err);
             });
     };
+
