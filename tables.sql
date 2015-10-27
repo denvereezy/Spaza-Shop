@@ -2,7 +2,8 @@
 create table Users(
   id int auto_increment primary key,
   Username varchar(100),
-  Password varchar(100)
+  Password varchar(100),
+  User_role varchar(100)
 );
 
 CREATE TABLE Categories
