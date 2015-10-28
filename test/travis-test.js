@@ -5,7 +5,7 @@ var _ = require('lodash-node');
 var bcrypt = require('bcrypt');
 var Login = require('../database/loginQueries');
 var Queries = require('../database/searchQueries');
-var Spaza = require('../database/spazaQueries');
+var Spaza = require('../database/spaza-statisticsQueries');
 var password = process.env.MYSQL_PWD !== null ? process.env.MYSQL_PWD : 'passw0rd';
 
 var connection = mysql.createConnection({
