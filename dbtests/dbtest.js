@@ -23,7 +23,6 @@ var spaza = new Spaza(connection);
 describe('Product search', function(){
     it('should return a list of products containing "ea" ', function(done){
         var resultsCb = function(results){
-	console.log(results);
             var ifExists = _.any(results, { 'Name': 'Bread'});
             assert(ifExists, "bread should be there...");
             done();   
@@ -32,7 +31,7 @@ describe('Product search', function(){
         queries.findProductByName('ea')                     
             .then(resultsCb)
             .catch(function(err){
-                console.log(err);
+                next(err);
         });    
     });
 
@@ -40,6 +39,7 @@ describe('Product search', function(){
     it('should return product sales searched', function(done){
          var resultsCb = function(results){
             var ifExists = _.any(results, { 'Name': 'Gold Dish Vegetable Curry Can'});
+	console.log(ifExists);
             assert(ifExists);
             done();
         };
@@ -47,7 +47,7 @@ describe('Product search', function(){
         queries.findGroupedSales('go')
             .then(resultsCb)
             .catch(function(err){
-                console.log(err);
+                next(err);
         });  
     });
     
@@ -100,7 +100,7 @@ describe('Product search', function(){
         spaza.popularProduct()
             .then(resultsCb)
             .catch(function(err){
-            console.log(err);
+            next(err);
         });
     });
     
@@ -112,7 +112,7 @@ describe('Product search', function(){
         spaza.popularCategory()
             .then(resultsCb)
             .catch(function(err){
-            next(err);
+                next(err);
         });
     });
 
@@ -124,7 +124,7 @@ describe('Product search', function(){
         spaza.leastPopularCat()
             .then(resultsCb)
             .catch(function(err){
-            next(err);
+                next(err);
         });
     });
 });
