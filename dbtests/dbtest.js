@@ -1,8 +1,8 @@
 var assert = require('assert'),
     mysql = require('mysql'),
     _ = require('lodash-node'),
-    Queries = require('../routes/searchQueries'),
-    Spaza = require('../routes/spazaQueries'),
+    Queries = require('../database/searchQueries'),
+    Spaza = require('../database/spaza-statisticsQueries'),
     connection = mysql.createConnection({
 
         host: 'localhost',
@@ -23,6 +23,7 @@ var spaza = new Spaza(connection);
 describe('Product search', function(){
     it('should return a list of products containing "ea" ', function(done){
         var resultsCb = function(results){
+	console.log(results);
             var ifExists = _.any(results, { 'Name': 'Bread'});
             assert(ifExists, "bread should be there...");
             done();   
@@ -31,7 +32,7 @@ describe('Product search', function(){
         queries.findProductByName('ea')                     
             .then(resultsCb)
             .catch(function(err){
-                next(err);
+                console.log(err);
         });    
     });
 
@@ -46,7 +47,7 @@ describe('Product search', function(){
         queries.findGroupedSales('go')
             .then(resultsCb)
             .catch(function(err){
-                next(err);
+                console.log(err);
         });  
     });
     

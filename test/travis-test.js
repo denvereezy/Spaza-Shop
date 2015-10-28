@@ -31,7 +31,7 @@ describe("Test mocha from Travis", function(){
         queries.findProductByName('ea')                     
             .then(resultsCb)
             .catch(function(err){
-            next(err);
+            console.log(err);
         });    
     });
     
