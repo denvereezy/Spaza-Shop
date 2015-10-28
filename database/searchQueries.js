@@ -35,18 +35,22 @@ module.exports = function(connection){
 
 
     this.allSales = function(searchString){
+        var searchValue = "%" + searchString + "%";
        return searchQuery('SELECT Qty AS AmtSold , Sales_date, Sales_price, Name from Sales s INNER JOIN Products p ON s.Product_Id = p.Id where Name Like ?',[searchValue]);
     };
 
     this.product_earnings = function(searchString){
+        var searchValue = "%" + searchString + "%";
        return searchQuery('SELECT Name,SUM(Sales_price*Qty) AS TotalEarnings from Sales INNER JOIN Products ON Sales.Product_id = Products.Id where Name Like ?',[searchValue]);
     };
 
     this.category_sales = function(searchString){
+        var searchValue = "%" + searchString + "%";
        return searchQuery('SELECT  Categories.Name, sum(Sales.Qty) AS TotalQty from Sales INNER JOIN Products ON Sales.Product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id where Categories.Name Like ?',[searchValue]);
     };
 
     this.category_earnings = function(searchString){
+        var searchValue = "%" + searchString + "%";
        return searchQuery('SELECT  Categories.Name, sum(Sales.Qty*Sales_price) AS TotalQty from Sales INNER JOIN Products ON Sales.Product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.Name Like ?',[searchValue]);
     };
 
