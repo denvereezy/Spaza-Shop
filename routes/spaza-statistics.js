@@ -5,6 +5,8 @@
                 var spazaDataServise = services.spazaDataServise;
                 spazaDataServise.popularProduct()
                     .then(function(results) {
+                    
+                    console.log(results);
                         res.render( 'leastpopular', {
                         products : results
                         });

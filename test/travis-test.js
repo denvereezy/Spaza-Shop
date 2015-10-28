@@ -3,9 +3,9 @@ var assert = require('assert');
 var mysql = require('mysql');
 var _ = require('lodash-node');
 var bcrypt = require('bcrypt');
-var Login = require('../routes/loginQueries');
-var Queries = require('../routes/searchQueries');
-var Spaza = require('../routes/spazaQueries');
+var Login = require('../database/loginQueries');
+var Queries = require('../database/searchQueries');
+var Spaza = require('../database/spazaQueries');
 var password = process.env.MYSQL_PWD !== null ? process.env.MYSQL_PWD : 'passw0rd';
 
 var connection = mysql.createConnection({

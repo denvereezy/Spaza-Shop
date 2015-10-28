@@ -10,23 +10,24 @@ var express = require('express'),
     users = require('./routes/users'),
     login = require('./routes/login'),
     Products = require('./routes/Products'),
-    spaza = require('./routes/spaza'),
+    spazaStatistics = require('./routes/spaza-statistics'),
     Categories = require('./routes/categories'),
     sales = require('./routes/sales'),
     suppliers = require('./routes/suppliers'),
     purchase = require('./routes/purchase'),
     search = require('./routes/search'),
-    queries = require('./routes/queries'),
-    LoginDataService = require('./routes/loginQueries'),
-    SpazaDataService = require('./routes/spazaQueries'),
+    queries = require('./database/queries'),
+    LoginDataService = require('./database/loginQueries'),
+    SpazaDataService = require('./database/spaza-statisticsQueries'),
     connectionProvider = require('connection-provider'),
-    productDataService = require('./routes/productQueries'),
-    categoryDataService = require('./routes/categoryQueries'),
-    purchaseDataService = require('./routes/purchaseQueries'),
-    salesDataService = require('./routes/salesQueries'),
-    searchDataService = require('./routes/searchQueries'),
-    suppliersDataService = require('./routes/suppliersQueries'),
-    usersDataService = require('./routes/usersQueries');
+    ProductDataService = require('./database/productQueries'),
+    CategoryDataService = require('./database/categoryQueries'),
+    PurchaseDataService = require('./database/purchaseQueries'),
+    SalesDataService = require('./database/salesQueries'),
+    SearchDataService = require('./database/searchQueries'),
+    SuppliersDataService = require('./database/suppliersQueries'),
+    UsersDataService = require('./database/usersQueries');
+//    QueryDataService = require('./database/query-service');
 
 var dbOptions = {
       host: 'localhost',
@@ -40,13 +41,14 @@ var serviceSetupCallback = function(connection){
      return {
         loginDataService     : new LoginDataService(connection),
         spazaDataServise     : new SpazaDataService(connection),
-        productDataService   : new productDataService(connection),
-        categoryDataService  : new categoryDataService(connection),
-        purchaseDataService  : new purchaseDataService(connection),
-        salesDataService     : new salesDataService(connection),
-        searchDataService    : new searchDataService(connection),
-        suppliersDataService : new suppliersDataService(connection),
-        usersDataService     : new usersDataService(connection)
+        productDataService   : new ProductDataService(connection),
+        categoryDataService  : new CategoryDataService(connection),
+        purchaseDataService  : new PurchaseDataService(connection),
+        salesDataService     : new SalesDataService(connection),
+        searchDataService    : new SearchDataService(connection),
+        suppliersDataService : new SuppliersDataService(connection),
+        usersDataService     : new UsersDataService(connection)
+//        queryDataService     : new QueryDataService(connection)
     }
 };
 
@@ -77,14 +79,14 @@ app.post('/sales/update/:Id',sales.update);
 app.post('/sales/add',sales.add);
 
 app.get('/category_sales',login.userCheck, Categories.showCategoryList);
-app.get('/popular',login.userCheck, spaza.showPopularProduct);
-app.get('/popularCategory',login.userCheck,spaza.showPopularCategory);
-app.get('/productGraph',login.userCheck,spaza.showProductGraph);
-app.get('/graph',login.userCheck,spaza.showCategoryGraph);
-app.get('/leastpopcat',login.userCheck,spaza.showLeastPopularCategory);
-app.get('/leastpopular',spaza.showLeastPopularProduct);
-app.get('/earningsPerCategory',login.userCheck,spaza.showEarningsPerCategory);
-app.get('/earningsPerproduct',login.userCheck,spaza.showEarningsPerProduct);
+app.get('/popular',login.userCheck, spazaStatistics.showPopularProduct);
+app.get('/popularCategory',login.userCheck,spazaStatistics.showPopularCategory);
+app.get('/productGraph',login.userCheck,spazaStatistics.showProductGraph);
+app.get('/graph',login.userCheck,spazaStatistics.showCategoryGraph);
+app.get('/leastpopcat',login.userCheck,spazaStatistics.showLeastPopularCategory);
+app.get('/leastpopular',spazaStatistics.showLeastPopularProduct);
+app.get('/earningsPerCategory',login.userCheck,spazaStatistics.showEarningsPerCategory);
+app.get('/earningsPerproduct',login.userCheck,spazaStatistics.showEarningsPerProduct);
 
 app.get('/suppliers',login.userCheck,suppliers.show);
 app.post('/suppliers/update/:Id',suppliers.update);
@@ -141,7 +143,7 @@ app.get('/logout', function(req, res){
      res.redirect("/");
 });
 
- var port = process.env.PORT || 8090;
+ var port = process.env.PORT || 8091;
    var server = app.listen(port, function () {
         var host = server.address().address;
         var port = server.address().port;

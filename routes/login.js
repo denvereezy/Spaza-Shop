@@ -1,4 +1,6 @@
- exports.userCheck = function (req, res, next) {
+var bcrypt = require('bcrypt');
+
+exports.userCheck = function (req, res, next) {
         if (req.session.user){
              next();
         }
@@ -38,7 +40,7 @@
                 };
                 admin = 'admin';    
                 var loginDataService = services.loginDataService;
-                loginDataService.adminSignup(data)
+                loginDataService.signup(data)
                     .then(function(results){
                         if(input.key == admin){
                             res.redirect('/?status=user_created');
