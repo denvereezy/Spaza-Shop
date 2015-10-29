@@ -1,34 +1,25 @@
-var Promise = require("bluebird");
+var QueryService = require("../database/query-service");
 
 module.exports = function(connection){
-
-    var executeQuery = function(query, params){
-        return new Promise(function(resolve, reject){
-            params = params || {};
-            connection.query(query, params, function(err, results){
-                if(err) return reject(err);
-                resolve(results);
-            });
-        });
-    };
+    var queryService = new QueryService(connection);
 
     this.suppliersList = function(){
-        return executeQuery('SELECT * from Suppliers');
+        return queryService.executeQuery('SELECT * from Suppliers');
     };
     
     this.addSupplier = function(data){
-        return executeQuery('insert into Suppliers set ?', data);
+        return queryService.executeQuery('insert into Suppliers set ?', data);
     };
     
     this.editSupplier = function(Id){
-        return executeQuery('SELECT * FROM Suppliers WHERE Id = ?', [Id]);
+        return queryService.executeQuery('SELECT * FROM Suppliers WHERE Id = ?', [Id]);
     };
     
     this.updateSupplier = function(data,Id){
-        return executeQuery('UPDATE Suppliers SET ? WHERE Id = ?', [data, Id]);
+        return queryService.executeQuery('UPDATE Suppliers SET ? WHERE Id = ?', [data, Id]);
     };
     
     this.deleteSupplier = function(Id){
-        return executeQuery('DELETE FROM Suppliers WHERE Id = ?', [Id]);
+        return queryService.executeQuery('DELETE FROM Suppliers WHERE Id = ?', [Id]);
     };
 };

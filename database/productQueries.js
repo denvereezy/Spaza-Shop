@@ -1,38 +1,29 @@
-var Promise = require("bluebird");
+var QueryService = require("../database/query-service");
 
 module.exports = function (connection) {
-
-    var executeQuery = function(query, params){
-        return new Promise(function(resolve, reject){
-            params = params || {};
-            connection.query(query, params, function(err, results){
-                if(err) return reject(err);
-                resolve(results);
-            });
-        });
-    };
-    
+    var queryService = new QueryService(connection);
+   
     this.productList = function () {
-        return executeQuery('SELECT * from Products order by Id desc');
+        return queryService.executeQuery('SELECT * from Products order by Id desc');
     };
     
     this.categoryList = function() {
-        return executeQuery('SELECT * from Categories');
+        return queryService.executeQuery('SELECT * from Categories');
     };
     
     this.addProduct = function(data){
-        return executeQuery('insert into Products set ?',data);
+        return queryService.executeQuery('insert into Products set ?',data);
     };
     
     this.edit = function(Id){
-        return executeQuery('SELECT * FROM Products WHERE Id = ?', [Id]);
+        return queryService.executeQuery('SELECT * FROM Products WHERE Id = ?', [Id]);
     };
     
     this.update = function(data,Id){
-        return executeQuery('UPDATE Products SET ? WHERE Id = ?', [data, Id]);
+        return queryService.executeQuery('UPDATE Products SET ? WHERE Id = ?', [data, Id]);
     };
     
     this.delete = function(Id){
-        return executeQuery('DELETE FROM Products WHERE Id = ?', [Id]);
+        return queryService.executeQuery('DELETE FROM Products WHERE Id = ?', [Id]);
     };
 };

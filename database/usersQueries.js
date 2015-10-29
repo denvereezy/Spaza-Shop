@@ -1,31 +1,22 @@
-var Promise = require("bluebird");
+var QueryService = require("../database/query-service");
 
 module.exports = function(connection){
-   
-    var showQuery = function(query, params){
-        return new Promise(function(resolve, reject){
-            params = params || {};
-            connection.query(query, params, function(err, results){
-                if(err) return reject(err);
-                resolve(results);
-            });
-        });
-    };
+   var queryService = new QueryService(connection);
     
     this.usersList = function(){
-        return showQuery('SELECT * from Users');
+        return queryService.executeQuery('SELECT * from Users');
     };
     
     this.adminUser = function(id){
-        return showQuery('UPDATE Users SET User_role = "admin" WHERE Id = ?', [id]);
+        return queryService.executeQuery('UPDATE Users SET User_role = "admin" WHERE Id = ?', [id]);
     };
     
     this.notAdmin = function(id){
-        return showQuery('UPDATE Users SET User_role = "read-only" WHERE Id = ?', [id]);
+        return queryService.executeQuery('UPDATE Users SET User_role = "read-only" WHERE Id = ?', [id]);
     };
     
     this.delete = function(Id){
-        return showQuery('DELETE FROM Users WHERE Id = ?', [Id]);
+        return queryService.executeQuery('DELETE FROM Users WHERE Id = ?', [Id]);
     };
     
 };

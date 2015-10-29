@@ -1,38 +1,29 @@
-var Promise = require("bluebird");
+var QueryService = require("../database/query-service");
 
 module.exports = function(connection){
-    
-    var executeQuery = function(query, params){
-        return new Promise(function(resolve, reject){
-            params = params || {};
-            connection.query(query, params, function(err, results){
-                if(err) return reject(err);
-                resolve(results);
-            });
-        });
-    };
+  var queryService = new QueryService(connection);
     
     this.categories = function(){ 
-        return executeQuery('select * from Categories');
+        return queryService.executeQuery('select * from Categories');
     };
     
     this.addCategory = function(data){  
-        return executeQuery('insert into Categories set ?', data);
+        return queryService.executeQuery('insert into Categories set ?', data);
     };
 
     this.editCategory = function(Id){
-        return executeQuery('SELECT * FROM Categories WHERE Id = ?', [Id]);
+        return queryService.executeQuery('SELECT * FROM Categories WHERE Id = ?', [Id]);
     };
 
     this.updateCategory = function(data,Id){
-        return executeQuery('UPDATE Categories SET ? WHERE Id = ?', [data, Id]);
+        return queryService.executeQuery('UPDATE Categories SET ? WHERE Id = ?', [data, Id]);
     };
 
     this.deleteCategory = function(Id){
-        return executeQuery('DELETE FROM Categories WHERE Id = ?', [Id]);
+        return queryService.executeQuery('DELETE FROM Categories WHERE Id = ?', [Id]);
     };
 
     this.catSales = function(){
-        return executeQuery('SELECT  Categories.Name, sum(Sales.Qty) AS TotalQty from Sales INNER JOIN Products ON Sales.Product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.Name');
+        return queryService.executeQuery('SELECT  Categories.Name, sum(Sales.Qty) AS TotalQty from Sales INNER JOIN Products ON Sales.Product_id = Products.Id INNER JOIN Categories ON Products.Category_id = Categories.Id GROUP BY Categories.Name');
     };
 };

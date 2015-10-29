@@ -1,17 +1,9 @@
 var Promise = require("bluebird");
+var QueryService = require("../database/query-service");
 var bcrypt = require('bcrypt');
 
 module.exports = function(connection){
-    
-    var executeQuery = function(query, params){
-        return new Promise(function(resolve, reject){
-            params = params || {};
-            connection.query(query, params, function(err, results){
-                if(err) return reject(err);
-                resolve(results);
-            });
-        });
-    };
+    var queryService  = new QueryService(connection); 
     
     this.signup = function(data){
         return new Promise(function(resolve,reject){
@@ -31,6 +23,6 @@ module.exports = function(connection){
     };
     
     this.login = function(username){
-       return executeQuery('SELECT * from Users WHERE Username=?', [username]);      
+        return queryService.executeQuery('SELECT * from Users WHERE Username=?', [username]);      
     };
 };
