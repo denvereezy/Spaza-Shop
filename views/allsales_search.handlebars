@@ -1,18 +1,16 @@
-
-    <thead>
-        <tr>
-            <th>Product</th>
-            <th>Qty Sold</th>
-            <th>Price(R)</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-            <tr>
-                {{#each products}}
-                <td>{{Name}}</td>
-                <td>{{AmtSold}}</td>
-    		<td>{{Sales_price}}</td>
-    		<td>{{Sales_date}}</td>
-            </tr>
-            {{/each}}
-
+<thead>
+    <tr>
+        <th>Product</th>
+        <th>Qty Sold</th>
+        <th>Price(R)</th>
+        <th>Date</th>
+    </tr>
+</thead>
+<tr>
+    {{#each products}}
+    <td>{{Name}}</td>
+    <td>{{AmtSold}}</td>
+    <td>{{Sales_price}}</td>
+    <td>{{Sales_date}}</td>
+</tr>
+    {{/each}}

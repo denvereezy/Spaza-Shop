@@ -1,122 +1,102 @@
 <body id ="background">
-<div id="container">
-    {{#in_ca}}
-<div id="addSale">
-<form action="purchase/add" method="POST" class="form-horizontal" >
-
-	<div class="form-group">
-                <h1 id="sale">Add a purchase</h1>
-		<label class="control-label col-xs-2">Suppliers</label>
-		<div class="col-xs-10">	 
-     			<select name="Supplier_Id">
-    				{{#each Suppliers}}
-      					<option value = "{{Id}}">{{Name}}</option>
-    				{{/each}}
-  			</select>
-		</div>
-	</div>
-      
-	<div class="form-group">
-		<label class="control-label col-xs-2">Products</label>
-		<div class="col-xs-10">	 
-     			<select name="Product_Id">
-    				{{#each products}}
-      					<option value = "{{Id}}">{{Name}}</option>
-    				{{/each}}
-  			</select>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="Amount" class="control-label col-xs-2">Qauntity</label>	 
-		 <div class="col-xs-10">
-			<input type="number" name="Qty" class="form-control" placeholder="Please Enter Amount" required>
-		</div>
-	</div>
-
-
-	<div class="form-group">
-		<label for="number" class="control-label col-xs-2">Price</label>
-		<div class="col-xs-10">	 
-     			<input type="number" step="any" name="Purchase_price" placeholder="Please Enter Price" required>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="date" class="control-label col-xs-2">Date</label>
-			<div class="col-xs-10">	 
-     				<input type="date" class="form-control" name="Purchase_date" placeholder="yyyy-mm-dd" required/>
-			</div>
-		
-		</div> 
- 	
-      <input type="submit" onclick="myFunction()">
-   
-
-</form>
-</div>
-    <input id="purchases" class="searchBar" type="text" name="Name" placeholder="Search"></input>
-
-<table id="all_purchases" class="table table-striped custab">
-    <thead>
-        <tr>
-       		<th>Supplier</th>
-       		<th>Product</th>
-       		<th>Qauntity</th>
-       		<th>Price</th>
-       		<th>Date</th>
-       		<th>Action</th>
-        </tr>
-    </thead>
+    <div id="container">
+        {{#in_ca}}
+        <div id="addSale">
+            <form action="purchase/add" method="POST" class="form-horizontal" >
+                <div class="form-group">
+                    <h1 id="sale">Add a purchase</h1>
+                    <label class="control-label col-xs-2">Suppliers</label>
+                    <div class="col-xs-10">
+                        <select name="Supplier_Id">
+                            {{#each Suppliers}}
+                            <option value = "{{Id}}">{{Name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+	            </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Products</label>
+                    <div class="col-xs-10">
+                        <select name="Product_Id">
+                            {{#each products}}
+                            <option value = "{{Id}}">{{Name}}</option>
+    				        {{/each}}
+  			            </select>
+		            </div>
+	            </div>
+                <div class="form-group">
+                    <label for="Amount" class="control-label col-xs-2">Qauntity</label>
+                    <div class="col-xs-10">
+                        <input type="number" name="Qty" class="form-control" placeholder="Please Enter Amount" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="number" class="control-label col-xs-2">Price</label>
+                    <div class="col-xs-10">
+                        <input type="number" step="any" name="Purchase_price" placeholder="Please Enter Price" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="date" class="control-label col-xs-2">Date</label>
+                    <div class="col-xs-10">
+                        <input type="date" class="form-control" name="Purchase_date" placeholder="yyyy-mm-dd" required/>
+                    </div>
+                </div>
+                <input type="submit" onclick="myFunction()">
+            </form>
+        </div>
+        <input id="purchases" class="searchBar" type="text" name="Name" placeholder="Search"></input>
+    <table id="all_purchases" class="table table-striped custab">
+        <thead>
             <tr>
-                {{#each purchases}}
-                <td>{{names}}</td>
-                <td>{{Name}}</td>
-                <td>{{Qty}}</td>
-                <td>{{Purchase_price}}</td>
-                <td>{{Purchase_date}}</td>
-
-                <td class="text-center"><a class='btn btn-info btn-xs' href="/purchase/purchase_edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/purchase/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-
-
-                
+                <th>Supplier</th>
+                <th>Product</th>
+                <th>Qauntity</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Action</th>
             </tr>
-            {{/each}}
-    </table>
-
-{{/in_ca}}
-{{#action}}
-<table class="table table-striped custab">
-    <thead>
+        </thead>
         <tr>
-       		<th>Supplier</th>
-       		<th>Product</th>
-       		<th>Qauntity</th>
-       		<th>Price</th>
-       		<th>Date</th>
+            {{#each purchases}}
+            <td>{{names}}</td>
+            <td>{{Name}}</td>
+            <td>{{Qty}}</td>
+            <td>{{Purchase_price}}</td>
+            <td>{{Purchase_date}}</td>
+            <td class="text-center"><a class='btn btn-info btn-xs' href="/purchase/purchase_edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                <a href="/purchase/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a>
+            </td>
         </tr>
-    </thead>
-            <tr>
-                {{#each purchases}}
-                <td>{{names}}</td>
-                <td>{{Name}}</td>
-                <td>{{Qty}}</td>
-                <td>{{Purchase_price}}</td>
-                <td>{{Purchase_date}}</td>
-
-
-
-                
-            </tr>
-            {{/each}}
+        {{/each}}
     </table>
-{{/action}}
-</div>
+    {{/in_ca}}
+    {{#action}}
+    <table class="table table-striped custab">
+        <thead>
+            <tr>
+                <th>Supplier</th>
+                <th>Product</th>
+                <th>Qauntity</th>
+                <th>Price</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tr>
+            {{#each purchases}}
+            <td>{{names}}</td>
+            <td>{{Name}}</td>
+            <td>{{Qty}}</td>
+            <td>{{Purchase_price}}</td>
+            <td>{{Purchase_date}}</td>
+        </tr>
+        {{/each}}
+    </table>
+    {{/action}}
+    </div>
 <script>
-function myFunction() {
-    
-    alert("New purchase added");
-   
-}
-</script></body>
-
+    function myFunction() {
+        alert("New purchase added");
+    }
+</script>
+</body>

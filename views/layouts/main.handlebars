@@ -1,53 +1,26 @@
-    <!DOCTYPE html>
-    <html lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-
         <title>Nelisa's Spaza Shop</title>
-          <link rel="icon" type="image/png" href="./icon.png">
-
-        <!-- Bootstrap Core CSS -->
+        <link rel="icon" type="image/png" href="./icon.png">
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/user.css" rel="stylesheet">
-
-        <!-- Custom CSS -->
         <link href="/css/simple-sidebar.css" rel="stylesheet">
         <link href="/css/half-slider.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
     </head>
-
     <body>
-
         <div id="wrapper">
-
-            <!-- Sidebar -->
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
-
-                        <img src="/nelisa.png" class=".img-responsive" width="250px;"/>
-                        
+                    <a href="/home"><img src="/nelisa.png" class=".img-responsive" width="250px;"/></a>
                     <li>
-                        <a href="/home">Refresh <i class="fa fa-refresh"></i>
-</a>
-                    </li>
-                    <li>
-                     <a href="javascript:;" data-toggle="collapse" data-target="#new">Graphs <i class="fa fa-bar-chart"></i>
-</i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#new">Graphs <i class="fa fa-bar-chart"></i></a>
                             <ul id="new" class="collapse">
                                 <li>
                                     <a href="productGraph">Product Graph</a>
@@ -55,177 +28,98 @@
                                 <li>
                                     <a href="graph">Category Graph</a>
                                 </li>
-                            </ul>
-                        </li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:;" data-toggle="collapse" data-target="#demo">Products <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="/products_list">Product List</a>
+                            </li>
+                            <li>
+                                <a href="list">Grouped Product Sales</a>
+                            </li>
+                            <li>
+                                <a href="salesPerProduct">Sales Per Product</a>
+                            </li>
+                            <li>
+                                <a href="popular">Most Popular Product</a>
+                            </li>
+                            <li>
+                                <a href="leastpopular">Least Popular Product</a>
+                            </li>
+                            <li>
+                                <a href="earningsPerProduct">Earnings Per Product</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:;" data-toggle="collapse" data-target="#d">Purchases <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="d" class="collapse">
+                            <li>
+                                <a href="suppliers">Suppliers</a>
+                            </li>
+                            <li>
+                                <a href="addPurchase">Purchases</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:;" data-toggle="collapse" data-target="#dmd"> Categories <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="dmd" class="collapse">
+                            <li>
+                                <a href="category_list">Category List</a>
+                            </li>
+                            <li>
+                                <a href="category_sales">Category Sales</a>
+                            </li>
+                            <li>
+                                <a href="popularCategory">Most Popular Category</a>
+                            </li>
+                            <li>
+                                <a href="leastpopcat">Least Popular Category</a>
+                            </li>
+                            <li>
+                                <a href="earningsPerCategory">Earnings Per Category</a>
+                            </li>
+                        </ul>
+                    </li>    
                     <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#demo">Products <i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul id="demo" class="collapse">
-                                <li>
-                                    <a href="products_list">Product List</a>
-                                </li>
-                                <li>
-                                    <a href="list">Grouped Product Sales</a>
-                                </li>
-                                <li>
-                                    <a href="salesPerProduct">Sales Per Product</a>
-                                </li>
-                                <li>
-                                    <a href="popular">Most Popular Product</a>
-                                </li>
-                                <li>
-                                    <a href="leastpopular">Least Popular Product</a>
-                                </li>
-                                <li>
-                                    <a href="earningsPerProduct">Earnings Per Product</a>
-                                </li>
-                            </ul>
-                        </li>
+                        <a href="users">Users <i class="fa fa-users"></i></a>
+                    </li>
                     <li>
-                     <a href="javascript:;" data-toggle="collapse" data-target="#d">Purchases <i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul id="d" class="collapse">
-                                <li>
-                                    <a href="suppliers">Suppliers</a>
-                                </li>
-                                <li>
-                                    <a href="addPurchase">Purchases</a>
-                                </li>
-                            </ul>
-                        </li>
-                    <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#dmd"> Categories <i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul id="dmd" class="collapse">
-                                <li>
-                                    <a href="category_list">Category List</a>
-                                </li>
-                                <li>
-                                    <a href="category_sales">Category Sales</a>
-                                </li>
-                                <li>
-                                    <a href="popularCategory">Most Popular Category</a>
-                                </li>
-                                <li>
-                                    <a href="leastpopcat">Least Popular Category</a>
-                                </li>
-                                <li>
-                                    <a href="earningsPerCategory">Earnings Per Category</a>
-                                </li>
-                            </ul>
-
-                        </li>
-
-                        <li>
-                                   <a href="users">Users <i class="fa fa-users"></i>
-</a>
-                        </li>
-
-                        <li>
-                                   <a href="/logout">Logout <i class="fa fa-sign-out"></i>
-</a>
-                        </li>
+                        <a href="/logout">Logout <i class="fa fa-sign-out"></i></a>
+                    </li>
                 </ul>
-
-
             </div>
-            <!-- /#sidebar-wrapper -->
-            <!-- Carousel -->
-             <header id="myCarousel" class="carousel slide">
-
-            <!-- Wrapper for Slides -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <div class="fill" style="background-image:url('/mixed-sweets.jpg');"></div>
-                    <div class="carousel-caption">
+            <header id="myCarousel" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="fill" style="background-image:url('/mixed-sweets.jpg');"></div>
                     </div>
-                </div>
                 <div class="item">
-                    <div class="fill" style="background-image:url('/img.png');"></div>
-                    <div class="carousel-caption">
-                    </div>
+                    <div class="fill" style="background-image:url('/img.png');"></div>            
                 </div>
                 <div class="item">
                     <div class="fill" style="background-image:url('/amasi.png');"></div>
-                    <div class="carousel-caption">
+                </div>
+                    <div class="item">
+                        <div class="fill" style="background-image:url('/dairy-products-600.jpg');"></div>
                     </div>
                 </div>
-                 <div class="item">
-                    <div class="fill" style="background-image:url('/dairy-products-600.jpg');"></div>
-                    <div class="carousel-caption">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <span class="icon-prev"></span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <span class="icon-next"></span>
-            </a>
-
-        </header>
-
-            <!-- Page Content -->
+            </header>
             <div id="page-content-wrapper">
-    <br>
-    <br>
-           <div container="class theme-showcase" role="main"><strong>
-                      {{{body}}}    
-         </strong></div>  
-    <br>
-    <br> 
-             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
-
+                <br>
+                <br>
+                <div container="class theme-showcase" role="main">
+                    <strong>
+                    {{{body}}}    
+                    </strong>
+                </div>  
+                <br>
+                <br> 
+                <a href="#menu-toggle" class="btn btn-primary btn-large" id="menu-toggle"><span class="glyphicon"></span>Menu</a>
             </div>
-            <!-- /#page-content-wrapper -->
-
         </div>
-        <!-- /#wrapper -->
-
-
-        <!-- jQuery -->
         <script src="/js/jquery.js"></script>
         <script src="/js/search.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
         <script src="/js/bootstrap.min.js"></script>
-
-        <!-- Menu Toggle Script -->
-        <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-        </script>
-         <script>
-        $('.carousel').carousel({
-            interval: 7000 //changes the speed
-        })
-        </script>
-    <!--back to top -->
-        <script type="text/javascript">
-        $('body').prepend('<a href="#" class="back-to-top">Back to Top</a>');
-       </script>
-       <script>
-          var amountScrolled = 300;
-
-            $(window).scroll(function() {
-        if ($(window).scrollTop() > amountScrolled) {
-            $('a.back-to-top').fadeIn('slow');
-        } else {
-            $('a.back-to-top').fadeOut('slow');
-        }
-       });
-      </script>
-      <script>
-           $('a.back-to-top').click(function() {
-        $('html,body').animate({
-            scrollTop: 0
-        }, 700);
-        return false;
-        });
-      </script>
-      <script></script>
-
-    </body>
-
-    </html>
+        </body>
+</html>

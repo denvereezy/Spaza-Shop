@@ -1,13 +1,11 @@
 <body id ="background">
-<h1>Add Category</h1>
-
-{{#products}}
-  <h2>{{Name}}</h2>
-  <a href="/categories/edit/{{Id}}">Edit</a>
-  <a href="/categories/delete/{{Id}}">Delete</a>
-{{/products}}
-
-{{#empty}}
+    <h1>Add Category</h1>
+    {{#products}}
+    <h2>{{Name}}</h2>
+    <a href="/categories/edit/{{Id}}">Edit</a>
+    <a href="/categories/delete/{{Id}}">Delete</a>
+    {{/products}}
+    {{#empty}}
   <p>The list is empty.</p>
 {{/empty}}
 

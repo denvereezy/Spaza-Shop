@@ -6,6 +6,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mysql = require('mysql'),
     bcrypt = require('bcrypt'),
+    compression = require('compression'),
     myConnection = require('express-myconnection'),
     users = require('./routes/users'),
     login = require('./routes/login'),
@@ -27,7 +28,6 @@ var express = require('express'),
     SearchDataService = require('./database/searchQueries'),
     SuppliersDataService = require('./database/suppliersQueries'),
     UsersDataService = require('./database/usersQueries');
-//    QueryDataService = require('./database/query-service');
 
 var dbOptions = {
       host: 'localhost',
@@ -48,10 +48,10 @@ var serviceSetupCallback = function(connection){
         searchDataService    : new SearchDataService(connection),
         suppliersDataService : new SuppliersDataService(connection),
         usersDataService     : new UsersDataService(connection)
-//        queryDataService     : new QueryDataService(connection)
     }
 };
 
+app.use(compression());
 app.use(connectionProvider(dbOptions, serviceSetupCallback));
 app.use(cookieParser('shhhh, very secret'));
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 3600000 }, resave: true, saveUninitialized: true}));
@@ -143,7 +143,7 @@ app.get('/logout', function(req, res){
      res.redirect("/");
 });
 
- var port = process.env.PORT || 8091;
+ var port = process.env.PORT || 8090;
    var server = app.listen(port, function () {
         var host = server.address().address;
         var port = server.address().port;

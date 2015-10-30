@@ -1,56 +1,52 @@
 <body id ="background">
-
-<div id="container">
-{{#in_ca}}    
-<div id="addcategory"><h1>Add a Category</h1>
-	<form action="categories/add" method="POST">
-		Description: <input type="text" name="Name" required>	
-		<input type="submit" onclick="myFunction()">
-	</form>
-
-</form>
-</div>
-<form>
-	<input class="searchBar" id="category_search" type="text" name="Name" placeholder="Search"></input>
-</form>
-<table id="categories" class="table table-striped custab">
-    <thead>
-        <tr>
-            <th>Categories</th>
-            <th class="text-center">Action</th>
-        </tr>
-    </thead>
+    <div id="container">
+        {{#in_ca}}
+        <div id="addcategory">
+            <h1>Add a Category</h1>
+            <form action="categories/add" method="POST">
+                Description: <input type="text" name="Name" required>
+                <input type="submit" onclick="myFunction()">
+            </form>
+        </div>
+        <form>
+            <input class="searchBar" id="category_search" type="text" name="Name" placeholder="Search"></input>
+        </form>
+    <table id="categories" class="table table-striped custab">
+        <thead>
             <tr>
-                {{#each products}}
-                <td>{{Name}}</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="/categories/edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="/categories/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                <th>Categories</th>
+                <th class="text-center">Action</th>
             </tr>
-            {{/each}}
-    </table>
-   
-{{/in_ca}}
-{{#action}}
-<table class="table table-striped custab">
-    <thead>
+        </thead>
         <tr>
-            <th>Categories</th>
+            {{#each products}}
+            <td>{{Name}}</td>
+            <td class="text-center"><a class='btn btn-info btn-xs' href="/categories/edit/{{Id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                <a href="/categories/delete/{{Id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Del</a>
+            </td>
         </tr>
-    </thead>
-            <tr>
-                {{#each products}}
-                <td>{{Name}}</td>
-               
-            </tr>
-            {{/each}}
+        {{/each}}
     </table>
-{{/action}}
-</div>
+    {{/in_ca}}
+    {{#action}}
+    <table class="table table-striped custab">
+        <thead>
+            <tr>
+                <th>Categories</th>
+            </tr>
+        </thead>
+        <tr>
+            {{#each products}}
+            <td>{{Name}}</td>
+        </tr>
+        {{/each}}
+    </table>
+    {{/action}}
+    </div>
 <script>
-function myFunction() {
-    
-    alert("New category added");
-   
-}
+    function myFunction() {
+        alert("New category added");
+    }
 </script>
 <script src="/js/search.js"></script>
 </body>

@@ -1,42 +1,35 @@
-<div id="container">    
-{{#in_ca}}
-<table class="table table-striped custab">
-    <thead>
-        <tr>
-            <th>User</th>
-            <th>Role</th>
-            <th class="text-center">Action</th>
-        </tr>
-    </thead>
+<div id="container">
+    {{#in_ca}}
+    <table class="table table-striped custab">
+        <thead>
             <tr>
-                {{#each users}}
-                <td>{{Username}}</td>
-                <td>{{User_role}}</td>
-                <td class="text-center">
-               <a href="/users/admin/{{Id}}"> <button class="btn btn-lg btn-success"><span class="glyphicon glyphicon-edit"></span>admin</button></a> <a href="/users/notAdmin/{{Id}}"><button class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span>notAdmin</button></a>
-<a href="/users/delete/{{Id}}" class="btn btn-danger btn-large" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
-     
+                <th>User</th>
+                <th>Role</th>
+                <th class="text-center">Action</th>
             </tr>
-          
-            {{/each}}
+        </thead>
+        <tr>
+            {{#each users}}
+            <td>{{Username}}</td>
+            <td>{{User_role}}</td>
+            <td class="text-center">
+                <a href="/users/admin/{{Id}}"> <button class="btn btn-lg btn-success"><span class="glyphicon glyphicon-edit"></span>admin</button></a>
+                <a href="/users/notAdmin/{{Id}}"><button class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span>notAdmin</button></a>
+                <a href="/users/delete/{{Id}}" class="btn btn-danger btn-large" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+            </td>
+        </tr>
+        {{/each}}
     </table>
- {{/in_ca}} 
-{{#action}}
-<h1 id="user">You don't have enough priviledges to view this page!</h1>
-{{/action}} 
- </div>
-
+    {{/in_ca}}
+    {{#action}}
+    <h1 id="user">You don't have enough priviledges to view this page!</h1>
+    {{/action}} 
+</div>
 <script>
-function myFunction() {
-   
-   $('#newName').val(); 
-    if ($('#newName').val() != null){
-    alert('New product added');
-}
-};
-
+    function myFunction() {
+        $('#newName').val(); 
+        if ($('#newName').val() != null){
+            alert('New product added');
+        }
+    };
 </script>
-
-
-
-
