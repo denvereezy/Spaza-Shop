@@ -1,3 +1,8 @@
+<style>
+.row{
+  width:10em;
+}
+</style>
 <div id="container">
     <form>
 	<input id="allsales_search" class="searchBar" type="text" name="Name" placeholder="Search"></input>
@@ -5,18 +10,18 @@
 <table id="allsales" class="table table-striped custab" >
     <thead>
         <tr>
-            <th>Product</th>
-            <th>Qty Sold</th>
-            <th>Price(R)</th>
-            <th>Date</th>
+            <th class="row">Product</th>
+            <th class="row">Qty Sold</th>
+            <th class="row">Price(R)</th>
+            <th class="row">Date</th>
         </tr>
     </thead>
             <tr>
                 {{#each products}}
-                <td>{{Name}}</td>
-                <td>{{AmtSold}}</td>
-    		<td>{{Sales_price}}</td>
-    		<td>{{Sales_date}}</td>
+                <td class="row">{{Name}}</td>
+                <td class="row">{{AmtSold}}</td>
+    		<td class="row">{{Sales_price}}</td>
+    		<td class="row">{{Sales_date}}</td>
             </tr>
             {{/each}}
     </table>
